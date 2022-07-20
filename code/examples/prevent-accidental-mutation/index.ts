@@ -30,8 +30,8 @@ const people: Person[] = [
   },
 ];
 
-function getPeople(): PersonWithInitials[] {
-  const peopleWithInitialsSorted: PersonWithInitials[] = people
+function getSortedPeople(peopleUnsorted: Person[]): PersonWithInitials[] {
+  const peopleSorted: PersonWithInitials[] = peopleUnsorted
     .map((person: Person) => {
       const names: string[] = person.name.split(/\s+/);
       const initials: string = names.map((name) => name.charAt(0).toLocaleUpperCase()).join('');
@@ -51,9 +51,10 @@ function getPeople(): PersonWithInitials[] {
       return 0;
     });
 
-  return peopleWithInitialsSorted;
+  return peopleSorted;
 }
 
-console.log(JSON.stringify(getPeople(), null, 2));
+console.log(JSON.stringify(getSortedPeople(people), null, 2));
+console.log(JSON.stringify(people, null, 2));
 
-export default getPeople;
+export default getSortedPeople;
