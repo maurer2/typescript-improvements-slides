@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 
 type ButtonLinkCommonProps = {
   children?: ReactNode | ReactNode[];
-  type: 'link' | 'button';
+  type: 'button' | 'a';
   onClick: (() => void);
 }
 

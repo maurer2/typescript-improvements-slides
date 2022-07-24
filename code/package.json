@@ -1,11 +1,11 @@
 {
   "name": "examples",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "main": "index.js",
   "scripts": {
-    "prevent-accidental-mutation": "ts-node './examples/prevent-accidental-mutation/index.ts'",
-    "lint": "eslint './examples/**/*.ts'"
+    "lint": "eslint './examples/**/*.ts'",
+    "prevent-accidental-mutation": "ts-node './examples/prevent-accidental-mutation/index.ts'"
   },
   "dependencies": {
     "@swc/core": "^1.2.218",
