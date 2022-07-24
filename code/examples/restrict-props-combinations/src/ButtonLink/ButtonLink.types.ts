@@ -6,7 +6,6 @@ type ButtonLinkCommonProps = {
   onClick: (() => void);
 }
 
-// only available in button mode
 type ButtonLinkButtonProps =
   // don't allow href, when disabled attribute is set (disabled or disabled={true})
 | {
@@ -19,10 +18,18 @@ type ButtonLinkButtonProps =
     href?: string;
 }
 
-// only available in link mode
-// type ButtonLinkLinkProps = {
-  // href?: string;
-  //disabled?: never;
-//}
+// opposite of previous
+type ButtonLinkLinkProps =
+| {
+  // don't allow disabled, when href attribute is set (href="")
+  href: string;
+  disabled?: false;
+}
+// allow disabled, when href attribute is not set (href missing)
+| {
+  href?: undefined;
+  disabled?: boolean;
+}
 
-export type ButtonLinkProps = ButtonLinkCommonProps & ButtonLinkButtonProps // & ButtonLinkLinkProps;
+
+export type ButtonLinkProps = ButtonLinkCommonProps & ButtonLinkButtonProps & ButtonLinkLinkProps;
