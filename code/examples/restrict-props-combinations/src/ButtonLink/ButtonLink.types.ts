@@ -1,8 +1,28 @@
-import {ReactNode} from "react";
+import {ReactNode} from 'react';
 
-export type ButtonLinkProps = {
+type ButtonLinkCommonProps = {
   children?: ReactNode | ReactNode[];
   type: 'link' | 'button';
-  href?: string; // only in link mode
-  disabled?: boolean; // only in button mode
-};
+  onClick: (() => void);
+}
+
+// only available in button mode
+type ButtonLinkButtonProps =
+  // don't allow href, when disabled attribute is set (disabled or disabled={true})
+| {
+    disabled: true;
+    href?: never;
+  }
+  // allow href, when disabled attribute is not set (disabled missing or disabled={false})
+| {
+    disabled?: false;
+    href?: string;
+}
+
+// only available in link mode
+// type ButtonLinkLinkProps = {
+  // href?: string;
+  //disabled?: never;
+//}
+
+export type ButtonLinkProps = ButtonLinkCommonProps & ButtonLinkButtonProps // & ButtonLinkLinkProps;
