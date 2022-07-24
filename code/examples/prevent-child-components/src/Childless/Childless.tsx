@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react';
 
-import { ChildlessProps } from "./Childless.types";
+import { ChildlessProps } from './Childless.types';
 import style from './Childless.module.scss';
 
 function Childless(props: ChildlessProps): ReactElement {
