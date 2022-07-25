@@ -1,0 +1,9 @@
+{
+  "name": "slides",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "nominal-typing": "java ./drafts/structured-typing-vs-nominal-typing/nominal-typing.java"
+  }
+}
