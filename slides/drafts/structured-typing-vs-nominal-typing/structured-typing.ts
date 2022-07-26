@@ -1,28 +1,3 @@
-// type MacOsReleaseNames =
-// | 'Kodiak'
-// | 'Cheetah'
-// | 'Puma'
-// | 'Jaguar'
-// | 'Panther'
-// | 'Tiger'
-// | 'Leopard'
-// | 'Snow Leopard'
-// | 'Lion'
-// | 'Mountain Lion'
-// | 'Mavericks'
-// | 'Yosemite'
-// | 'Capitan'
-// | 'Sierra'
-// | 'High Sierra'
-// | 'Mojave'
-// | 'Catalina'
-// | 'Big Sur'
-// | 'Monterey'
-// | 'Ventura'
-
-// type Animals =
-//   | 'Elephant'
-
 type MacBook = {
   name: string;
   colour: string;
