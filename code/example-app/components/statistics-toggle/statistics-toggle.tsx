@@ -1,15 +1,23 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useId, FormEvent } from 'react';
 
 import { StatisticsToggleProps } from './props';
 
-function StatisticsToggle({ children }: StatisticsToggleProps): ReactElement {
-  function handleClick() {
-    console.log('click', children);
+function StatisticsToggle({
+  count, category, value, onChange,
+}: StatisticsToggleProps): ReactElement {
+  const id: string = useId();
+
+  function handleChange(event: FormEvent<HTMLLabelElement>): void {
+    onChange(value);
+    console.log(event);
   }
+
   return (
-    <button type="button" onClick={handleClick}>
-      Click
-    </button>
+    <label onChange={handleChange} htmlFor={id}>
+      <span>{count}</span>
+      <span>{category}</span>
+      <input type="checkbox" id={id} value={value} />
+    </label>
   );
 }
 
