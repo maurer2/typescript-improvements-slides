@@ -14,15 +14,39 @@ type PaymentCategoriesActions = { type: 'regular' } | { type: 'missed' } | { typ
 
 function Home({ isHome }: HomeProps): ReactElement {
   const [activePaymentCategories, setActivePaymentCategories] = useReducer(
-    (state: any[], action: PaymentCategoriesActions) => {
+    (state: any[], action: PaymentCategoriesActions) => { // todo proper types
       switch (action.type) {
         case 'regular': {
+          const currentPosition: number = state.findIndex(
+            (currentStateEntry) => currentStateEntry === 'regular',
+          );
+          if (currentPosition > -1) {
+            const newState = [...state];
+            newState.splice(currentPosition, 1);
+            return newState;
+          }
           return [...state, 'regular'];
         }
         case 'missed': {
+          const currentPosition = state.findIndex(
+            (currentStateEntry) => currentStateEntry === 'missed',
+          );
+          if (currentPosition > -1) {
+            const newState = [...state];
+            newState.splice(currentPosition, 1);
+            return newState;
+          }
           return [...state, 'missed'];
         }
         case 'defaulted': {
+          const currentPosition = state.findIndex(
+            (currentStateEntry) => currentStateEntry === 'defaulted',
+          );
+          if (currentPosition > -1) {
+            const newState = [...state];
+            newState.splice(currentPosition, 1);
+            return newState;
+          }
           return [...state, 'defaulted'];
         }
         default: {
@@ -36,16 +60,21 @@ function Home({ isHome }: HomeProps): ReactElement {
   return (
     <div className="h-screen grid bg-pink-900">
       <div className="container mx-auto my-auto bg-pink-100">
-        <pre>{JSON.stringify(activePaymentCategories)}</pre>
-        {paymentCategories.map((paymentCategory) => (
-          <StatisticsToggle
-            key={paymentCategory}
-            count={0}
-            category={paymentCategory}
-            value={paymentCategory}
-            onChange={(value: string) => setActivePaymentCategories({ type: value })}
-          />
-        ))}
+        <header>
+          <pre>{JSON.stringify(activePaymentCategories)}</pre>
+        </header>
+        <nav className="flex flex-row gap-4">
+          {paymentCategories.map((paymentCategory) => (
+            <div className="basis-1/3 h-full aspect-square border-4 border-pink-500" key={paymentCategory}>
+              <StatisticsToggle
+                count={0}
+                category={paymentCategory}
+                value={paymentCategory}
+                onChange={(value: string) => setActivePaymentCategories({ type: value as any })}
+              />
+            </div>
+          ))}
+        </nav>
         <ResultsList />
       </div>
     </div>

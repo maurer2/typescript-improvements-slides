@@ -3,7 +3,10 @@ import React, { ReactElement, useId, FormEvent } from 'react';
 import { StatisticsToggleProps } from './props';
 
 function StatisticsToggle({
-  count, category, value, onChange,
+  count,
+  category,
+  value,
+  onChange,
 }: StatisticsToggleProps): ReactElement {
   const id: string = useId();
 
@@ -13,10 +16,10 @@ function StatisticsToggle({
   }
 
   return (
-    <label onChange={handleChange} htmlFor={id}>
-      <span>{count}</span>
-      <span>{category}</span>
-      <input type="checkbox" id={id} value={value} />
+    <label onChange={handleChange} htmlFor={id} className="block h-full cursor-pointer">
+      <span className="block">{count}</span>
+      <span className="block">{category}</span>
+      <input className="block" type="checkbox" id={id} value={value} />
     </label>
   );
 }
