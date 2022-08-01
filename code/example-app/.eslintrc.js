@@ -18,5 +18,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   plugins: ['@typescript-eslint'],
-  rules: {},
+  rules: {
+    'no-restricted-exports': 'off',
+  },
 };
