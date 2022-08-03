@@ -107,10 +107,7 @@ function Home({ isHome }: HomeProps): ReactElement {
             </div>
           ))}
         </nav>
-        <ResultsList />
-        <pre>
-          {JSON.stringify(customers, null, 4)}
-        </pre>
+        <ResultsList customers={customers} />
       </div>
     </div>
   );
