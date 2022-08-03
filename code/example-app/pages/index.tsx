@@ -1,7 +1,10 @@
-import { ReactElement, useReducer } from 'react';
+import {
+  ReactElement, useReducer, useEffect, useState, useCallback,
+} from 'react';
 
 import ResultsList from '../components/results-list';
 import StatisticsToggle from '../components/statistics-toggle';
+import { Customer } from './api/customer.types';
 
 type HomeProps = {
   isHome: boolean;
@@ -56,6 +59,35 @@ function Home({ isHome }: HomeProps): ReactElement {
     },
     [] as PaymentCategories[],
   );
+  const [customers, setCustomers] = useState<Customer[]>([]);
+
+  const fetchCustomers: () => Promise<Customer[]> = useCallback(
+    async () => {
+      const response: Response = await fetch('/api/customers');
+      const customersFetched: Awaited<Customer[]> = await response.json();
+
+      return customersFetched;
+    },
+    [],
+  );
+
+  useEffect(() => {
+    // https://beta.reactjs.org/learn/synchronizing-with-effects#fetching-data
+    let ignore = false;
+
+    async function startFetching() {
+      const customersFetched: Customer[] = await fetchCustomers();
+      if (!ignore) {
+        setCustomers(customersFetched);
+      }
+    }
+
+    startFetching();
+
+    return () => {
+      ignore = true;
+    };
+  }, [fetchCustomers, setCustomers]);
 
   return (
     <div className="h-screen grid bg-pink-900">
@@ -76,6 +108,9 @@ function Home({ isHome }: HomeProps): ReactElement {
           ))}
         </nav>
         <ResultsList />
+        <pre>
+          {JSON.stringify(customers, null, 4)}
+        </pre>
       </div>
     </div>
   );
