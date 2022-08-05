@@ -16,10 +16,19 @@ function StatisticsToggle({
   }
 
   return (
-    <label onChange={handleChange} htmlFor={id} className="block h-full cursor-pointer">
+    <label
+      onChange={handleChange}
+      htmlFor={id}
+      className="block h-full cursor-pointer"
+    >
       <span className="block">{count}</span>
       <span className="block">{category}</span>
-      <input className="block" type="checkbox" id={id} value={value} />
+      <input
+        className="block"
+        type="checkbox"
+        id={id}
+        value={value}
+      />
     </label>
   );
 }

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import {
   ReactElement, useReducer, useEffect, useState, useCallback,
 } from 'react';
