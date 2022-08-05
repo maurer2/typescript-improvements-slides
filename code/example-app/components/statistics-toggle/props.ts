@@ -1,9 +1,11 @@
 import { ReactNode } from 'react';
 
+import type { PaymentCategories } from '../../types/payment';
+
 export type StatisticsToggleProps = {
   children?: ReactNode;
   count: number;
-  category: string; // todo change to union type or enum
-  value: string; // todo change to union type or enum
-  onChange: (value: string) => void,
+  category: PaymentCategories;
+  value: PaymentCategories;
+  onChange: (value: PaymentCategories) => void;
 };
