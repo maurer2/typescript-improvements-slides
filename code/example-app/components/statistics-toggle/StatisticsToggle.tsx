@@ -4,11 +4,7 @@ import classNames from 'classnames';
 import { StatisticsToggleProps } from './types';
 
 function StatisticsToggle({
-  count,
-  category,
-  value,
-  isActive,
-  onChange,
+  count, category, value, isActive, onChange,
 }: StatisticsToggleProps): ReactElement {
   const id: string = useId();
 
@@ -20,12 +16,12 @@ function StatisticsToggle({
     <label
       onChange={handleChange}
       htmlFor={id}
-      className={classNames('flex gap-4 p-4 h-full cursor-pointer border text-lg', {
+      className={classNames('p-4 flex gap-4 items-center h-full border select-none cursor-pointer', {
         'border-red-500': isActive,
       })}
     >
-      <span className="block">{count}</span>
-      <span className="block">{category}</span>
+      <span className="text-lg">{count}</span>
+      <span>{category}</span>
       <input
         className="hidden"
         type="checkbox"

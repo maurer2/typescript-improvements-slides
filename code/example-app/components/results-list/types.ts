@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Customer } from '../../pages/api/customer.types';
+import { Customer } from '../../types/customer';
 
 export type ResultsListProps = {
   children?: ReactNode;

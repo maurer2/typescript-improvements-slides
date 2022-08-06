@@ -4,6 +4,9 @@ export type HomeProps = {
   isHome: boolean;
 };
 
+// export type PaymentCategoryCounts = [countRegular: number, countMissed: number, countDefaulted: number];
+export type PaymentCategoryCounts = Record<PaymentCategories, number>;
+
 export type ActivePaymentState = ReadonlyArray<PaymentCategories>;
 
 export const paymentCategoriesActionTypes = {
