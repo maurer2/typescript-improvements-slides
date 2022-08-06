@@ -1,5 +1,5 @@
 import {
-  ReactElement, useReducer, useEffect, useState, useCallback, Reducer,
+  ReactElement, useReducer, useEffect, useState, Reducer,
 } from 'react';
 
 import ResultsList from '../../components/results-list';
@@ -8,6 +8,8 @@ import { Customer } from '../api/customer.types';
 
 import { TOGGLE_ACTION_TYPE, type PaymentCategoriesActions, ActivePaymentState } from './types';
 import { paymentCategories } from '../../types/payment';
+
+import fetchData from '../../services/fetch-data';
 
 function Home(): ReactElement {
   const listFormatter = new Intl.ListFormat('en', { style: 'long' });
@@ -38,19 +40,12 @@ function Home(): ReactElement {
   }, []);
   const [customers, setCustomers] = useState<Customer[]>([]);
 
-  const fetchCustomers: () => Promise<Customer[]> = useCallback(async () => {
-    const response: Response = await fetch('/api/customers');
-    const customersFetched: Awaited<Customer[]> = await response.json();
-
-    return customersFetched;
-  }, []);
-
   useEffect(() => {
     // https://beta.reactjs.org/learn/synchronizing-with-effects#fetching-data
     let ignore = false;
 
     async function startFetching() {
-      const customersFetched: Customer[] = await fetchCustomers();
+      const customersFetched = await fetchData<Customer[]>('/api/customers');
       if (!ignore) {
         setCustomers(customersFetched);
       }
@@ -61,16 +56,14 @@ function Home(): ReactElement {
     return () => {
       ignore = true;
     };
-  }, [fetchCustomers, setCustomers]);
+  }, [setCustomers]);
 
   return (
     <div className="h-screen grid bg-pink-900">
       <div className="container mx-auto bg-white p-4">
         <header className="mb-4">
           <h1 className="text-2xl">Payment type filters</h1>
-          <span>
-            {listFormatter.format(activePaymentCategories) || 'No categories selected'}
-          </span>
+          <span>{listFormatter.format(activePaymentCategories) || 'No categories selected'}</span>
         </header>
         <nav className="mb-4">
           <ul className="flex flex-row gap-4">
