@@ -1,44 +1,41 @@
 import {
-  ReactElement, useReducer, useEffect, useState, useCallback,
+  ReactElement, useReducer, useEffect, useState, useCallback, Reducer,
 } from 'react';
 
 import ResultsList from '../../components/results-list';
 import StatisticsToggle from '../../components/statistics-toggle';
 import { Customer } from '../api/customer.types';
 
-// import { HomeProps } from './props';
-
-import {
-  paymentCategories,
-  type PaymentCategoriesActions, ActivePaymentState,
-} from '../../types/payment';
+import { TOGGLE_ACTION_TYPE, type PaymentCategoriesActions, ActivePaymentState } from './types';
+import { paymentCategories } from '../../types/payment';
 
 function Home(): ReactElement {
-  const [activePaymentCategories, setActivePaymentCategories] = useReducer(
-    (state: ActivePaymentState, action: PaymentCategoriesActions) => {
-      switch (action.type) {
-        case 'TOGGLE_ACTION_TYPE': {
-          const { payload } = action;
+  const listFormatter = new Intl.ListFormat('en', { style: 'long' });
 
-          const positionOfElementToToggle = state.findIndex(
-            (currentStateEntry) => currentStateEntry === payload,
-          );
-          if (positionOfElementToToggle > -1) {
-            const newState = [...state];
-            newState.splice(positionOfElementToToggle, 1);
+  const [activePaymentCategories, setActivePaymentCategories] = useReducer<
+  Reducer<ActivePaymentState, PaymentCategoriesActions>
+  >((state, action) => {
+    switch (action.type) {
+      case TOGGLE_ACTION_TYPE: {
+        const { payload } = action;
 
-            return newState;
-          }
+        const positionOfElementToToggle = state.findIndex(
+          (currentStateEntry) => currentStateEntry === payload,
+        );
+        if (positionOfElementToToggle > -1) {
+          const newState = [...state];
+          newState.splice(positionOfElementToToggle, 1);
 
-          return [...state, payload];
+          return newState;
         }
-        default: {
-          return [];
-        }
+
+        return [...state, payload];
       }
-    },
-    [],
-  );
+      default: {
+        return [];
+      }
+    }
+  }, []);
   const [customers, setCustomers] = useState<Customer[]>([]);
 
   const fetchCustomers: () => Promise<Customer[]> = useCallback(async () => {
@@ -69,9 +66,7 @@ function Home(): ReactElement {
   return (
     <div className="h-screen grid bg-pink-900">
       <div className="container mx-auto my-auto bg-pink-100">
-        <header>
-          <pre>{JSON.stringify(activePaymentCategories)}</pre>
-        </header>
+        <header>{listFormatter.format(activePaymentCategories)}</header>
         <nav className="flex flex-row gap-4">
           {paymentCategories.map((paymentCategory) => (
             <div
@@ -82,7 +77,10 @@ function Home(): ReactElement {
                 count={0}
                 category={paymentCategory}
                 value={paymentCategory}
-                onChange={(value) => setActivePaymentCategories({ type: 'TOGGLE_ACTION_TYPE', payload: value })}
+                onChange={(payload) => setActivePaymentCategories({
+                  type: TOGGLE_ACTION_TYPE,
+                  payload,
+                })}
               />
             </div>
           ))}
