@@ -1,30 +1,33 @@
-import React, { ReactElement, useId, FormEvent } from 'react';
+import React, { ReactElement, useId } from 'react';
+import classNames from 'classnames';
 
-import { StatisticsToggleProps } from './props';
+import { StatisticsToggleProps } from './types';
 
 function StatisticsToggle({
   count,
   category,
   value,
+  isActive,
   onChange,
 }: StatisticsToggleProps): ReactElement {
   const id: string = useId();
 
-  function handleChange(event: FormEvent<HTMLLabelElement>): void {
+  function handleChange(): void {
     onChange(value);
-    console.log(event);
   }
 
   return (
     <label
       onChange={handleChange}
       htmlFor={id}
-      className="block h-full cursor-pointer"
+      className={classNames('flex gap-4 p-4 h-full cursor-pointer border text-lg', {
+        'border-red-500': isActive,
+      })}
     >
       <span className="block">{count}</span>
       <span className="block">{category}</span>
       <input
-        className="block"
+        className="hidden"
         type="checkbox"
         id={id}
         value={value}

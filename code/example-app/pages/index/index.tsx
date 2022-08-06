@@ -19,7 +19,7 @@ function Home(): ReactElement {
       case TOGGLE_ACTION_TYPE: {
         const { payload } = action;
 
-        const positionOfElementToToggle = state.findIndex(
+        const positionOfElementToToggle: number = state.findIndex(
           (currentStateEntry) => currentStateEntry === payload,
         );
         if (positionOfElementToToggle > -1) {
@@ -65,27 +65,37 @@ function Home(): ReactElement {
 
   return (
     <div className="h-screen grid bg-pink-900">
-      <div className="container mx-auto my-auto bg-pink-100">
-        <header>{listFormatter.format(activePaymentCategories)}</header>
-        <nav className="flex flex-row gap-4">
-          {paymentCategories.map((paymentCategory) => (
-            <div
-              className="basis-1/3 h-full aspect-square border-4 border-pink-500"
-              key={paymentCategory}
-            >
-              <StatisticsToggle
-                count={0}
-                category={paymentCategory}
-                value={paymentCategory}
-                onChange={(payload) => setActivePaymentCategories({
-                  type: TOGGLE_ACTION_TYPE,
-                  payload,
-                })}
-              />
-            </div>
-          ))}
+      <div className="container mx-auto bg-white p-4">
+        <header className="mb-4">
+          <h1 className="text-2xl">Payment type filters</h1>
+          <span>
+            {listFormatter.format(activePaymentCategories) || 'No categories selected'}
+          </span>
+        </header>
+        <nav className="mb-4">
+          <ul className="flex flex-row gap-4">
+            {paymentCategories.map((paymentCategory) => (
+              <li
+                className="basis-1/3 h-full"
+                key={paymentCategory}
+              >
+                <StatisticsToggle
+                  count={0}
+                  category={paymentCategory}
+                  value={paymentCategory}
+                  isActive={activePaymentCategories.includes(paymentCategory)}
+                  onChange={(payload) => setActivePaymentCategories({
+                    type: TOGGLE_ACTION_TYPE,
+                    payload,
+                  })}
+                />
+              </li>
+            ))}
+          </ul>
         </nav>
-        <ResultsList customers={customers} />
+        <main className="mb-4">
+          <ResultsList customers={customers} />
+        </main>
       </div>
     </div>
   );

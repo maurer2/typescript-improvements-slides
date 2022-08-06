@@ -7,5 +7,6 @@ export type StatisticsToggleProps = {
   count: number;
   category: PaymentCategories;
   value: PaymentCategories;
+  isActive: boolean;
   onChange: (value: PaymentCategories) => void;
 };

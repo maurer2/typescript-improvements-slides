@@ -1,1 +1,1 @@
-export { default } from './statistics-toggle';
+export { default } from './StatisticsToggle';

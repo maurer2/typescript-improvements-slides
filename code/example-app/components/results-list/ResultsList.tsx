@@ -1,19 +1,19 @@
 import React, { ReactElement } from 'react';
 
-import { ResultsListProps } from './props';
+import { ResultsListProps } from './types';
 
 function ResultsList({ customers }: ResultsListProps): ReactElement {
   console.log(customers);
 
   return (
-    <table className="table-auto border-collapse border border-slate-400">
+    <table className="w-full table-fixed border-collapse border">
       <thead className="">
         <tr>
-          <th className="border border-slate-400">First name</th>
-          <th className="border border-slate-400">Last name</th>
-          <th className="border border-slate-400">Age</th>
-          <th className="border border-slate-400">Missed Payments</th>
-          <th className="border border-slate-400">Defaulted Payments</th>
+          <th className="border ">First name</th>
+          <th className="border ">Last name</th>
+          <th className="border ">Age</th>
+          <th className="border ">Missed Payments</th>
+          <th className="border ">Defaulted Payments</th>
         </tr>
       </thead>
       <tbody>
@@ -21,11 +21,11 @@ function ResultsList({ customers }: ResultsListProps): ReactElement {
           id, firstName, lastName, age, missedPayments, defaultedPayments,
         }) => (
           <tr key={id}>
-            <td className="border border-slate-400">{firstName}</td>
-            <td className="border border-slate-400">{lastName}</td>
-            <td className="border border-slate-400">{age}</td>
-            <td className="border border-slate-400">{missedPayments}</td>
-            <td className="border border-slate-400">{defaultedPayments}</td>
+            <td className="border ">{firstName}</td>
+            <td className="border ">{lastName}</td>
+            <td className="border ">{age}</td>
+            <td className="border ">{missedPayments}</td>
+            <td className="border ">{defaultedPayments}</td>
           </tr>
         ))}
       </tbody>
