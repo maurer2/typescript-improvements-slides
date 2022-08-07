@@ -16,16 +16,15 @@ function StatisticsToggle({
     <label
       onChange={handleChange}
       htmlFor={id}
-      className={classNames('p-4 flex gap-4 items-center h-full border select-none cursor-pointer', {
-        'border-red-500': isActive,
+      className={classNames('p-4 block h-full border select-none cursor-pointer', {
+        'bg-gray-200': isActive,
       })}
     >
-      <span className="text-lg">{count}</span>
-      <span>
-        {category}
-        {' '}
-        Payments
-      </span>
+      <dl className="flex flex-row-reverse gap-4 items-center">
+        <dt className="grow">{category}</dt>
+        <dd className="text-lg">{count}</dd>
+      </dl>
+
       <input
         className="hidden"
         type="checkbox"

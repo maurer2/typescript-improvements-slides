@@ -7,17 +7,20 @@ import StatisticsToggle from '../../components/statistics-toggle';
 import { Customer } from '../../types/customer';
 
 import {
-  TOGGLE_ACTION_TYPE, type PaymentCategoriesActions, ActivePaymentState, PaymentCategoryCounts,
+  TOGGLE_FILTER,
+  type PaymentCategoriesActions,
+  ActivePaymentFiltersState,
+  PaymentCategoryCounts,
 } from './types';
-import { paymentCategories } from '../../types/payment';
+import { paymentCategories, paymentCategoryNames } from '../../types/payment';
 
 import fetchData from '../../services/fetch-data';
 
 function Home(): ReactElement {
-  const [activePaymentCategories, setActivePaymentCategories] = useReducer(
-    (state: ActivePaymentState, action: PaymentCategoriesActions) => {
+  const [activePaymentCategoriesFilters, setActivePaymentCategoriesFilters] = useReducer(
+    (state: ActivePaymentFiltersState, action: PaymentCategoriesActions) => {
       switch (action.type) {
-        case TOGGLE_ACTION_TYPE: {
+        case TOGGLE_FILTER: {
           const { payload } = action;
 
           const positionOfElementToToggle: number = state.findIndex(
@@ -40,7 +43,6 @@ function Home(): ReactElement {
     [],
   );
   const [customers, setCustomers] = useState<Customer[]>([]);
-
   const paymentCategoryCount: PaymentCategoryCounts = useMemo(() => {
     const count: PaymentCategoryCounts = customers.reduce(
       (totalCount, currentCustomer) => {
@@ -84,14 +86,14 @@ function Home(): ReactElement {
   }, [setCustomers]);
 
   return (
-    <div className="min-h-screen grid bg-pink-900">
-      <div className="container mx-auto bg-white p-4">
+    <div className="grid min-h-screen bg-pink-900">
+      <div className="container mx-auto p-4 bg-white">
         <header className="mb-0">
           <h1 className="text-3xl">Shoofa</h1>
           <span>
-            {listFormatter.current.format(activePaymentCategories) || 'No category/categories'}
+            {listFormatter.current.format(activePaymentCategoriesFilters) || 'No filters'}
             {' '}
-            selected
+            enabled
           </span>
         </header>
         <nav className="pt-4 pb-4 sticky top-0 bg-white">
@@ -103,11 +105,11 @@ function Home(): ReactElement {
               >
                 <StatisticsToggle
                   count={paymentCategoryCount[paymentCategory]}
-                  category={paymentCategory}
+                  category={paymentCategoryNames[paymentCategory]}
                   value={paymentCategory}
-                  isActive={activePaymentCategories.includes(paymentCategory)}
-                  onChange={(payload) => setActivePaymentCategories({
-                    type: TOGGLE_ACTION_TYPE,
+                  isActive={activePaymentCategoriesFilters.includes(paymentCategory)}
+                  onChange={(payload) => setActivePaymentCategoriesFilters({
+                    type: TOGGLE_FILTER,
                     payload,
                   })}
                 />
@@ -121,7 +123,7 @@ function Home(): ReactElement {
           ) : (
             <ResultsList
               customers={customers}
-              activePaymentCategories={activePaymentCategories}
+              activePaymentCategories={activePaymentCategoriesFilters}
             />
           )}
         </main>

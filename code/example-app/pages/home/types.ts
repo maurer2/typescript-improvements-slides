@@ -7,17 +7,17 @@ export type HomeProps = {
 // export type PaymentCategoryCounts = [countRegular: number, countMissed: number, countDefaulted: number];
 export type PaymentCategoryCounts = Record<PaymentCategories, number>;
 
-export type ActivePaymentState = ReadonlyArray<PaymentCategories>;
+export type ActivePaymentFiltersState = PaymentCategories[];
 
-export const paymentCategoriesActionTypes = {
-  TOGGLE_ACTION_TYPE: 'TOGGLE_ACTION_TYPE',
+export const paymentCategoriesFilterActionTypes = {
+  TOGGLE_FILTER: 'TOGGLE_FILTER',
 } as const;
 
-export type PaymentCategoriesActionTypes = keyof typeof paymentCategoriesActionTypes;
+export type PaymentCategoriesFiltersActionTypes = keyof typeof paymentCategoriesFilterActionTypes;
 
 export type PaymentCategoriesActions = {
-  type: PaymentCategoriesActionTypes;
+  type: PaymentCategoriesFiltersActionTypes;
   payload: PaymentCategories;
 };
 
-export const { TOGGLE_ACTION_TYPE } = paymentCategoriesActionTypes;
+export const { TOGGLE_FILTER } = paymentCategoriesFilterActionTypes;
