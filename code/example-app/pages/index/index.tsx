@@ -1,5 +1,5 @@
 import {
-  ReactElement, useReducer, useEffect, useState, Reducer, useMemo, useRef,
+  ReactElement, useReducer, useEffect, useState, useMemo, useRef,
 } from 'react';
 
 import ResultsList from '../../components/results-list';
@@ -14,28 +14,31 @@ import { paymentCategories } from '../../types/payment';
 import fetchData from '../../services/fetch-data';
 
 function Home(): ReactElement {
-  const [activePaymentCategories, setActivePaymentCategories] = useReducer<
-  Reducer<ActivePaymentState, PaymentCategoriesActions>
-  >((state, action) => {
-    switch (action.type) {
-      case TOGGLE_ACTION_TYPE: {
-        const { payload } = action;
+  const [activePaymentCategories, setActivePaymentCategories] = useReducer(
+    (state: ActivePaymentState, action: PaymentCategoriesActions) => {
+      switch (action.type) {
+        case TOGGLE_ACTION_TYPE: {
+          const { payload } = action;
 
-        const positionOfElementToToggle: number = state.findIndex((currentStateEntry) => currentStateEntry === payload);
-        if (positionOfElementToToggle > -1) {
-          const newState = [...state];
-          newState.splice(positionOfElementToToggle, 1);
+          const positionOfElementToToggle: number = state.findIndex(
+            (currentStateEntry) => currentStateEntry === payload,
+          );
+          if (positionOfElementToToggle > -1) {
+            const newState = [...state];
+            newState.splice(positionOfElementToToggle, 1);
 
-          return newState;
+            return newState;
+          }
+
+          return [...state, payload];
         }
-
-        return [...state, payload];
+        default: {
+          return [];
+        }
       }
-      default: {
-        return [];
-      }
-    }
-  }, []);
+    },
+    [],
+  );
   const [customers, setCustomers] = useState<Customer[]>([]);
 
   const paymentCategoryCount: PaymentCategoryCounts = useMemo(() => {
@@ -112,7 +115,16 @@ function Home(): ReactElement {
             ))}
           </ul>
         </nav>
-        <main className="mb-4">{!customers.length ? <span>Loading</span> : <ResultsList customers={customers} />}</main>
+        <main className="mb-4">
+          {!customers.length ? (
+            <span>Loading</span>
+          ) : (
+            <ResultsList
+              customers={customers}
+              activePaymentCategories={activePaymentCategories}
+            />
+          )}
+        </main>
       </div>
     </div>
   );
