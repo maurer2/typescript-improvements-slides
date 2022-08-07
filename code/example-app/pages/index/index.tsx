@@ -1,5 +1,5 @@
 import {
-  ReactElement, useReducer, useEffect, useState, Reducer, useMemo,
+  ReactElement, useReducer, useEffect, useState, Reducer, useMemo, useRef,
 } from 'react';
 
 import ResultsList from '../../components/results-list';
@@ -14,8 +14,6 @@ import { paymentCategories } from '../../types/payment';
 import fetchData from '../../services/fetch-data';
 
 function Home(): ReactElement {
-  const listFormatter = new Intl.ListFormat('en', { style: 'long' });
-
   const [activePaymentCategories, setActivePaymentCategories] = useReducer<
   Reducer<ActivePaymentState, PaymentCategoriesActions>
   >((state, action) => {
@@ -62,6 +60,7 @@ function Home(): ReactElement {
 
     return count;
   }, [customers]);
+  const listFormatter = useRef(new Intl.ListFormat('en', { style: 'long' }));
 
   useEffect(() => {
     // https://beta.reactjs.org/learn/synchronizing-with-effects#fetching-data
@@ -82,17 +81,17 @@ function Home(): ReactElement {
   }, [setCustomers]);
 
   return (
-    <div className="h-screen grid bg-pink-900">
+    <div className="min-h-screen grid bg-pink-900">
       <div className="container mx-auto bg-white p-4">
-        <header className="mb-4">
+        <header className="mb-0">
           <h1 className="text-3xl">Shoofa</h1>
           <span>
-            {listFormatter.format(activePaymentCategories) || 'No category/categories'}
+            {listFormatter.current.format(activePaymentCategories) || 'No category/categories'}
             {' '}
             selected
           </span>
         </header>
-        <nav className="mb-4">
+        <nav className="pt-4 pb-4 sticky top-0 bg-white">
           <ul className="flex flex-row gap-4">
             {paymentCategories.map((paymentCategory) => (
               <li
@@ -113,11 +112,7 @@ function Home(): ReactElement {
             ))}
           </ul>
         </nav>
-        <main className="mb-4">
-          { !customers.length
-            ? <span>Loading</span>
-            : <ResultsList customers={customers} />}
-        </main>
+        <main className="mb-4">{!customers.length ? <span>Loading</span> : <ResultsList customers={customers} />}</main>
       </div>
     </div>
   );

@@ -21,7 +21,11 @@ function StatisticsToggle({
       })}
     >
       <span className="text-lg">{count}</span>
-      <span>{category}</span>
+      <span>
+        {category}
+        {' '}
+        Payments
+      </span>
       <input
         className="hidden"
         type="checkbox"
