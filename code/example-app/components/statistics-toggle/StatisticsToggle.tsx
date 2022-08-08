@@ -1,7 +1,7 @@
 import React, { ReactElement, useId } from 'react';
 import classNames from 'classnames';
 
-import { StatisticsToggleProps } from './types';
+import type { StatisticsToggleProps } from './types';
 
 function StatisticsToggle({
   count, category, value, isActive, onChange,

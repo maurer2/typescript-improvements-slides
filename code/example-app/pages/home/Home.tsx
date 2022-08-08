@@ -4,7 +4,8 @@ import {
 
 import ResultsList from '../../components/results-list';
 import StatisticsToggle from '../../components/statistics-toggle';
-import { Customer } from '../../types/customer';
+
+import fetchData from '../../services/fetch-data';
 
 import {
   TOGGLE_FILTER,
@@ -12,9 +13,8 @@ import {
   ActivePaymentFiltersState,
   PaymentCategoryCounts,
 } from './types';
+import type { Customer } from '../../types/customer';
 import { paymentCategories, paymentCategoryNames } from '../../types/payment';
-
-import fetchData from '../../services/fetch-data';
 
 function Home(): ReactElement {
   const [activePaymentCategoriesFilters, setActivePaymentCategoriesFilters] = useReducer(
@@ -123,7 +123,7 @@ function Home(): ReactElement {
           ) : (
             <ResultsList
               customers={customers}
-              activePaymentCategories={activePaymentCategoriesFilters}
+              activePaymentCategoriesFilters={activePaymentCategoriesFilters}
             />
           )}
         </main>

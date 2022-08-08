@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import { Customer } from '../../types/customer';
-import { ActivePaymentState } from '../../pages/home/types';
+import type { Customer } from '../../types/customer';
+import type { PaymentCategories } from '../../types/payment';
 
 export type ResultsListProps = {
   children?: ReactNode;
   customers: Customer[];
-  activePaymentCategories: ActivePaymentState;
+  activePaymentCategoriesFilters: PaymentCategories[];
 };
