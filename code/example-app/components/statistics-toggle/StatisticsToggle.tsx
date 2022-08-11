@@ -19,6 +19,7 @@ function StatisticsToggle({
       className={classNames('p-4 block h-full border select-none cursor-pointer', {
         'bg-gray-200': isActive,
       })}
+      data-testid="statistic-toggle"
     >
       <dl className="flex flex-row-reverse gap-4 items-center">
         <dt className="grow">{category}</dt>
