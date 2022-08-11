@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     'no-restricted-exports': 'off',
     'max-len': ["error", { "code": 120 }],
+    'react/jsx-props-no-spreading': process.env.NODE_ENV === 'production' ? 2 : 0,
   },
 };

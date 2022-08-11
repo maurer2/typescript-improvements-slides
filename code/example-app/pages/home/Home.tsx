@@ -87,7 +87,7 @@ function Home(): ReactElement {
 
   return (
     <div className="grid min-h-screen bg-pink-900">
-      <div className="container mx-auto p-4 bg-white">
+      <div className="mx-auto max-w-4xl p-4 bg-white">
         <header className="mb-0">
           <h1 className="text-3xl">Shoofa</h1>
           <span>
