@@ -72,7 +72,7 @@ function Home(): ReactElement {
     let ignore = false;
 
     async function startFetching() {
-      const customersFetched = await fetchData<Customer[]>('/api/customers');
+      const customersFetched: Customer[] = await fetchData<Customer[]>('/api/customers');
       if (!ignore) {
         setCustomers(customersFetched);
       }
@@ -95,7 +95,7 @@ function Home(): ReactElement {
           className="mb-0"
           data-testid="page-header"
         >
-          <h1 className="text-3xl">Shoofa</h1>
+          <h1 className="text-3xl" data-testid="page-title">Shoofa</h1>
           <span>
             {listFormatter.current.format(activePaymentCategoriesFilters) || 'No filters'}
             {' '}
