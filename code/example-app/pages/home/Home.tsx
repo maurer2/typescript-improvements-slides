@@ -90,7 +90,7 @@ function Home(): ReactElement {
       className="grid min-h-screen bg-pink-900"
       data-testid="page-wrapper"
     >
-      <div className="mx-auto max-w-4xl p-4 bg-white">
+      <div className="w-10/12 mx-auto  max-w-4xl p-4 bg-white">
         <header
           className="mb-0"
           data-testid="page-header"
