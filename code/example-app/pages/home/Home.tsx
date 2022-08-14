@@ -5,16 +5,16 @@ import {
 import ResultsList from '../../components/results-list';
 import StatisticsToggle from '../../components/statistics-toggle';
 
-import fetchData from '../../services/fetch-data';
-
 import {
   TOGGLE_FILTER,
   type PaymentCategoriesActions,
-  ActivePaymentFiltersState,
-  PaymentCategoryCounts,
+  type ActivePaymentFiltersState,
+  type PaymentCategoryCounts,
 } from './types';
 import type { Customer } from '../../types/customer';
 import { paymentCategories, paymentCategoryNames } from '../../types/payment';
+
+import fetchData from '../../services/fetch-data';
 
 function Home(): ReactElement {
   const [activePaymentCategoriesFilters, setActivePaymentCategoriesFilters] = useReducer(
@@ -86,9 +86,15 @@ function Home(): ReactElement {
   }, [setCustomers]);
 
   return (
-    <div className="grid min-h-screen bg-pink-900">
+    <div
+      className="grid min-h-screen bg-pink-900"
+      data-testid="page-wrapper"
+    >
       <div className="mx-auto max-w-4xl p-4 bg-white">
-        <header className="mb-0">
+        <header
+          className="mb-0"
+          data-testid="page-header"
+        >
           <h1 className="text-3xl">Shoofa</h1>
           <span>
             {listFormatter.current.format(activePaymentCategoriesFilters) || 'No filters'}
@@ -96,37 +102,45 @@ function Home(): ReactElement {
             enabled
           </span>
         </header>
-        <nav className="pt-4 pb-4 sticky top-0 bg-white">
-          <ul className="flex flex-row gap-4">
-            {paymentCategories.map((paymentCategory) => (
-              <li
-                className="basis-1/3 h-full"
-                key={paymentCategory}
-              >
-                <StatisticsToggle
-                  count={paymentCategoryCount[paymentCategory]}
-                  category={paymentCategoryNames[paymentCategory]}
-                  value={paymentCategory}
-                  isActive={activePaymentCategoriesFilters.includes(paymentCategory)}
-                  onChange={(payload) => setActivePaymentCategoriesFilters({
-                    type: TOGGLE_FILTER,
-                    payload,
-                  })}
-                />
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <main className="mb-4">
-          {!customers.length ? (
-            <span>Loading</span>
-          ) : (
-            <ResultsList
-              customers={customers}
-              activePaymentCategoriesFilters={activePaymentCategoriesFilters}
-            />
-          )}
-        </main>
+        {!customers.length ? (
+          <div data-testid="page-loading-indicator">Loading</div>
+        ) : (
+          <>
+            <nav
+              className="pt-4 pb-4 sticky top-0 bg-white"
+              data-testid="page-nav"
+            >
+              <ul className="flex flex-row gap-4">
+                {paymentCategories.map((paymentCategory) => (
+                  <li
+                    className="basis-1/3 h-full"
+                    key={paymentCategory}
+                  >
+                    <StatisticsToggle
+                      count={paymentCategoryCount[paymentCategory]}
+                      category={paymentCategoryNames[paymentCategory]}
+                      value={paymentCategory}
+                      isActive={activePaymentCategoriesFilters.includes(paymentCategory)}
+                      onChange={(payload) => setActivePaymentCategoriesFilters({
+                        type: TOGGLE_FILTER,
+                        payload,
+                      })}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <main
+              className="mb-4"
+              data-testid="page-content"
+            >
+              <ResultsList
+                customers={customers}
+                activePaymentCategoriesFilters={activePaymentCategoriesFilters}
+              />
+            </main>
+          </>
+        )}
       </div>
     </div>
   );
