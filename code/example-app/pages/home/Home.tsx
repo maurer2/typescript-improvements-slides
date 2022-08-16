@@ -3,6 +3,9 @@ import {
 } from 'react';
 
 import { ResultsList, StatisticsToggle } from '../../components';
+import type { Customer } from '../../types';
+import { paymentCategories, paymentCategoryNames } from '../../types';
+import fetchData from '../../services/fetch-data';
 
 import {
   TOGGLE_FILTER,
@@ -10,10 +13,6 @@ import {
   type ActivePaymentFiltersState,
   type PaymentCategoryCounts,
 } from './types';
-import type { Customer } from '../../types';
-import { paymentCategories, paymentCategoryNames } from '../../types';
-
-import fetchData from '../../services/fetch-data';
 
 function Home(): ReactElement {
   const [activePaymentCategoriesFilters, setActivePaymentCategoriesFilters] = useReducer(

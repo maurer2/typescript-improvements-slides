@@ -5,6 +5,8 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'airbnb',
     'airbnb-typescript',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
     'next',
   ],
   env: {
@@ -20,8 +22,26 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
-    'no-restricted-exports': 'off',
     'max-len': ["error", { "code": 120 }],
     'react/jsx-props-no-spreading': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-restricted-exports': 'off',
+    'import/order': [
+      'error',
+      {
+        groups: [
+          ['builtin', 'external'],
+          ['internal', 'parent'],
+          ['sibling'],
+          ['index'],
+        ],
+        'newlines-between': 'always',
+      },
+    ],
   },
+  settings: {
+    'import/resolver': {
+      typescript: true,
+      node: true,
+    }
+  }
 };
