@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 import userEvent from '@testing-library/user-event';
 
 import Component from './Home';
-import type { Customer } from '../../types/customer';
+import type { Customer } from '../../types';
 // import fetchData from '../../services/fetch-data';
 
 jest.mock('../../services/fetch-data', () => jest.fn().mockImplementation(() => {

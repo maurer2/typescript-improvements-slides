@@ -1,4 +1,4 @@
-import type { PaymentCategories } from '../../types/payment';
+import type { PaymentCategories } from '../../types';
 
 export type HomeProps = {
   isHome: boolean;

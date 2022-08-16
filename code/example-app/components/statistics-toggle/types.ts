@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import type { PaymentCategories } from '../../types/payment';
+import type { PaymentCategories } from '../../types';
 
 export type StatisticsToggleProps = {
   children?: ReactNode;

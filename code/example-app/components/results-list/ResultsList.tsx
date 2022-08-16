@@ -2,8 +2,7 @@ import React, { ReactElement, useCallback, Fragment } from 'react';
 import classNames from 'classnames';
 
 import type { ResultsListProps } from './types';
-import type { Customer } from '../../types/customer';
-import type { PaymentCategories } from '../../types/payment';
+import type { Customer, PaymentCategories } from '../../types';
 
 function ResultsList({ customers, activePaymentCategoriesFilters }: ResultsListProps): ReactElement {
   const ResultsListRow = useCallback((customer: Customer, activeFilters: PaymentCategories[]): ReactElement | null => {

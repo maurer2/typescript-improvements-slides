@@ -2,8 +2,7 @@ import {
   ReactElement, useReducer, useEffect, useState, useMemo, useRef,
 } from 'react';
 
-import ResultsList from '../../components/results-list';
-import StatisticsToggle from '../../components/statistics-toggle';
+import { ResultsList, StatisticsToggle } from '../../components';
 
 import {
   TOGGLE_FILTER,
@@ -11,8 +10,8 @@ import {
   type ActivePaymentFiltersState,
   type PaymentCategoryCounts,
 } from './types';
-import type { Customer } from '../../types/customer';
-import { paymentCategories, paymentCategoryNames } from '../../types/payment';
+import type { Customer } from '../../types';
+import { paymentCategories, paymentCategoryNames } from '../../types';
 
 import fetchData from '../../services/fetch-data';
 

@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 
 import Component from './ResultsList';
 import type { ResultsListProps } from './types';
-import type { Customer } from '../../types/customer';
+import type { Customer } from '../../types';
 
 describe('Results List', () => {
   const propsDefault: ResultsListProps = {
