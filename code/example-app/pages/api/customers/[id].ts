@@ -1,9 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { faker } from '@faker-js/faker';
 
+import type { NextApiRequest, NextApiResponse } from 'next';
 import type { Customer } from '../../../types/customer';
 
-import { Loading, Failed, Success } from './types';
+import { Failed, Loading, Success } from './types';
 
 // http://localhost:3000/api/customers/124
 

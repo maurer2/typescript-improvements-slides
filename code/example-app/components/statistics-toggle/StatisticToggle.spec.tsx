@@ -1,9 +1,10 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
+
+import type { StatisticsToggleProps } from './types';
 
 import Component from './StatisticsToggle';
-import type { StatisticsToggleProps } from './types';
 
 describe('Statistic Toggle', () => {
   const mockOnChange = jest.fn();

@@ -1,14 +1,6 @@
 module.exports = {
   root: true,
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'airbnb',
-    'airbnb-typescript',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    'next',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'airbnb', 'airbnb-typescript', 'next'],
   env: {
     browser: true,
     es2022: true,
@@ -20,28 +12,40 @@ module.exports = {
     project: ['tsconfig.json'],
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'simple-import-sort'],
   rules: {
-    'max-len': ["error", { "code": 120 }],
-    'react/jsx-props-no-spreading': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'max-len': ['error', { code: 120 }],
+    'react/jsx-props-no-spreading': 'off',
     'no-restricted-exports': 'off',
-    'import/order': [
+    'simple-import-sort/exports': 'error',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
+    'simple-import-sort/imports': [
       'error',
       {
         groups: [
-          ['builtin', 'external'],
-          ['internal', 'parent'],
-          ['sibling'],
-          ['index'],
+          // Side effect imports.
+          ['^\\u0000'],
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter
+          ['^@?\\w'],
+          // Types
+          ['^[^/\\.].*\u0000$', '^.*\u0000$', '^\\..*\u0000$'],
+          // Relative imports
+          ['^\\.'],
+          // CSS imports
+          ['^.+\\.?(css)$'],
+          // Anything not matched in another group
+          ['^'],
         ],
-        'newlines-between': 'always',
       },
     ],
+    '@typescript-eslint/consistent-type-imports': 'error',
   },
   settings: {
     'import/resolver': {
       typescript: true,
       node: true,
-    }
-  }
+    },
+  },
 };

@@ -1,18 +1,16 @@
 import {
-  ReactElement, useReducer, useEffect, useState, useMemo, useRef,
+  useEffect, useMemo, useReducer, useRef,
+  useState,
 } from 'react';
 
-import { ResultsList, StatisticsToggle } from '../../components';
+import type { ReactElement } from 'react';
 import type { Customer } from '../../types';
-import { paymentCategories, paymentCategoryNames } from '../../types';
-import fetchData from '../../services/fetch-data';
+import type { ActivePaymentFiltersState, PaymentCategoriesActions, PaymentCategoryCounts } from './types';
 
-import {
-  TOGGLE_FILTER,
-  type PaymentCategoriesActions,
-  type ActivePaymentFiltersState,
-  type PaymentCategoryCounts,
-} from './types';
+import { ResultsList, StatisticsToggle } from '../../components';
+import fetchData from '../../services/fetch-data';
+import { paymentCategories, paymentCategoryNames } from '../../types';
+import { TOGGLE_FILTER } from './types';
 
 function Home(): ReactElement {
   const [activePaymentCategoriesFilters, setActivePaymentCategoriesFilters] = useReducer(

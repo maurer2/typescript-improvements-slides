@@ -1,11 +1,11 @@
-import React from 'react';
-import { render } from '@testing-library/react';
 import { faker } from '@faker-js/faker';
+import { render } from '@testing-library/react';
+import React from 'react';
 
 import type { Customer } from '../../types';
+import type { ResultsListProps } from './types';
 
 import Component from './ResultsList';
-import type { ResultsListProps } from './types';
 
 describe('Results List', () => {
   const propsDefault: ResultsListProps = {

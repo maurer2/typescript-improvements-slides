@@ -1,8 +1,8 @@
-import React, { ReactElement, useCallback, Fragment } from 'react';
 import classNames from 'classnames';
+import React, { Fragment, useCallback } from 'react';
 
+import type { ReactElement } from 'react';
 import type { Customer, PaymentCategories } from '../../types';
-
 import type { ResultsListProps } from './types';
 
 function ResultsList({ customers, activePaymentCategoriesFilters }: ResultsListProps): ReactElement {

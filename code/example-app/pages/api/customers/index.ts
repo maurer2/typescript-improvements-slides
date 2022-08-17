@@ -1,7 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { faker } from '@faker-js/faker';
 import { setTimeout } from 'timers/promises';
 
+import type { NextApiRequest, NextApiResponse } from 'next';
 import type { Customer } from '../../../types/customer';
 
 export default async function handler(_: NextApiRequest, response: NextApiResponse<Customer[]>) {

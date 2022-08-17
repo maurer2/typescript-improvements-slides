@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-
+import type { ReactNode } from 'react';
 import type { PaymentCategories } from '../../types';
 
 export type StatisticsToggleProps = {
