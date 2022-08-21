@@ -22,6 +22,7 @@ function Home(): ReactElement {
           const positionOfElementToToggle: number = state.findIndex(
             (currentStateEntry) => currentStateEntry === payload,
           );
+          // clicked element is currently active
           if (positionOfElementToToggle > -1) {
             const newState = [...state];
             newState.splice(positionOfElementToToggle, 1);
@@ -42,10 +43,9 @@ function Home(): ReactElement {
   const paymentCategoryCount: PaymentCategoryCounts = useMemo(() => {
     const count: PaymentCategoryCounts = customers.reduce(
       (totalCount, currentCustomer) => {
-        const { regularPayments, missedPayments, defaultedPayments } = currentCustomer;
+        const { missedPayments, defaultedPayments } = currentCustomer;
 
         const newCount: PaymentCategoryCounts = {
-          regular: totalCount.regular + regularPayments,
           missed: totalCount.missed + missedPayments,
           defaulted: totalCount.defaulted + defaultedPayments,
         };
@@ -53,7 +53,6 @@ function Home(): ReactElement {
         return newCount;
       },
       {
-        regular: 0,
         missed: 0,
         defaulted: 0,
       },
@@ -109,7 +108,7 @@ function Home(): ReactElement {
               <ul className="flex flex-row gap-4">
                 {paymentCategories.map((paymentCategory) => (
                   <li
-                    className="basis-1/3 h-full"
+                    className="basis-1/2 h-full"
                     key={paymentCategory}
                   >
                     <StatisticsToggle

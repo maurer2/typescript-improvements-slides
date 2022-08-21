@@ -1,4 +1,4 @@
-import { paymentCategories } from './const';
+import type { paymentCategories } from './const';
 
 export type PaymentCategories = typeof paymentCategories[number];
 
