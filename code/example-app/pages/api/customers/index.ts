@@ -10,7 +10,6 @@ export default async function handler(_: NextApiRequest, response: NextApiRespon
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     age: faker.datatype.number({ min: 18, max: 120, precision: 1 }),
-    regularPayments: faker.datatype.number({ min: 0, max: 10, precision: 1 }),
     missedPayments: faker.datatype.number({ min: 0, max: 5, precision: 1 }),
     defaultedPayments: faker.datatype.number({ min: 0, max: 3, precision: 1 }),
   }));

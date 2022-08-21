@@ -92,12 +92,13 @@ describe('Results List', () => {
   ];
 
   describe('Regular Payments', () => {
-    const setup = (props: ResultsListProps) => render(
-      <Component
-        {...propsDefault}
-        {...props}
-      />,
-    );
+    const setup = (props: ResultsListProps) =>
+      render(
+        <Component
+          {...propsDefault}
+          {...props}
+        />
+      );
 
     it('renders the results table', () => {
       const { getByTestId } = setup({
@@ -130,12 +131,13 @@ describe('Results List', () => {
   });
 
   describe('Missed Payments', () => {
-    const setup = (props: ResultsListProps) => render(
-      <Component
-        {...propsDefault}
-        {...props}
-      />,
-    );
+    const setup = (props: ResultsListProps) =>
+      render(
+        <Component
+          {...propsDefault}
+          {...props}
+        />
+      );
 
     it('renders the results table', () => {
       const { getByTestId } = setup({
@@ -177,12 +179,13 @@ describe('Results List', () => {
   });
 
   describe('Defaulted Payments', () => {
-    const setup = (props: ResultsListProps) => render(
-      <Component
-        {...propsDefault}
-        {...props}
-      />,
-    );
+    const setup = (props: ResultsListProps) =>
+      render(
+        <Component
+          {...propsDefault}
+          {...props}
+        />
+      );
 
     it('renders the results table', () => {
       const { getByTestId } = setup({

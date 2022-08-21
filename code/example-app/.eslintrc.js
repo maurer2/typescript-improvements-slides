@@ -1,6 +1,13 @@
 module.exports = {
   root: true,
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'airbnb', 'airbnb-typescript', 'next'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb',
+    'airbnb-typescript',
+    'next',
+    'prettier',
+  ],
   env: {
     browser: true,
     es2022: true,
@@ -12,9 +19,8 @@ module.exports = {
     project: ['tsconfig.json'],
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'simple-import-sort'],
+  plugins: ['@typescript-eslint', 'simple-import-sort', 'prettier'],
   rules: {
-    'max-len': ['error', { code: 120 }],
     'react/jsx-props-no-spreading': 'off',
     'no-restricted-exports': 'off',
     'simple-import-sort/exports': 'error',
@@ -41,6 +47,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/consistent-type-imports': 'error',
+    'prettier/prettier': 'error',
   },
   settings: {
     'import/resolver': {

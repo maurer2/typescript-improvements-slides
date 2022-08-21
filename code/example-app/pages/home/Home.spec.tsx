@@ -8,19 +8,21 @@ import type { Customer } from '../../types';
 import Component from './Home';
 // import fetchData from '../../services/fetch-data';
 
-jest.mock('../../services/fetch-data', () => jest.fn().mockImplementation(() => {
-  const customers: Customer[] = Array.from({ length: 5 }, () => ({
-    id: faker.datatype.uuid(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    age: faker.datatype.number({ min: 18, max: 120, precision: 1 }),
-    regularPayments: faker.datatype.number({ min: 0, max: 10, precision: 1 }),
-    missedPayments: faker.datatype.number({ min: 0, max: 5, precision: 1 }),
-    defaultedPayments: faker.datatype.number({ min: 0, max: 3, precision: 1 }),
-  }));
+jest.mock('../../services/fetch-data', () =>
+  jest.fn().mockImplementation(() => {
+    const customers: Customer[] = Array.from({ length: 5 }, () => ({
+      id: faker.datatype.uuid(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      age: faker.datatype.number({ min: 18, max: 120, precision: 1 }),
+      regularPayments: faker.datatype.number({ min: 0, max: 10, precision: 1 }),
+      missedPayments: faker.datatype.number({ min: 0, max: 5, precision: 1 }),
+      defaultedPayments: faker.datatype.number({ min: 0, max: 3, precision: 1 }),
+    }));
 
-  return Promise.resolve(customers);
-}));
+    return Promise.resolve(customers);
+  })
+);
 // const mockFetchData = jest.mocked(fetchData, true);
 
 describe('Home Page', () => {

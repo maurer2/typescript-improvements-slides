@@ -4,9 +4,7 @@ import React, { useId } from 'react';
 import type { ReactElement } from 'react';
 import type { StatisticsToggleProps } from './types';
 
-function StatisticsToggle({
-  count, category, value, isActive, onChange,
-}: StatisticsToggleProps): ReactElement {
+function StatisticsToggle({ count, category, value, isActive, onChange }: StatisticsToggleProps): ReactElement {
   const id: string = useId();
 
   function handleChange(): void {

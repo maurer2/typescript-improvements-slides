@@ -7,9 +7,7 @@ import type { ResultsListProps } from './types';
 
 function ResultsList({ customers, activePaymentCategoriesFilters }: ResultsListProps): ReactElement {
   const ResultsListRow = useCallback((customer: Customer, activeFilters: PaymentCategories[]): ReactElement | null => {
-    const {
-      firstName, lastName, age, regularPayments, missedPayments, defaultedPayments,
-    } = customer;
+    const { firstName, lastName, age, regularPayments, missedPayments, defaultedPayments } = customer;
 
     let showRow: boolean = activeFilters.length === 0 || activeFilters.length === 3;
 

@@ -17,12 +17,13 @@ describe('Statistic Toggle', () => {
     onChange: mockOnChange,
   };
 
-  const setup = (props?: StatisticsToggleProps) => render(
-    <Component
-      {...propsDefault}
-      {...props}
-    />,
-  );
+  const setup = (props?: StatisticsToggleProps) =>
+    render(
+      <Component
+        {...propsDefault}
+        {...props}
+      />
+    );
 
   it('renders the component', () => {
     const { getByTestId } = setup();
