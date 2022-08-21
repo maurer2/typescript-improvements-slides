@@ -9,7 +9,7 @@ export type Failed = {
 
 export type Success<T> = {
   state: 'success';
-  data: T,
+  data: T;
 };
 
 export type APIRequest<T> = Loading | Failed | Success<T>;

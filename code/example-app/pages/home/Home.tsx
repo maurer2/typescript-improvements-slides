@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 
 import type { ReactElement } from 'react';
-import type { Customer } from '../../types';
+import type { CustomerOverview } from '../../types';
 import type { ActivePaymentFiltersState, PaymentCategoriesActions, PaymentCategoryCounts } from './types';
 
 import { ResultsList, StatisticsToggle } from '../../components';
@@ -36,7 +36,7 @@ function Home(): ReactElement {
     },
     []
   );
-  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [customers, setCustomers] = useState<CustomerOverview[]>([]);
   const paymentCategoryCount: PaymentCategoryCounts = useMemo(() => {
     const count: PaymentCategoryCounts = customers.reduce(
       (totalCount, currentCustomer) => {
@@ -64,7 +64,7 @@ function Home(): ReactElement {
     let ignore = false;
 
     async function startFetching() {
-      const customersFetched: Customer[] = await fetchData<Customer[]>('/api/customers');
+      const customersFetched: CustomerOverview[] = await fetchData<CustomerOverview[]>('/api/customers');
       if (!ignore) {
         setCustomers(customersFetched);
       }

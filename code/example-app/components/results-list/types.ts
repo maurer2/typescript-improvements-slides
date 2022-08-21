@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
-import type { Customer, PaymentCategories } from '../../types';
+import type { CustomerOverview, PaymentCategories } from '../../types';
 
 export type ResultsListProps = {
   children?: ReactNode;
-  customers: Customer[];
+  customers: CustomerOverview[];
   activePaymentCategoriesFilters: PaymentCategories[];
 };

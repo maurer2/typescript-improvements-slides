@@ -11,7 +11,7 @@ export type Failed = {
 
 export type Success<T> = {
   state: 'success';
-  json: T,
+  json: T;
 };
 
 export type APIRequest<T> = Loading | Failed | Success<T>;
