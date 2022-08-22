@@ -16,7 +16,7 @@ function StatisticsToggle({ count, category, value, isActive, onChange }: Statis
       onChange={handleChange}
       htmlFor={id}
       className={classNames('p-4 block h-full border select-none cursor-pointer', {
-        'bg-gray-200': isActive,
+        'bg-gray-100': isActive,
       })}
       data-testid="statistic-toggle"
     >
