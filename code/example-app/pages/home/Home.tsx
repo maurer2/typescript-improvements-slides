@@ -58,6 +58,16 @@ function Home(): ReactElement {
     return count;
   }, [customers]);
   const listFormatter = useRef(new Intl.ListFormat('en', { style: 'long' }));
+  const activeFiltersAsText: string = useMemo<string>(() => {
+    if (!activePaymentCategoriesFilters.length) {
+      return 'No filters enabled';
+    }
+    const activeCategories: string[] = activePaymentCategoriesFilters.flatMap(
+      (category) => paymentCategoryNames[category] ?? []
+    );
+
+    return `${listFormatter.current.format(activeCategories)} filters enabled`;
+  }, [activePaymentCategoriesFilters]);
 
   useEffect(() => {
     // https://beta.reactjs.org/learn/synchronizing-with-effects#fetching-data
@@ -93,7 +103,7 @@ function Home(): ReactElement {
           >
             Shoofa
           </h1>
-          <span>{listFormatter.current.format(activePaymentCategoriesFilters) || 'No filters'} enabled</span>
+          <span>{activeFiltersAsText}</span>
         </header>
         {!customers.length ? (
           <div data-testid="page-loading-indicator">Loading</div>
