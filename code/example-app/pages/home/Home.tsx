@@ -58,7 +58,7 @@ function Home(): ReactElement {
     return count;
   }, [customers]);
   const listFormatter = useRef(new Intl.ListFormat('en', { style: 'long' }));
-  const activeFiltersAsText: string = useMemo<string>(() => {
+  const activeFiltersAsText = useMemo<string>(() => {
     if (!activePaymentCategoriesFilters.length) {
       return 'No filters enabled';
     }
