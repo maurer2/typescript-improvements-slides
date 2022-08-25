@@ -51,6 +51,11 @@ ReadonlyArray, Tuples, Record,
 
 ---
 
+## Prohibit props combinations and child components
+
+Todo
+---
+
 ## Create own helper types
 
 Number without 0 for percent calculations
