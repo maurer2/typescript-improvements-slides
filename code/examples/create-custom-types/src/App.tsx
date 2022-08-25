@@ -1,5 +1,8 @@
 import React, { useState, useId, FormEvent, MouseEvent } from "react";
 
+// https://stackoverflow.com/questions/69612540/typescript-type-to-prevent-division-by-0
+// type NumberWithoutZero<T extends number> = T extends 0 ? never : number extends T ? never : T;
+
 function App() {
   const [operand1, setOperand1] = useState<number>(0);
   const [operand2, setOperand2] = useState<number>(0);
@@ -44,7 +47,7 @@ function App() {
               step={0.01}
               onChange={handleChange}
             />
-            <output>{operand1}</output>
+            <output htmlFor={slider1}>{operand1}</output>
           </div>
           <div>
             <label htmlFor={slider2}>Operand 2</label>
@@ -58,13 +61,13 @@ function App() {
               step={0.01}
               onChange={handleChange}
             />
-            <output>{operand2}</output>
+            <output htmlFor={slider2}>{operand2}</output>
           </div>
         </fieldset>
         <fieldset>
           <legend>Quotient</legend>
           <div>
-            <output>{quotient.toFixed(2)}</output>
+            <output htmlFor={`${slider1} ${slider2}`}>{quotient.toFixed(2)}</output>
           </div>
           <button type="submit">Calculate quotient</button>
         </fieldset>
