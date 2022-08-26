@@ -1,7 +1,6 @@
 import React, { useState, useId, FormEvent, MouseEvent } from "react";
 
-// https://stackoverflow.com/questions/69612540/typescript-type-to-prevent-division-by-0
-// type NumberWithoutZero<T extends number> = T extends 0 ? never : number extends T ? never : T;
+import calculateQuotient from "./util/calculate-percentage";
 
 function App() {
   const [operand1, setOperand1] = useState<number>(0);
@@ -17,17 +16,19 @@ function App() {
       setOperand1(valueAsNumber);
       return;
     }
-
     setOperand2(valueAsNumber);
   }
 
   function handleSubmit(event: MouseEvent<HTMLFormElement>): void {
     event.preventDefault();
-    calculateQuotient();
-  }
 
-  function calculateQuotient(): void {
-    setQuotient(operand1 / operand2);
+    if (operand2 === 0 ) {
+      return
+    }
+
+    // const newQuotient = calculateQuotient(operand1, operand2);
+    const newQuotient = operand1 / operand2;
+    setQuotient(newQuotient);
   }
 
   return (
