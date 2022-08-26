@@ -22,12 +22,12 @@ function App() {
   function handleSubmit(event: MouseEvent<HTMLFormElement>): void {
     event.preventDefault();
 
-    if (operand2 === 0 ) {
-      return
+    if (operand1 === 0 ) {
+      setQuotient(0);
     }
 
-    // const newQuotient = calculateQuotient(operand1, operand2);
-    const newQuotient = operand1 / operand2;
+    const newQuotient = calculateQuotient(operand1, operand2);
+    // const newQuotient = operand1 / operand2;
     setQuotient(newQuotient);
   }
 
