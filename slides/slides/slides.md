@@ -9,7 +9,7 @@ class: 'text-center'
 # https://sli.dev/custom/highlighters.html
 highlighter: shiki
 # show line numbers in code blocks
-lineNumbers: false
+lineNumbers: true
 # some information about the slides, markdown enabled
 info: |
   ## Slidev Starter Template
@@ -26,10 +26,37 @@ css: unocss
 # A few slides on TypeScript
 
 ---
+layout: image-right
+image: https://placekitten.com/1000/1000
+---
 
-## Nominal typing vs structural typing
+## Structural typing
 
-Java vs TypeScript
+TypeScript uses a structural type system. Types with the same structure but different names are treated as the same type.
+
+```ts
+type MacBook = {
+  name: string;
+  colour: string;
+}
+type Animal = {
+  name: string;
+  colour: string;
+}
+const macBookPro: MacBook = {
+  name: 'Mac',
+  colour: 'gray',
+}
+const elephant: Animal = {
+  name: 'Benjamin',
+  colour: 'gray',
+}
+const listOfMacBooks: MacBook[] = [
+  macBookPro,
+  elephant // no error
+]
+
+```
 
 ---
 
@@ -62,7 +89,7 @@ Number without 0 for percent calculations
 
 ---
 
-
+<!--
 Presentation slides for developers
 
 <div class="pt-12">
@@ -420,4 +447,4 @@ class: text-center
 
 # Learn More
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html) -->
