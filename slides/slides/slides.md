@@ -62,9 +62,10 @@ const listOfMacBooks: MacBook[] = [
 ## Nominal typing
 
 Nominal typing means that types are compatible if they have the same name or are declared as subtypes.
-More commonly used in mainstream OOP languages like Java. Flow uses nominal typings for class-related types.
+More commonly used in mainstream OOP languages like Java. Flow uses nominal typing for class-related types.
 
 Classes
+
 ```java
 public interface IMacBookAnimal {}
 public record MacBook(String colour) implements IMacBookAnimal {}
@@ -72,6 +73,7 @@ public record Animal(String colour) implements IMacBookAnimal {}
 ```
 
 Program
+
 ```java
 import java.util.Arrays;
 import java.util.List;
@@ -85,6 +87,59 @@ public class NominalTypingExample {
   }
 }
 ```
+
+---
+
+## Deprecate props
+
+TypeScript's `never` type can be used to hard deprecate component props. This is most useful for library or styleguide maintainers.
+Trying to use the deprecated prop, will result in a type error. Alternatively a soft deprecation can be achieved by using the JSDoc deprecated tag, e.g. `@deprecated Please use x instead`.
+
+Props
+
+```ts
+export type CustomButtonProps = Partial<Pick<HTMLButtonElement, 'autofocus' | 'ariaDisabled'>> &
+{
+  onClick: (event?: MouseEvent<HTMLButtonElement>) => void,
+  oldProp?: never, // is deprecated
+  newProp: string,
+};
+```
+
+---
+
+```ts
+import React, { PropsWithChildren } from 'react';
+import { CustomButtonProps } from './library';
+
+function CustomButton({ children, onClick, newProp }: PropsWithChildren<CustomButtonProps>) {
+  return (
+    <button type="button" onClick={onClick} data-testid={newProp}>
+      {children}
+    </button>
+  );
+}
+
+export default function App() {
+  function handleClick(): void {}
+
+  return (
+    <CustomButton
+      onClick={() => handleClick()}
+      newProp="test"
+      // oldProp="test" // error
+    >
+      Button
+    </CustomButton>
+  );
+}
+```
+
+---
+
+## Disallow prop combinations
+
+todo
 
 ---
 
