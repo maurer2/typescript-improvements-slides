@@ -10,6 +10,9 @@ export type SortCodePart = Exclude<NumberRange<100>[number], 0> // exclude 0 sin
 
 export type SortCode = [SortCodePart, SortCodePart, SortCodePart];
 
+// export type SortCodeFormatted = `${SortCodePart}-${SortCodePart}-${SortCodePart}` // error - too complex
+
+
 // Type guards
 export const isValidSortCodePart = (randomNumber: number): randomNumber is SortCodePart => {
   return randomNumber > 0 && randomNumber < 100;
