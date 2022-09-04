@@ -1,19 +1,17 @@
-import {ReactNode} from 'react';
-
+// shared props
 type ButtonLink2CommonProps = {
-  children?: ReactNode | ReactNode[];
   onClick: (() => void);
 }
 
 type ButtonLink2ButtonProps = {
   type: 'button';
   disabled?: boolean;
-  href?: never;
+  href?: never; // type button should never have a href attribute
 }
 
 type ButtonLink2LinkProps = {
   type: 'a';
-  disabled?: false;
+  disabled?: false; // type link should never have a disabled attribute
   href: string;
 }
 

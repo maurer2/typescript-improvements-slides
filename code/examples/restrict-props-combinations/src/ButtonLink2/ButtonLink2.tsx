@@ -1,9 +1,9 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, PropsWithChildren } from 'react';
 
 import { ButtonLink2Props } from './ButtonLink2.types';
 import style from './ButtonLink2.module.scss';
 
-function ButtonLink2({ onClick, type, disabled, href }: ButtonLink2Props): ReactElement {
+function ButtonLink2({ onClick, type, disabled, href }:  PropsWithChildren<ButtonLink2Props>): ReactElement {
   const TagType = type; // needs to be uppercase
 
   // discriminated union

@@ -139,7 +139,56 @@ export default function App() {
 
 ## Disallow prop combinations
 
-todo
+TypeScript's `never` type can also be used to prohibit certain combination of props. The syntax gets a bit complex for certain type of props, e.g. boolean as those can either be set to false or not not passed at all.
+
+Components
+
+```ts
+function ButtonLink({ onClick, type, disabled, href }: ButtonLinkProps) {
+  const TagType = type; // either a or button
+  // discriminated union
+  if (type === 'button') {
+    console.log(href); // undefined
+    console.log(disabled);
+  }
+  if (type === 'a') {
+    console.log(href); // string
+    console.log(disabled);
+  }
+  return (
+    <TagType className={style.ButtonLink} onClick={onClick}>
+      Click
+    </TagType>
+  );
+}
+export default ButtonLink;
+```
+
+---
+
+We use the type field to distinguish between various types and allow TypeScript to narrow down the type.
+
+Props
+
+```ts
+type ButtonLinkCommonProps = {
+  onClick: (() => void);
+}
+
+type ButtonLinkButtonProps = {
+  type: 'button';
+  disabled?: boolean;
+  href?: never; // button should never have a href attribute
+}
+
+type ButtonLinkLinkProps = {
+  type: 'a';
+  disabled?: false; // link should never have a disabled attribute
+  href: string;
+}
+
+export type ButtonLinkProps = ButtonLinkCommonProps & (ButtonLinkButtonProps | ButtonLinkLinkProps);
+```
 
 ---
 
