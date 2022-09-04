@@ -8,16 +8,13 @@ function getRandomSortCodePart(): SortCodePart {
   if (!isValidSortCodePart(randomNumber)) {
     return getRandomSortCodePart();
   }
-
   const sortCodePart: SortCodePart = randomNumber;
 
   return sortCodePart;
 }
 
-function getRandomSortCode(): SortCode {
-  const sortCodeParts: SortCodePart[] = Array.from([1, 2, 3], () => {
-    return getRandomSortCodePart();
-  });
+export function getRandomSortCode(): SortCode {
+  const sortCodeParts: SortCodePart[] = Array.from([1, 2, 3], () => getRandomSortCodePart());
 
   // type guard
   if (!isValidSortCode(sortCodeParts)) {
@@ -28,13 +25,11 @@ function getRandomSortCode(): SortCode {
 }
 
 const sortCodes: string[] = [...Array(100)].map(() => {
-  const sortCodeUnformatted: SortCode = getRandomSortCode();
-  const sortCodeFormatted = sortCodeUnformatted
-    .map((sortCodePart) => sortCodePart.toString().padStart(2, '0'))
-    .join('-');
+  const sortCode: SortCode = getRandomSortCode();
+  const sortCodeFormatted: string = sortCode.map((sortCodePart) => sortCodePart.toString().padStart(2, '0')).join('-');
 
   return sortCodeFormatted;
 });
 
-console.log(sortCodes);
-console.log(new Intl.ListFormat('en', { style: 'long', type: 'conjunction' }).format(sortCodes));
+// console.log(sortCodes);
+// console.log(new Intl.ListFormat('en', { style: 'long', type: 'conjunction' }).format(sortCodes));

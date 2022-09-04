@@ -10,6 +10,7 @@
     ]
   },
   "scripts": {
-    "start": "ts-node app.tsx"
+    "start": "ts-node app.tsx",
+    "test": "jest --config=jest.config.ts"
   }
 }
