@@ -1,8 +1,12 @@
-// @ts-ignore
-import {faker} from '@faker-js/faker';
-import { Person, PersonList, PersonListFields} from './types';
+import { faker } from '@faker-js/faker';
+import { Person, PersonList, PersonListFields } from './types';
 
-function seeItSayItSorted(list: PersonList, sortBy: PersonListFields): PersonList {
+function sayIt(list: PersonList): void {
+  const listFormatted = list.map((entry) => Object.values(entry).join(' | '));
+  console.log(listFormatted);
+}
+
+function sorted(list: PersonList, sortBy: PersonListFields): PersonList {
   const sortedList = [...list].sort((listEntryA, listEntryB) => {
     const fieldA = listEntryA[sortBy];
     const fieldB = listEntryB[sortBy];
@@ -10,9 +14,9 @@ function seeItSayItSorted(list: PersonList, sortBy: PersonListFields): PersonLis
     if (fieldA > fieldB) return 1;
     if (fieldA < fieldB) return -1;
     return 0;
-  })
+  });
 
-  return sortedList
+  return sortedList;
 }
 
 const people: ReadonlyArray<Person> = Array.from({ length: 5 }, () => ({
@@ -27,14 +31,13 @@ const peopleListUnsorted: PersonList = people.map((person) => ({
   numberOfCats: faker.datatype.number({ min: 0, max: 50, precision: 1 }),
 }));
 
-const peopleListSortedByNumberOfCats: PersonList = seeItSayItSorted(peopleListUnsorted, 'numberOfCats');
+const peopleListSortedByNumberOfCats: PersonList = sorted(peopleListUnsorted, 'numberOfCats');
 
-const peopleListSortedByFirstName: PersonList = seeItSayItSorted(peopleListUnsorted, 'firstName');
+const peopleListSortedByFirstName: PersonList = sorted(peopleListUnsorted, 'firstName');
 
-const peopleListSortedByLastName: PersonList = seeItSayItSorted(peopleListUnsorted, 'lastName');
+const peopleListSortedByLastName: PersonList = sorted(peopleListUnsorted, 'lastName');
 
-console.log(peopleListUnsorted.join());
-console.log(peopleListSortedByNumberOfCats.join());
-console.log(peopleListSortedByFirstName);
-console.log(peopleListSortedByLastName);
-
+sayIt(peopleListUnsorted);
+sayIt(peopleListSortedByNumberOfCats);
+sayIt(peopleListSortedByFirstName);
+sayIt(peopleListSortedByLastName);
