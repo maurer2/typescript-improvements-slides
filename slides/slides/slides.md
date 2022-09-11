@@ -90,6 +90,79 @@ public class NominalTypingExample {
 
 ---
 
+## Restrict values for types
+
+Restricting possible values for types prevents accessing undefined or null values without having to resort to manual checks like `Object.hasOwn` or `[].includes`, which helps with readability. Furthermore it makes one's IDE to only show applicable values.
+
+Types
+
+```ts
+export type Person = {
+  firstName: string,
+  lastName: string,
+  isPrimeMinister: boolean,
+}
+
+export type PersonList = ReadonlyArray<Pick<Person, 'firstName' | 'lastName'> & {
+  id: string,
+  numberOfCats: number,
+}>
+
+export type PersonListFields = keyof PersonList[number]; // firstName | lastName | id | numberOfCats
+```
+
+---
+
+Data
+
+```ts
+import { Person, PersonList } from './types';
+import { faker } from '@faker-js/faker';
+
+export const people: Person[] = Array.from({ length: 5 }, () => ({
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  isPrimeMinister: false,
+}));
+
+export const peopleList: PersonList = people.map((person) => ({
+  ...person,
+  id: faker.datatype.uuid(),
+  numberOfCats: faker.datatype.number({ min: 0, max: 50, precision: 1 }),
+}));
+```
+
+---
+
+Script
+
+```ts
+function sorted(list: PersonList, sortBy: PersonListFields): PersonList {
+  const sortedList = [...list].sort((entryA, entryB) => {
+    const fieldA = entryA[sortBy];
+    const fieldB = entryB[sortBy];
+
+    if (fieldA > fieldB) return 1;
+    if (fieldA < fieldB) return -1;
+    return 0;
+  });
+  return sortedList;
+}
+
+function sayIt(list: PersonList): void {
+  const listAsString: string[] = list.map((entry) => Object.values(entry).join(' | '));
+  console.log(listAsString);
+}
+
+const peopleListSortedByNumberOfCats: PersonList = sorted(peopleList, 'numberOfCats');
+const peopleListSortedByFirstName: PersonList = sorted(peopleList, 'firstName');
+
+sayIt(peopleListSortedByNumberOfCats);
+sayIt(peopleListSortedByFirstName);
+```
+
+---
+
 ## Deprecate props
 
 TypeScript's `never` type can be used to hard deprecate component props. This is most useful for library or styleguide maintainers.
@@ -139,14 +212,14 @@ export default function App() {
 
 ## Disallow prop combinations
 
-TypeScript's `never` type can also be used to prohibit certain combination of props. The syntax gets a bit complex for certain type of props, e.g. boolean as those can either be set to false or not not passed at all.
+TypeScript's `never` type can also be used to prohibit certain combination of props.
+The syntax can get a bit complex for certain type of props, e.g. `boolean` as those type of props can either be set to false or not passed at all.
 
-Components
+Component
 
 ```ts
-function ButtonLink({ onClick, type, disabled, href }: ButtonLinkProps) {
+function ButtonLink({ onClick, type, disabled, href, children }: PropsWithChildren<ButtonLinkProps>) {
   const TagType = type; // either a or button
-  // discriminated union
   if (type === 'button') {
     console.log(href); // undefined
     console.log(disabled);
@@ -157,7 +230,7 @@ function ButtonLink({ onClick, type, disabled, href }: ButtonLinkProps) {
   }
   return (
     <TagType className={style.ButtonLink} onClick={onClick}>
-      Click
+      {children}
     </TagType>
   );
 }
