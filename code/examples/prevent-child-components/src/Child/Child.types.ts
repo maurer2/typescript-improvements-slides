@@ -1,4 +1,6 @@
-import {ReactNode} from "react";
-export type ChildProps = {
-  children?: ReactNode | ReactNode[];
-};
+import { PropsWithChildren } from 'react';
+
+export type ChildProps = PropsWithChildren<{
+  // children?: ReactNode | undefined;
+  otherProp: string;
+}>;

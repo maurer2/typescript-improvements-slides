@@ -378,10 +378,62 @@ export type ButtonLinkProps = ButtonLinkCommonProps & (ButtonLinkButtonProps | B
 ```
 
 ---
+layout: image-right
+image: https://placekitten.com/1000/1000
+---
 
-## Model and derive types for contracts
+## Prohibit child components
 
-Base type, Derived types, Helper functions (Pick, Omit)
+TypeScript's `never` type can also be used to prevent child components. This is useful for library authors to prevent composition and use a component as is.
+
+App
+
+```ts
+import Child from './Child';
+import Childless from './Childless';
+
+function App() {
+  return (
+    <div className="wrapper">
+      <h1>Restrict child elements</h1>
+      <Child>
+        <h2>Can have child content</h2>
+      </Child>
+      <Childless />
+      <Childless />
+    </div>
+  );
+}
+```
+
+---
+layout: image-left
+image: https://placekitten.com/1000/1000
+---
+
+Component with children
+
+```ts
+import { PropsWithChildren } from 'react';
+
+export type ChildProps = PropsWithChildren<{
+  // same as PropsWithChildren<>
+  // children?: ReactNode | undefined;
+  otherProp: string;
+}>;
+
+
+```
+
+Component without children
+
+```ts
+export type ChildlessProps = {
+  children?: never;
+  otherProp: string;
+};
+
+```
 
 ---
 
@@ -394,15 +446,4 @@ Loading/Error/Success pattern
 ## Leverage built in types
 
 ReadonlyArray, Tuples, Record,
-
----
-
-## Prohibit props combinations and child components
-
-Todo
----
-
-## Create own helper types
-
-Number without 0 for percent calculations
 
