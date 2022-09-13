@@ -162,6 +162,65 @@ sayIt(peopleListSortedByFirstName);
 ```
 
 ---
+layout: image-right
+image: https://placekitten.com/1000/1000
+---
+
+## Type modelling
+
+TypesScript provides a multitude of options to model data types that can be used for business logic, props, json files etc.
+
+Example data
+
+```json
+[
+  {
+    "id": "123456",
+    "firstName": "Peter",
+    "lastName": "Peterson",
+    "house": "111",
+    "street": "Highstreet",
+    "city": "London",
+    "postcode": "W1 6AA",
+    "defaultedPayments": 1,
+    "missedPayments": 50
+  }
+]
+```
+
+---
+layout: image-left
+image: https://placekitten.com/1000/1000
+---
+
+Composite types from other types
+
+```ts
+export type CustomerDefaultFields = {
+  id: string;
+  firstName: string;
+  lastName: string;
+};
+export type CustomerAddress = {
+  house: string;
+  street: string;
+  city: string;
+  postcode: string;
+};
+export type CustomerPaymentStatus = {
+  defaultedPayments: number;
+  missedPayments: number;
+};
+export type Customer =
+  & CustomerDefaultFields
+  & CustomerAddress
+  & CustomerAddress
+export type CustomerWithPaymentData =
+  & CustomerDefaultFields
+  & CustomerPaymentStatus
+```
+
+---
 
 ## Deprecate props
 
