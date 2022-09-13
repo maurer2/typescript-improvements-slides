@@ -166,7 +166,7 @@ layout: image-right
 image: https://placekitten.com/1000/1000
 ---
 
-## Type modelling
+## Type modeling
 
 TypesScript provides a multitude of options to model data types that can be used for business logic, props, json files etc.
 
@@ -218,6 +218,34 @@ export type Customer =
 export type CustomerWithPaymentData =
   & CustomerDefaultFields
   & CustomerPaymentStatus
+```
+
+---
+
+<!-- Composite types by including and excluding fields -->
+
+Types can also be created by picking and omitting certain fields from a base type via [utility types](https://www.typescriptlang.org/docs/handbook/utility-types.html). Pick allows to choose specific fields that are used to create a new type, while omit specifies the fields, that are to be excluded from the new type.
+
+```ts
+export type CustomerFields = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  house: string;
+  street: string;
+  city: string;
+  postcode: string;
+  defaultedPayments: number;
+  missedPayments: number;
+  otherField: never;
+};
+export type Customer = Pick<CustomerFields, 'id' | 'firstName' | 'lastName' | 'house' | 'street' | 'city' |
+'postcode' | 'defaultedPayments' | 'missedPayments'
+>;
+export type Customer2 = Omit<CustomerFields, 'otherField'>;
+export type CustomerWithPaymentData = Pick<CustomerFields, 'id' | 'firstName' | 'lastName' | 'defaultedPayments' | 'missedPayments'
+>;
+export type CustomerWithPaymentData2 = Omit<CustomerFields, 'house' | 'street' | 'city' | 'postcode' | 'otherField'>;
 ```
 
 ---
