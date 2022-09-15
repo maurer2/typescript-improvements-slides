@@ -17,9 +17,10 @@ info: |
 drawings:
   persist: false
 # use UnoCSS (experimental)
-#css: unocss
+# css: unocss
 
 download: true
+exportFilename: slides.pdf
 ---
 
 # A few slides on TypeScript
