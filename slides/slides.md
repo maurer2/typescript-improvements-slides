@@ -12,15 +12,14 @@ highlighter: shiki
 lineNumbers: true
 # some information about the slides, markdown enabled
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+  ## TypeScript slides
 # persist drawings in exports and build
 drawings:
   persist: false
 # use UnoCSS (experimental)
-css: unocss
+#css: unocss
+
+download: true
 ---
 
 # A few slides on TypeScript
@@ -399,7 +398,6 @@ function App() {
       <Child>
         <h2>Can have child content</h2>
       </Child>
-      <Childless />
       <Childless />
     </div>
   );

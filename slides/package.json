@@ -4,12 +4,13 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
-    "export": "slidev export",
-    "start" : "npm run dev"
+    "export": "slidev export --dark",
+    "start": "npm run dev"
   },
   "dependencies": {
     "@slidev/cli": "^0.35.5",
     "@slidev/theme-default": "*",
-    "@slidev/theme-seriph": "*"
+    "@slidev/theme-seriph": "*",
+    "playwright-chromium": "^1.25.2"
   }
 }
