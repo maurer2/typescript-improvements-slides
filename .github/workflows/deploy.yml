@@ -1,3 +1,8 @@
+# https://github.com/maurer2/pipe-nein/blob/main/.github/workflows/ci.yml
+defaults:
+  run:
+    working-directory: slides
+
 name: Deploy pages
 on: push
 jobs:
@@ -12,11 +17,29 @@ jobs:
         run: npm install
       - name: Install slidev
         run: npm i -g @slidev/cli
+
+      - name: debug
+        run: |
+          echo $(pwd)
+          echo $(ls)
+
+      - name: Create dist folder
+        run: |
+          mkdir ../dist
+
       - name: Build
-        run: slidev build '../slides/slides.md --base /typescript-improvements-slides/'
+        run: slidev build
+
+      - name: debug
+        run: |
+          echo $(pwd)
+          echo $(ls)
+
       - name: Deploy pages
         uses: crazy-max/ghaction-github-pages@v2
         with:
           build_dir: dist
+          jekyll: false
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
