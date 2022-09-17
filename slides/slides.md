@@ -19,8 +19,12 @@ drawings:
 # use UnoCSS (experimental)
 # css: unocss
 
+# pdf export
 download: true
 exportFilename: slides.pdf
+
+# favicon
+favicon: favicon.ico
 ---
 
 # A few slides on TypeScript
