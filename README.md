@@ -1,3 +1,4 @@
-# TypeScript presentation
+# TypeScript-Improvements-Slides
 
-[PDF download](https://maurer2.github.io/typescript-improvements-slides/slides.pdf)
+[Slides (interactive)](https://maurer2.github.io/typescript-improvements-slides)
+[Slides (PDF)](https://maurer2.github.io/typescript-improvements-slides/slides.pdf)
