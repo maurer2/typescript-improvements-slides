@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir ../dist
       - name: Build
-        run: slidev build
+        run: slidev build --base /typescript-improvements-slides/
       # - name: debug
       #   run: |
       #     echo $(pwd)

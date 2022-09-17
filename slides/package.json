@@ -2,7 +2,7 @@
   "name": "slides",
   "private": true,
   "scripts": {
-    "build": "slidev build '../slides/slides.md'",
+    "build": "slidev build slides.md",
     "dev": "slidev --open",
     "export": "slidev export --dark",
     "start": "npm run dev"
