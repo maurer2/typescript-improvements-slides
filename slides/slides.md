@@ -20,7 +20,7 @@ drawings:
 # css: unocss
 
 # pdf export
-download: true
+# download: true
 exportFilename: slides.pdf
 
 # favicon
@@ -440,9 +440,57 @@ export type ChildlessProps = {
 
 ---
 
-## Discriminated union types
+## Discriminated union types & type guards
 
-Loading/Error/Success pattern
+Discriminate unions are a way to narrow down union types by using a single field called `discriminant property`.
+
+Types
+
+```ts
+export type AnimalSound = 'Meow' | 'Woof';
+
+export type Cat = {
+  type: 'Cat'; // discriminant property
+  name: string;
+  sound: AnimalSound;
+  isCurrentChiefMouserToTheCabinetOffice: boolean;
+};
+
+export type Dog = {
+  type: 'Dog'; // discriminant property
+  name: string;
+  sound: AnimalSound;
+};
+
+export type Animal = Cat | Dog;
+
+export type AnimalList = [Animal, Animal];
+```
+
+---
+
+Function
+
+```ts
+function showAnimalDetails(animal: Animal) {
+  // can't access isCurrentChiefMouserToTheCabinetOffice here, since it doesn't exist on all animal types
+  // console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+
+  if (animal.type === 'Cat') {
+    // animal has been narrowed down to Cat
+    // Can access isCurrentChiefMouserToTheCabinetOffice here, since typescript has narrowed the type down to Cat
+    console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+
+    return;
+  }
+
+  // animal has been narrowed down to Dog
+  // can't access isCurrentChiefMouserToTheCabinetOffice here, since it doesn't exist on the Dog type
+  // console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+}
+```
+
+<!-- Loading/Error/Success pattern -->
 
 ---
 
