@@ -8,5 +8,8 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "scripts": {
+    "type-predicates-and-type-guards": "ts-node './type-predicates-and-type-guards.ts'"
   }
 }

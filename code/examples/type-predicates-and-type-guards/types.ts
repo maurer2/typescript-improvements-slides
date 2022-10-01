@@ -3,9 +3,8 @@ type CustomerFieldsBag = {
   id: string;
   firstName: string;
   lastName: string;
-  age: number;
-  missedPayments: number;
   defaultedPayments: number;
+  missedPayments: number;
   totalPayments: number;
   house: string;
   street: string;
@@ -17,11 +16,23 @@ export type CustomerBasicDetails = Pick<CustomerFieldsBag, 'id' | 'firstName' | 
 
 export type CustomerPaymentDetails = Pick<CustomerFieldsBag, 'missedPayments' | 'defaultedPayments' | 'totalPayments'>;
 
-export type CustomerWithMissedPayments = CustomerBasicDetails & CustomerPaymentDetails;
+export type CustomerWithDefaultedPayments = CustomerBasicDetails & CustomerPaymentDetails; // {
+//   defaultedPayments: number;
+//   missedPayments: number;
+//   totalPayments: number;
+// };
 
-export type CustomerWithDefaultedPayments = CustomerBasicDetails & CustomerPaymentDetails;
+export type CustomerWithMissedPayments = CustomerBasicDetails & CustomerPaymentDetails; // {
+//   defaultedPayments: number; // 0,
+//   missedPayments: number;
+//   totalPayments: number;
+// };
 
-export type CustomerRegular = CustomerBasicDetails & CustomerPaymentDetails;
+export type CustomerRegular = CustomerBasicDetails & CustomerPaymentDetails;  // {
+//   defaultedPayments: number; //0,
+//   missedPayments: number; // 0,
+//   totalPayments: number;
+// };
 
 export type Customer = CustomerWithMissedPayments | CustomerWithDefaultedPayments | CustomerRegular;
 
