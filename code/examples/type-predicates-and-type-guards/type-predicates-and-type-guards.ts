@@ -1,7 +1,6 @@
-import { faker } from '@faker-js/faker';
-
 import type { Customer, CustomerWithDefaultedPayments, CustomerWithMissedPayments, CustomerRegular } from './types';
 import { isCustomerWithDefaultedPayments, isCustomerWithMissedPayments, isCustomerRegular } from './types';
+import { customerRegular, customerWithDefaultedPayments, customerWithMissedPayments } from './data';
 
 function showCustomerWithDefaultedPayments(customer: CustomerWithDefaultedPayments): void {
   console.log('CustomerWithDefaultedPayments: ', customer);
@@ -42,36 +41,6 @@ function showCustomerDetails(customer: Customer): void {
     // showCustomerWithDefaultedPayments(customer); // Error
   }
 }
-
-const customerRegular: Customer = {
-  id: faker.datatype.uuid(),
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  defaultedPayments: 0,
-  missedPayments: 0,
-  hasDefaultedPayments: false,
-  hasMissedPayments: false,
-};
-
-const customerWithDefaultedPayments: Customer = {
-  id: faker.datatype.uuid(),
-  firstName: 'Dee',
-  lastName: 'Fault',
-  defaultedPayments: 10,
-  missedPayments: 10,
-  hasDefaultedPayments: true,
-  hasMissedPayments: false,
-};
-
-const customerWithMissedPayments: Customer = {
-  id: faker.datatype.uuid(),
-  firstName: 'Miss',
-  lastName: 'Ed',
-  defaultedPayments: 0,
-  missedPayments: 10,
-  hasDefaultedPayments: false,
-  hasMissedPayments: true,
-};
 
 showCustomerDetails(customerWithDefaultedPayments);
 showCustomerDetails(customerWithMissedPayments);
