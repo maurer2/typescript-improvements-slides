@@ -32,6 +32,7 @@ favicon: favicon.ico
 ---
 hideInToc: true
 ---
+
 ## Table of Contents
 
 <Toc minDepth="2" />
@@ -41,8 +42,9 @@ layout: image-right
 image: https://placekitten.com/1000/1000
 ---
 
+## Structural typing vs nominal typing
 
-## Structural typing
+### Structural typing
 
 Structural typing means that types with the same structure are treated as compatible regardless of name.
 TypeScript uses structural typing exclusively.
@@ -69,9 +71,10 @@ const listOfMacBooks: MacBook[] = [
 ```
 
 ---
+hideInToc: true
+---
 
-
-## Nominal typing
+### Nominal typing
 
 Nominal typing means that types are compatible if they have the same name or are declared as subtypes.
 More commonly used in mainstream OOP languages like Java. Flow uses nominal typing for class-related types.
