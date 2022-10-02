@@ -5,7 +5,8 @@ type CustomerFieldsBag = {
   lastName: string;
   defaultedPayments: number;
   missedPayments: number;
-  totalPayments: number;
+  hasDefaultedPayments: boolean;
+  hasMissedPayments: boolean;
   house: string;
   street: string;
   city: string;
@@ -14,43 +15,47 @@ type CustomerFieldsBag = {
 
 export type CustomerBasicDetails = Pick<CustomerFieldsBag, 'id' | 'firstName' | 'lastName'>;
 
-export type CustomerPaymentDetails = Pick<CustomerFieldsBag, 'missedPayments' | 'defaultedPayments' | 'totalPayments'>;
+export type CustomerPaymentDetails = Pick<CustomerFieldsBag, 'missedPayments' | 'defaultedPayments'>;
 
-export type CustomerWithDefaultedPayments = CustomerBasicDetails & CustomerPaymentDetails; // {
-//   defaultedPayments: number;
-//   missedPayments: number;
-//   totalPayments: number;
-// };
+export type CustomerWithDefaultedPayments = CustomerBasicDetails &
+  CustomerPaymentDetails & {
+    hasDefaultedPayments: true;
+    hasMissedPayments: boolean;
+  };
 
-export type CustomerWithMissedPayments = CustomerBasicDetails & CustomerPaymentDetails; // {
-//   defaultedPayments: number; // 0,
-//   missedPayments: number;
-//   totalPayments: number;
-// };
+export type CustomerWithMissedPayments = CustomerBasicDetails &
+  CustomerPaymentDetails & {
+    hasDefaultedPayments: false;
+    hasMissedPayments: true;
+  };
 
-export type CustomerRegular = CustomerBasicDetails & CustomerPaymentDetails;  // {
-//   defaultedPayments: number; //0,
-//   missedPayments: number; // 0,
-//   totalPayments: number;
-// };
+export type CustomerRegular = CustomerBasicDetails &
+  CustomerPaymentDetails & {
+    hasDefaultedPayments: false;
+    hasMissedPayments: false;
+  };
 
 export type Customer = CustomerWithMissedPayments | CustomerWithDefaultedPayments | CustomerRegular;
 
 // type guards
 export function isCustomerWithDefaultedPayments(customer: Customer): customer is CustomerWithDefaultedPayments {
-  const { defaultedPayments } = customer;
+  const { hasDefaultedPayments } = customer;
 
-  return Boolean(defaultedPayments);
+  return hasDefaultedPayments;
 }
 
 export function isCustomerWithMissedPayments(customer: Customer): customer is CustomerWithMissedPayments {
-  const { missedPayments, defaultedPayments } = customer;
+  const { hasDefaultedPayments, hasMissedPayments } = customer;
 
-  return !defaultedPayments && Boolean(missedPayments);
+  if (hasDefaultedPayments) {
+    return false;
+  }
+
+  return hasMissedPayments;
 }
 
 export function isCustomerRegular(customer: Customer): customer is CustomerRegular {
-  const { missedPayments, defaultedPayments } = customer;
+  const { hasDefaultedPayments, hasMissedPayments } = customer;
 
-  return !defaultedPayments && !missedPayments;
+  return !hasDefaultedPayments && !hasMissedPayments;
 }

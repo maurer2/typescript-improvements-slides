@@ -16,19 +16,30 @@ function showCustomerRegular(customer: CustomerRegular): void {
 }
 
 function showCustomerDetails(customer: Customer): void {
+  const currentType = customer; // Customer
+
   if (isCustomerWithDefaultedPayments(customer)) {
-    // const type = customer;
+    const currentType = customer; // CustomerWithDefaultedPayments
+
     showCustomerWithDefaultedPayments(customer);
+    // showCustomerWithMissedPayments(customer); // Error
+    // showCustomerRegular(customer); // Error
   }
 
   if (isCustomerWithMissedPayments(customer)) {
-    // const type = customer;
+    const currentType = customer; // CustomerWithMissedPayments
+
     showCustomerWithMissedPayments(customer);
+    // showCustomerWithDefaultedPayments(customer); // Error
+    // showCustomerRegular(customer); // Error
   }
 
   if (isCustomerRegular(customer)) {
-    // const type = customer;
+    const currentType = customer; // CustomerRegular
+
     showCustomerRegular(customer);
+    // showCustomerWithMissedPayments(customer); // Error
+    // showCustomerWithDefaultedPayments(customer); // Error
   }
 }
 
@@ -38,29 +49,28 @@ const customerRegular: Customer = {
   lastName: faker.name.lastName(),
   defaultedPayments: 0,
   missedPayments: 0,
-  totalPayments: faker.datatype.number({ min: 0, max: 100, precision: 1 }),
+  hasDefaultedPayments: false,
+  hasMissedPayments: false,
 };
 
 const customerWithDefaultedPayments: Customer = {
   id: faker.datatype.uuid(),
   firstName: 'Dee',
   lastName: 'Fault',
-  // defaultedPayments: faker.datatype.number({ min: 0, max: 3, precision: 1 }),
-  // missedPayments: faker.datatype.number({ min: 0, max: 5, precision: 1 }),
   defaultedPayments: 10,
   missedPayments: 10,
-  totalPayments: faker.datatype.number({ min: 0, max: 100, precision: 1 }),
+  hasDefaultedPayments: true,
+  hasMissedPayments: false,
 };
 
 const customerWithMissedPayments: Customer = {
   id: faker.datatype.uuid(),
   firstName: 'Miss',
   lastName: 'Ed',
-  // defaultedPayments: faker.datatype.number({ min: 0, max: 3, precision: 1 }),
-  // missedPayments: faker.datatype.number({ min: 0, max: 5, precision: 1 }),
   defaultedPayments: 0,
   missedPayments: 10,
-  totalPayments: faker.datatype.number({ min: 0, max: 100, precision: 1 }),
+  hasDefaultedPayments: false,
+  hasMissedPayments: true,
 };
 
 showCustomerDetails(customerWithDefaultedPayments);
