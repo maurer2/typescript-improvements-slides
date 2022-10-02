@@ -25,14 +25,22 @@ exportFilename: slides.pdf
 
 # favicon
 favicon: favicon.ico
----
 
-# A few slides on TypeScript
+---
+# TypeScript in React projects
+
+---
+hideInToc: true
+---
+## Table of Contents
+
+<Toc minDepth="2" />
 
 ---
 layout: image-right
 image: https://placekitten.com/1000/1000
 ---
+
 
 ## Structural typing
 
@@ -440,7 +448,7 @@ export type ChildlessProps = {
 
 ---
 
-## Discriminated union types & type guards
+## Discriminated unions
 
 Discriminate unions are a way to narrow down union types by using a single field called `discriminant property`.
 
@@ -491,6 +499,37 @@ function showAnimalDetails(animal: Animal) {
 ```
 
 <!-- Loading/Error/Success pattern -->
+
+---
+
+## Type predicates & Type guards
+
+Todo
+
+```ts
+export function isCustomerWithDefaultedPayments(customer: Customer): customer is CustomerWithDefaultedPayments {
+  const { hasDefaultedPayments } = customer;
+
+  return hasDefaultedPayments;
+}
+
+export function isCustomerWithMissedPayments(customer: Customer): customer is CustomerWithMissedPayments {
+  const { hasDefaultedPayments, hasMissedPayments } = customer;
+
+  if (hasDefaultedPayments) {
+    return false;
+  }
+
+  return hasMissedPayments;
+}
+
+export function isCustomerRegular(customer: Customer): customer is CustomerRegular {
+  const { hasDefaultedPayments, hasMissedPayments } = customer;
+
+  return !hasDefaultedPayments && !hasMissedPayments;
+}
+
+```
 
 ---
 
