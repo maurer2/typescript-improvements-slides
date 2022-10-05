@@ -1,5 +1,5 @@
 {
-  "name": "number-range",
+  "name": "basics",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,6 +10,8 @@
     ]
   },
   "scripts": {
-    "restrict-parameters": "ts-node './restrict-parameters/restrict-parameters.tsx'"
+    "restrict-parameters": "ts-node './restrict-parameters/restrict-parameters.tsx'",
+    "flow-control-analysis-for-values": "ts-node './flow-control-analysis-for-values/flow-control-analysis.tsx'",
+    "flow-control-analysis-for-types": "ts-node './flow-control-analysis-for-types/flow-control-analysis.tsx'"
   }
 }
