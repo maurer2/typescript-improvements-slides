@@ -13,4 +13,4 @@ export type PersonWithAddress = Person & {
   };
 };
 
-export type Persons = Person | PersonWithAddress;
+export type People = Person | PersonWithAddress;
