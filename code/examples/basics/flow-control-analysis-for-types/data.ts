@@ -1,20 +1,28 @@
-import { Persons, PersonWithAddress } from './types';
+import { Person, PersonWithAddress, Persons } from './types';
 import { faker } from '@faker-js/faker';
 
 export const people: Persons[] = Array.from({ length: 10 }, () => {
   const hasAddress = faker.datatype.boolean();
 
-  const address: PersonWithAddress['address'] = {
-    house: faker.address.buildingNumber(),
-    street: faker.address.street(),
-    postcode: faker.address.buildingNumber(),
-    city: faker.address.city(),
-  };
-
-  return {
+  const person: Person = {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     isPrimeMinister: false,
-    ...(hasAddress && { address }),
   };
+
+  if (!hasAddress) {
+    return person;
+  }
+
+  const personWithAddress: PersonWithAddress = {
+    ...person,
+    address: {
+      house: faker.address.buildingNumber(),
+      street: faker.address.street(),
+      postcode: faker.address.buildingNumber(),
+      city: faker.address.city(),
+    },
+  };
+
+  return personWithAddress;
 });

@@ -451,7 +451,116 @@ export type ChildlessProps = {
 
 ---
 
-## Discriminated unions
+## Differentiating Types
+
+TypeScript can infer values via runtime analysis.
+
+Type
+
+```ts
+export type Person = {
+  firstName: string;
+  lastName: string;
+  isPrimeMinister: boolean;
+  address?: {
+    house: string;
+    street: string;
+    postcode: string;
+    city: string;
+  };
+};
+
+```
+
+---
+
+Code
+
+```ts
+import { Person } from './types';
+import { people } from './data';
+
+function showPersonDetails(person: Person): void {
+  const { firstName, lastName, isPrimeMinister, address } = person;
+
+  console.log(`\nFirst name: ${firstName}`);
+  console.log(`Last name: ${lastName}`);
+  console.log(`Is prime minister: ${isPrimeMinister}`);
+
+  if (address) {
+    const { house, street, postcode, city } = address;
+
+    console.log(`House: ${house}`);
+    console.log(`Street: ${street}`);
+    console.log(`Postcode: ${postcode}`);
+    console.log(`City: ${city}`);
+  }
+}
+
+people.forEach((person) => showPersonDetails(person));
+
+```
+
+---
+
+TypeScript can also distinguish types via runtime analysis
+
+Types
+
+```ts
+export type Person = {
+  firstName: string;
+  lastName: string;
+  isPrimeMinister: boolean;
+};
+
+export type PersonWithAddress = Person & {
+  address: {
+    house: string;
+    street: string;
+    postcode: string;
+    city: string;
+  };
+};
+
+export type Persons = Person | PersonWithAddress;
+
+```
+
+---
+
+Code
+
+```ts
+import { Person, PersonWithAddress } from './types';
+import { people } from './data';
+
+function showPersonDetails(person: Person | PersonWithAddress): void {
+  const { firstName, lastName, isPrimeMinister } = person; //  Person | PersonWithAddress
+
+  console.log(`\nFirst name: ${firstName}`);
+  console.log(`Last name: ${lastName}`);
+  console.log(`Is prime minister: ${isPrimeMinister}`);
+
+  // in narrows down union types
+  if ('address' in person) {
+    const type = person; // PersonWithAddress
+    const { house, street, postcode, city } = person.address;
+
+    console.log(`House: ${house}`);
+    console.log(`Street: ${street}`);
+    console.log(`Postcode: ${postcode}`);
+    console.log(`City: ${city}`);
+  }
+}
+
+people.forEach((person) => showPersonDetails(person));
+
+```
+
+---
+
+### Discriminated unions
 
 Discriminate unions are a way to narrow down union types by using a single field called `discriminant property`.
 
