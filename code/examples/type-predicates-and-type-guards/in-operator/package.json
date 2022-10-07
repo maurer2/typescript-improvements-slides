@@ -1,5 +1,5 @@
 {
-  "name": "type-predicates-and-type-guards",
+  "name": "in-operator",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -8,8 +8,5 @@
       "react-app",
       "react-app/jest"
     ]
-  },
-  "scripts": {
-    "in-operator": "ts-node './in-operator/in-operator.tsx'"
   }
 }
