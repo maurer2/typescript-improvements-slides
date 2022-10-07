@@ -450,18 +450,26 @@ export type ChildlessProps = {
 ```
 
 ---
+layout: section
+---
 
 ## Differentiating Types
 
-TypeScript can infer values via runtime analysis.
+---
+layout: two-cols-header
+hideInToc: true
+---
 
-Type
+### Differentiating values
+
+TypeScript can infer values via control flow analysis and allow or disallow certain operations at specific points within the code.
+
+::left::
 
 ```ts
 export type Person = {
   firstName: string;
   lastName: string;
-  isPrimeMinister: boolean;
   address?: {
     house: string;
     street: string;
@@ -472,23 +480,18 @@ export type Person = {
 
 ```
 
----
-
-Code
+::right::
 
 ```ts
-import { Person } from './types';
-import { people } from './data';
-
 function showPersonDetails(person: Person): void {
-  const { firstName, lastName, isPrimeMinister, address } = person;
+  const { firstName, lastName, address } = person;
 
-  console.log(`\nFirst name: ${firstName}`);
+  console.log(`First name: ${firstName}`);
   console.log(`Last name: ${lastName}`);
-  console.log(`Is prime minister: ${isPrimeMinister}`);
 
   if (address) {
-    const { house, street, postcode, city } = address;
+    const { house, street, postcode,
+    city } = address;
 
     console.log(`House: ${house}`);
     console.log(`Street: ${street}`);
@@ -497,21 +500,23 @@ function showPersonDetails(person: Person): void {
   }
 }
 
-people.forEach((person) => showPersonDetails(person));
-
 ```
 
 ---
+layout: two-cols-header
+hideInToc: true
+---
 
-TypeScript can also distinguish types via runtime analysis
+### Differentiating custom types
 
-Types
+TypeScript can narrow down types similar to values via control flow analysis and.
+
+::left::
 
 ```ts
 export type Person = {
   firstName: string;
   lastName: string;
-  isPrimeMinister: boolean;
 };
 
 export type PersonWithAddress = Person & {
@@ -523,29 +528,26 @@ export type PersonWithAddress = Person & {
   };
 };
 
-export type Persons = Person | PersonWithAddress;
+export type People = Person | PersonWithAddress;
 
 ```
 
----
-
-Code
+::right::
 
 ```ts
-import { Person, PersonWithAddress } from './types';
-import { people } from './data';
+function showPersonDetails(
+  person: Person | PersonWithAddress): void {
+  const { firstName, lastName } = person;
 
-function showPersonDetails(person: Person | PersonWithAddress): void {
-  const { firstName, lastName, isPrimeMinister } = person; //  Person | PersonWithAddress
-
-  console.log(`\nFirst name: ${firstName}`);
+  console.log(`First name: ${firstName}`);
   console.log(`Last name: ${lastName}`);
-  console.log(`Is prime minister: ${isPrimeMinister}`);
 
-  // in narrows down union types
+  // in-operator narrows down union types
   if ('address' in person) {
-    const type = person; // PersonWithAddress
-    const { house, street, postcode, city } = person.address;
+    // PersonWithAddress
+    const type = person;
+    const { house, street, postcode, city } = person
+    .address;
 
     console.log(`House: ${house}`);
     console.log(`Street: ${street}`);
@@ -554,60 +556,60 @@ function showPersonDetails(person: Person | PersonWithAddress): void {
   }
 }
 
-people.forEach((person) => showPersonDetails(person));
-
 ```
 
+---
+layout: two-cols-header
+hideInToc: true
 ---
 
 ### Discriminated unions
 
 Discriminate unions are a way to narrow down union types by using a single field called `discriminant property`.
 
-Types
+::left::
 
 ```ts
 export type AnimalSound = 'Meow' | 'Woof';
 
 export type Cat = {
-  type: 'Cat'; // discriminant property
+  type: 'Cat';
   name: string;
   sound: AnimalSound;
-  isCurrentChiefMouserToTheCabinetOffice: boolean;
+  isCurrentChiefMouser: boolean;
 };
 
 export type Dog = {
-  type: 'Dog'; // discriminant property
+  type: 'Dog';
   name: string;
   sound: AnimalSound;
+  canBeMistakenForAPony: boolean;
 };
 
 export type Animal = Cat | Dog;
 
-export type AnimalList = [Animal, Animal];
+export type AnimalList = [Animal, Animal]; // Tuple
+
 ```
 
----
-
-Function
+::right::
 
 ```ts
-function showAnimalDetails(animal: Animal) {
-  // can't access isCurrentChiefMouserToTheCabinetOffice here, since it doesn't exist on all animal types
-  // console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+function showAnimalDetails(animal: Animal): void {
+  const { type, name, sound } = animal;
 
-  if (animal.type === 'Cat') {
-    // animal has been narrowed down to Cat
-    // Can access isCurrentChiefMouserToTheCabinetOffice here, since typescript has narrowed the type down to Cat
-    console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+  console.log(name);
+  console.log(sound);
+
+  if (type === 'Cat') {
+    console.log(animal.isCurrentChiefMouser);
 
     return;
   }
 
-  // animal has been narrowed down to Dog
-  // can't access isCurrentChiefMouserToTheCabinetOffice here, since it doesn't exist on the Dog type
-  // console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+  console.log(animal.canBeMistakenForAPony);
 }
+
 ```
 
 <!-- Loading/Error/Success pattern -->
