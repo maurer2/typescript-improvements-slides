@@ -10,6 +10,7 @@
     ]
   },
   "scripts": {
+    "instanceof-and-typeof-operators": "ts-node './instanceof-and-typeof-operators/instanceof-and-typeof-operators.tsx'",
     "in-operator": "ts-node './in-operator/in-operator.tsx'"
   }
 }

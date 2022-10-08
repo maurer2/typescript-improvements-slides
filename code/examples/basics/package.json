@@ -11,6 +11,6 @@
   },
   "scripts": {
     "restrict-parameters": "ts-node './restrict-parameters/restrict-parameters.tsx'",
-    "flow-control-analysis-for-values": "ts-node './flow-control-analysis-for-values/flow-control-analysis.tsx'",
+    "flow-control-analysis-for-values": "ts-node './flow-control-analysis-for-values/flow-control-analysis.tsx'"
   }
 }

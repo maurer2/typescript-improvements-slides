@@ -9,7 +9,7 @@ function showPersonDetails(person: Person): void {
 
   if (typeof dateOfBirth === 'string') {
     // const type = dateOfBirth; // string
-    console.log(`Date of birth: ${dateOfBirth}`);
+    console.log(`Date of birth1: ${dateOfBirth}`);
 
     return;
   }
@@ -17,13 +17,15 @@ function showPersonDetails(person: Person): void {
   if (typeof dateOfBirth === 'number') {
     // const type = dateOfBirth; // number
     const dateString = new Date(dateOfBirth).toLocaleDateString('en-GB');
-    console.log(`Date of birth: ${dateString}`);
+    console.log(`Date of birth2: ${dateString}`);
 
     return;
   }
 
   /// const type = dateOfBirth; // Date
-  console.log(`Date of birth: ${dateOfBirth.toLocaleDateString('en-GB')}`);
+  console.log(`Date of birth3: ${dateOfBirth.toLocaleDateString('en-GB')}`);
 }
+
+people.forEach((person) => showPersonDetails(person));
 
 // https://github.com/microsoft/TypeScript/issues/31755#issuecomment-498669080

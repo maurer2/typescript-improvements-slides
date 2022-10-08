@@ -8,7 +8,6 @@ function showPersonDetails(person: Person | PersonWithAddress): void {
   console.log(`Last name: ${lastName}`);
   console.log(`Is prime minister: ${isPrimeMinister}`);
 
-  // in-operator narrows down union types
   if ('address' in person) {
     const type = person; // PersonWithAddress
     const { house, street, postcode, city } = person.address;
