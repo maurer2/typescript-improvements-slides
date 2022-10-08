@@ -651,3 +651,4 @@ export function isCustomerRegular(customer: Customer): customer is CustomerRegul
 
 ReadonlyArray, Tuples, Record,
 
+<!-- https://github.com/microsoft/TypeScript/issues/17002 -->
