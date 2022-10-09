@@ -8,10 +8,10 @@ function App() {
   return (
     <div className="wrapper">
       <h1>Restrict child element</h1>
-      <Child otherProp='test'>
+      <Child otherProp="test">
         <h2>Can have child content</h2>
       </Child>
-      <Childless otherProp='test'/>
+      <Childless otherProp="test" />
     </div>
   );
 }

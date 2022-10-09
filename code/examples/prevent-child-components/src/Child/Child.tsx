@@ -1,6 +1,6 @@
-import React, { ReactElement, Children } from "react";
+import React, { ReactElement, Children } from 'react';
 
-import { ChildProps } from './Child.types';
+import type { ChildProps } from './Child.types';
 import style from './Child.module.scss';
 
 function Child({ children }: ChildProps): ReactElement {

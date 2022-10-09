@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <CustomButton
-      onClick={() => handleClick()}
+      onClick={handleClick}
       newProp="test"
       // oldProp="test" // error
     >

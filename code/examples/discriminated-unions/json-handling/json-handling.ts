@@ -1,4 +1,5 @@
-import { APIRequestStatus, Loading, Failed, Success, Cat } from './types';
+import type { Loading, Failed, Success, Cat } from './types';
+import { APIRequestStatus } from './types';
 
 async function fakeAPIResponse<T>(): Promise<APIRequestStatus<T>> {
   // https://github.com/lodash/lodash/blob/67389a8c78975d97505fa15aa79bec6397749807/lodash.js#L3875-L3886
@@ -30,8 +31,8 @@ async function fakeAPIResponse<T>(): Promise<APIRequestStatus<T>> {
   } as Success<T>;
 }
 
-async function sendAPIRequest(): Promise<void> {
-  const currentAPIRequestStatus = await fakeAPIResponse<Cat>();
+async function sendAPIRequest<T>(): Promise<void> {
+  const currentAPIRequestStatus = await fakeAPIResponse<T>();
 
   switch (currentAPIRequestStatus.state) {
     case 'loading': {
@@ -54,3 +55,5 @@ async function sendAPIRequest(): Promise<void> {
     }
   }
 }
+
+sendAPIRequest<Cat>();

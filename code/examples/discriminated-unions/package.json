@@ -8,7 +8,6 @@
     ]
   },
   "scripts": {
-    "simple-example": "ts-node './simple-example/simple-example.ts'",
-    "reducers": "ts-node './simple-example/simple-example.ts'"
+    "simple-example": "ts-node './simple-example/simple-example.ts'"
   }
 }

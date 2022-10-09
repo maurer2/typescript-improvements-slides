@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+
 import { Person } from './types';
 
 export const people: Person[] = Array.from({ length: 10 }, () => {

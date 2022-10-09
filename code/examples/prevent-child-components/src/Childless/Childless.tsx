@@ -1,12 +1,12 @@
-import React, {ReactElement} from 'react';
+import React, { ReactElement } from 'react';
 
-import { ChildlessProps } from './Childless.types';
+import type { ChildlessProps } from './Childless.types';
 import style from './Childless.module.scss';
 
 function Childless(props: ChildlessProps): ReactElement {
   return (
     <div className={style.childless}>
-      <h2>Can not have child content</h2>
+      <h2>Can't have child content</h2>
       {props.children}
     </div>
   );

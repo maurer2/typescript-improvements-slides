@@ -8,5 +8,5 @@ export const initialState: State = {
   dateTime: {
     value: Date.now(),
     locale: 'en-GB',
-  }
+  },
 };

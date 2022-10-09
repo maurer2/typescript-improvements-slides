@@ -1,10 +1,10 @@
 import React, { ReactElement, PropsWithChildren } from 'react';
 
-import { ButtonLink2Props } from './ButtonLink2.types';
+import type { ButtonLink2Props } from './ButtonLink2.types';
 import style from './ButtonLink2.module.scss';
 
-function ButtonLink2({ onClick, type, disabled, href }:  PropsWithChildren<ButtonLink2Props>): ReactElement {
-  const TagType = type; // needs to be uppercase
+function ButtonLink2({ onClick, type, disabled, href }: PropsWithChildren<ButtonLink2Props>): ReactElement {
+  const TagType: 'button' | 'a' = type; // needs to be uppercase
 
   // discriminated union
   if (type === 'button') {
@@ -19,9 +19,7 @@ function ButtonLink2({ onClick, type, disabled, href }:  PropsWithChildren<Butto
 
   return (
     <TagType className={style.ButtonLink} onClick={onClick}>
-      Click
-      {' '}
-      <span>Type: {TagType}</span>
+      Click <span>Type: {TagType}</span>
     </TagType>
   );
 }

@@ -1,37 +1,38 @@
-import { Animal, AnimalList } from './types';
+import type { Animal, AnimalList } from './types';
 
 function showAnimalDetails(animal: Animal) {
-  // can't access isCurrentChiefMouserToTheCabinetOffice here, since it doesn't exist on all animal types
-  // console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+  // can't access isCurrentChiefMouser here, since it doesn't exist on all animal types
+  // console.log(animal.isCurrentChiefMouser);
 
   if (animal.type === 'Cat') {
-    // Can access isCurrentChiefMouserToTheCabinetOffice here, since typescript has narrowed the type down to Cat
-    console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+    // Can access isCurrentChiefMouser here, since typescript has narrowed the type down to Cat
+    console.log(animal.isCurrentChiefMouser);
 
     return;
   }
 
-  // can't access isCurrentChiefMouserToTheCabinetOffice here, since it doesn't exist on the Dog type
-  // console.log(animal.isCurrentChiefMouserToTheCabinetOffice);
+  console.log(animal.canBeMistakenForAPony);
+  // can't access isCurrentChiefMouser here, since it doesn't exist on the Dog type
+  // console.log(animal.isCurrentChiefMouser);
 }
 
 const cat: Animal = {
   type: 'Cat',
   name: 'Mittens',
   sound: 'Meow',
-  isCurrentChiefMouserToTheCabinetOffice: false,
+  isCurrentChiefMouser: false,
 };
 
 const dog: Animal = {
   type: 'Dog',
   name: 'Ben',
   sound: 'Woof',
+  canBeMistakenForAPony: true,
 };
 
 const animals: AnimalList = [cat, dog];
 
 animals.forEach((animal) => {
   console.log(JSON.stringify(animal, null, 4));
-
   showAnimalDetails(animal);
 });

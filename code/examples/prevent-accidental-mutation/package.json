@@ -1,5 +1,5 @@
 {
-  "name": "discriminated-unions-reducers",
+  "name": "prevent-accidental-mutation",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -8,5 +8,8 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "scripts": {
+    "start": "ts-node './index.ts'"
   }
 }

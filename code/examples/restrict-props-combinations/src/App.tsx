@@ -1,4 +1,4 @@
-import React, {useReducer, ReducerWithoutAction} from 'react';
+import React, { useReducer, ReducerWithoutAction } from 'react';
 import './App.scss';
 
 import ButtonLink from './ButtonLink';
@@ -20,33 +20,32 @@ function App() {
       >
         Click
       </ButtonLink>
+
       <hr />
-      { isButton
-        ? (
-          <ButtonLink2
-            type="button"
-            onClick={toggleIsButton}
-            // disabled={false}
-            // disabled={true}
-            // disabled
-            // href="#home"
-          >
-            Click
-          </ButtonLink2>
-          )
-        : (
-          <ButtonLink2
-            type="a"
-            onClick={toggleIsButton}
-            disabled={false}
-            // disabled={true}
-            // disabled
-            href="#home"
-          >
-            Click
-          </ButtonLink2>
-          )
-      }
+
+      {isButton ? (
+        <ButtonLink2
+          type="button"
+          onClick={toggleIsButton}
+          // disabled={false}
+          // disabled={true}
+          // disabled
+          // href="#home"
+        >
+          Click
+        </ButtonLink2>
+      ) : (
+        <ButtonLink2
+          type="a"
+          onClick={toggleIsButton}
+          // disabled={false}
+          // disabled={true}
+          // disabled
+          href="#home"
+        >
+          Click
+        </ButtonLink2>
+      )}
     </div>
   );
 }

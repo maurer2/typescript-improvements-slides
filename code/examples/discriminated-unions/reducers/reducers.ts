@@ -1,5 +1,4 @@
 import type { Actions, State } from './types';
-
 import { initialState } from './store';
 import { ActionNames } from './action-types';
 

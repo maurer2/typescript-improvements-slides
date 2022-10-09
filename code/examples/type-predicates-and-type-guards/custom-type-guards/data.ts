@@ -35,8 +35,8 @@ export const customerWithDefaultedPayments: Customer = {
   id: `Defaulted-${faker.datatype.uuid()}`,
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
-  defaultedPayments: 10, // faker.datatype.number({ min: 0, max: 100, precision: 1 }),
-  missedPayments: 10, // faker.datatype.number({ min: 0, max: 100, precision: 1 }),
+  defaultedPayments: 10,
+  missedPayments: 10,
   hasDefaultedPayments: true,
   hasMissedPayments: false,
 };

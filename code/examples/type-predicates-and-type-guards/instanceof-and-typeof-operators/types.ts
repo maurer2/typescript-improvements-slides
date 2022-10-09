@@ -1,4 +1,5 @@
-type DateFormat = Date | number | string;
+type Timestamp = number;
+type DateFormat = Date | Timestamp | string;
 
 export type Person = {
   firstName: string;

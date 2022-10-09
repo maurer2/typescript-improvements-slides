@@ -1,5 +1,5 @@
-// import React from 'react';
-import { SortCodePart, SortCode, isValidSortCodePart, isValidSortCode } from './types';
+import { isValidSortCodePart, isValidSortCode } from './types';
+import type { SortCodePart, SortCode } from './types';
 
 function getRandomSortCodePart(): SortCodePart {
   const randomNumber: number = Math.floor(Math.random() * 1000) + 1;
@@ -31,5 +31,5 @@ const sortCodes: string[] = [...Array(100)].map(() => {
   return sortCodeFormatted;
 });
 
-// console.log(sortCodes);
-// console.log(new Intl.ListFormat('en', { style: 'long', type: 'conjunction' }).format(sortCodes));
+console.log(sortCodes);
+console.log(new Intl.ListFormat('en', { style: 'long', type: 'conjunction' }).format(sortCodes));

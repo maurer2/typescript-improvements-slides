@@ -1,34 +1,5 @@
-type Person = {
-  name: string;
-  realName: string;
-};
-
-type PersonWithInitials = Person & {
-  initials: string;
-};
-
-const people: Person[] = [
-  {
-    name: 'Graham Norton',
-    realName: 'Graham Walker',
-  },
-  {
-    name: 'Calvin Harris',
-    realName: 'Adam Wiles',
-  },
-  {
-    name: 'David Tennant',
-    realName: 'David McDonald',
-  },
-  {
-    name: 'Michael Caine',
-    realName: 'Maurice Joseph Micklewhite',
-  },
-  {
-    name: 'Helen Mirren',
-    realName: 'Ilyena Lydia Mironoff',
-  },
-];
+import { people } from './data';
+import type { Person, PersonWithInitials } from './types';
 
 function getSortedPeople(peopleUnsorted: ReadonlyArray<Person>): Person[] | PersonWithInitials[] {
   const peopleSorted: Person[] | PersonWithInitials[] = [...peopleUnsorted]
@@ -53,11 +24,9 @@ function getSortedPeople(peopleUnsorted: ReadonlyArray<Person>): Person[] | Pers
   return peopleSorted;
 }
 
-function test() {
+export default function test() {
   const peopleSorted = getSortedPeople(people);
   const peopleUnsorted = people;
 
-  console.log('Example: 2 ', peopleSorted === peopleUnsorted);
+  console.log('Example 2 has mutated', peopleSorted === peopleUnsorted);
 }
-
-export default test;

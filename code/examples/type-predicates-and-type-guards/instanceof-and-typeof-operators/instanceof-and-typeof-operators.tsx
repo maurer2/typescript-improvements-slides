@@ -1,5 +1,6 @@
-import { Person } from './types';
 import { people } from './data';
+
+import type { Person } from './types';
 
 function showPersonDetails(person: Person): void {
   const { firstName, lastName, dateOfBirth } = person;
@@ -15,7 +16,7 @@ function showPersonDetails(person: Person): void {
   }
 
   if (typeof dateOfBirth === 'number') {
-    // const type = dateOfBirth; // number
+    // const type = dateOfBirth; // Timestamp
     const dateString = new Date(dateOfBirth).toLocaleDateString('en-GB');
     console.log(`Date of birth2: ${dateString}`);
 

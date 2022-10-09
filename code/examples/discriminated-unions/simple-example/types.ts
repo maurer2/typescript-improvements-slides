@@ -4,13 +4,14 @@ export type Cat = {
   type: 'Cat';
   name: string;
   sound: AnimalSound;
-  isCurrentChiefMouserToTheCabinetOffice: boolean;
+  isCurrentChiefMouser: boolean;
 };
 
 export type Dog = {
   type: 'Dog';
   name: string;
   sound: AnimalSound;
+  canBeMistakenForAPony: boolean;
 };
 
 export type Animal = Cat | Dog;
