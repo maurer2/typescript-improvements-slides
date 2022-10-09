@@ -3,7 +3,7 @@ import currency from 'currency.js';
 
 import type { LoanStringlyTyped, Loan } from './types';
 
-const loanJSON: LoanStringlyTyped = {
+export const loanJSON: LoanStringlyTyped = {
   id: faker.datatype.uuid(),
   title: faker.lorem.words(5),
   tranche: faker.lorem.word(),
@@ -24,5 +24,3 @@ const loan: Loan = {
   ltv: BigInt(Math.trunc(loanJSON.ltv * 100)),
   loan_value: currency(loanJSON.loan_value),
 };
-
-export const loans: [LoanStringlyTyped, Loan] = [loanJSON, loan];
