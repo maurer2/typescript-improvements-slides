@@ -1,8 +1,6 @@
-import * as data from './data.json';
-import type { Customer, CustomerWithPaymentData } from './types';
+import { customers } from './data';
 
-const customer: Customer = data[0];
-const customer2: CustomerWithPaymentData = data[0];
+const [customer, customerWithPaymentData] = customers;
 
 console.log(customer);
-console.log(customer2);
+console.log(customerWithPaymentData);

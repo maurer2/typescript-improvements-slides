@@ -6,8 +6,12 @@ function sorted(list: PersonList, sortBy: PersonListFields): PersonList {
     const fieldA = entryA[sortBy];
     const fieldB = entryB[sortBy];
 
-    if (fieldA > fieldB) return 1;
-    if (fieldA < fieldB) return -1;
+    if (fieldA > fieldB) {
+      return 1;
+    }
+    if (fieldA < fieldB) {
+      return -1;
+    }
     return 0;
   });
 

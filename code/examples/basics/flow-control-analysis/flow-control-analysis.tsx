@@ -1,4 +1,4 @@
-import { Person } from './types';
+import type { Person } from './types';
 import { people } from './data';
 
 function showPersonDetails(person: Person): void {

@@ -11,6 +11,7 @@ export type CustomerFields = {
   otherField: never;
 };
 
+// all fields
 export type Customer = Pick<
   CustomerFields,
   'id' | 'firstName' | 'lastName' | 'house' | 'street' | 'city' | 'postcode' | 'defaultedPayments' | 'missedPayments'

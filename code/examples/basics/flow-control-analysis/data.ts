@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import { Person } from './types';
+import type { Person } from './types';
 
 export const people: Person[] = Array.from({ length: 10 }, () => {
   const hasAddress = faker.datatype.boolean();

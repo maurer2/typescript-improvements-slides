@@ -16,11 +16,6 @@ export type CustomerPaymentStatus = {
   missedPayments: number;
 };
 
-export type Customer =
-  & CustomerDefaultFields
-  & CustomerAddress
-  & CustomerAddress
+export type Customer = CustomerDefaultFields & CustomerAddress;
 
-export type CustomerWithPaymentData =
-  & CustomerDefaultFields
-  & CustomerPaymentStatus
+export type CustomerWithPaymentData = CustomerDefaultFields & CustomerAddress & CustomerPaymentStatus;
