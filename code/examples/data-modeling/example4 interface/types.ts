@@ -7,7 +7,9 @@ export const currencyAbbreviations = {
   CAD: 'CAD',
   AUD: 'AUD',
 } as const;
-type CurrencyAbbreviations = keyof typeof currencyAbbreviations; // Keys
+interface CurrencyAbbreviations {
+  keys: keyof typeof currencyAbbreviations;
+}
 
 export const currencyNames = {
   GBP: ['Pound Sterling'],
@@ -16,9 +18,10 @@ export const currencyNames = {
   CAD: ['Canadian Dollar'],
   AUD: ['Australian Dollar', 'Dollarydoos'],
 } as const;
+// not possible with interfaces
 type CurrencyNames = {
-  // [K in CurrencyAbbreviations]: typeof currencyNames[K][0]; // first value
-  [K in CurrencyAbbreviations]: typeof currencyNames[K][number]; // multiple values
+  // [K in CurrencyAbbreviations['keys']]: typeof currencyNames[K][0]; // first value
+  [K in CurrencyAbbreviations['keys']]: typeof currencyNames[K][number]; // multiple values
 };
 
 export const currencySymbols = {
@@ -28,12 +31,13 @@ export const currencySymbols = {
   CAD: '$',
   AUD: '$',
 } as const;
+// not possible with interfaces
 type CurrencySymbols = {
-  [K in CurrencyAbbreviations]: typeof currencySymbols[K];
+  [K in CurrencyAbbreviations['keys']]: typeof currencySymbols[K];
 };
 
 export type Currencies = {
-  [K in CurrencyAbbreviations]: [
+  [K in CurrencyAbbreviations['keys']]: [
     name: CurrencyNames[K],
     symbol: CurrencySymbols[K]
   ];
