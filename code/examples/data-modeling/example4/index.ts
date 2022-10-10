@@ -5,6 +5,7 @@ const currencies: Currencies = {
   GBP: ['Pound Sterling', '£'],
   USD: ['Dollar', '$'],
   CAD: ['Canadian Dollar', '$'],
+  AUD: ['Dollarydoos', '$']
   // CAD: ['Euro', '$'], // Error
   // GBP: ['Pound Sterling', '$'], // Error
 };

@@ -5,17 +5,20 @@ export const currencyAbbreviations = {
   EUR: 'EUR',
   USD: 'USD',
   CAD: 'CAD',
+  AUD: 'AUD',
 } as const;
 type CurrencyAbbreviations = keyof typeof currencyAbbreviations; // Keys
 
 export const currencyNames = {
-  GBP: 'Pound Sterling',
-  EUR: 'Euro',
-  USD: 'Dollar',
-  CAD: 'Canadian Dollar',
+  GBP: ['Pound Sterling'],
+  EUR: ['Euro'],
+  USD: ['Dollar'],
+  CAD: ['Canadian Dollar'],
+  AUD: ['Australian Dollar', 'Dollarydoos'],
 } as const;
 type CurrencyNames = {
-  [K in CurrencyAbbreviations]: typeof currencyNames[K];
+  // [K in CurrencyAbbreviations]: typeof currencyNames[K][0]; // first value
+  [K in CurrencyAbbreviations]: typeof currencyNames[K][number]; // multiple values
 };
 
 export const currencySymbols = {
@@ -23,6 +26,7 @@ export const currencySymbols = {
   EUR: '€',
   USD: '$',
   CAD: '$',
+  AUD: '$',
 } as const;
 type CurrencySymbols = {
   [K in CurrencyAbbreviations]: typeof currencySymbols[K];
