@@ -10,9 +10,9 @@ export const currencyAbbreviations = {
 type CurrencyAbbreviations = keyof typeof currencyAbbreviations; // Keys
 
 export const currencyNames = {
-  GBP: ['Pound Sterling'],
+  GBP: ['Pound', 'Pound Sterling'],
   EUR: ['Euro'],
-  USD: ['Dollar'],
+  USD: ['Dollar', 'US Dollar'],
   CAD: ['Canadian Dollar'],
   AUD: ['Australian Dollar', 'Dollarydoos'],
 } as const;
@@ -33,7 +33,7 @@ type CurrencySymbols = {
 };
 
 export type Currencies = {
-  [K in CurrencyAbbreviations]: [
+  [K in CurrencyAbbreviations]?: [
     name: CurrencyNames[K],
     symbol: CurrencySymbols[K]
   ];

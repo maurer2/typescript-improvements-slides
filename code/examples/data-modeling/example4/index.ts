@@ -1,11 +1,11 @@
-import type { Currencies } from "./types";
+import type { Currencies } from './types';
 
 const currencies: Currencies = {
-  EUR: ['Euro', '€'],
-  GBP: ['Pound Sterling', '£'],
+  // EUR: ['Euro', '€'],
+  GBP: ['Pound', '£'],
   USD: ['Dollar', '$'],
   CAD: ['Canadian Dollar', '$'],
-  AUD: ['Dollarydoos', '$']
+  AUD: ['Dollarydoos', '$'],
   // CAD: ['Euro', '$'], // Error
   // GBP: ['Pound Sterling', '$'], // Error
 };
