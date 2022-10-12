@@ -1,8 +1,7 @@
 // adapted from https://github.com/maurer2/loansome
 import currency from 'currency.js';
 
-// JSON
-export type LoanStringlyTyped = {
+export type LoanLooselyTyped = {
   id: string;
   title: string;
   tranche: string;
@@ -14,7 +13,7 @@ export type LoanStringlyTyped = {
 };
 
 export type Loan = Omit<
-  LoanStringlyTyped,
+  LoanLooselyTyped,
   'available_amount' | 'annualised_return' | 'term_remaining' | 'ltv' | 'loan_value'
 > & {
   available_amount: currency;
