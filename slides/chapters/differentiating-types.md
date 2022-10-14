@@ -5,7 +5,7 @@ layout: section
 ## Differentiating Types
 
 ---
-layout: two-cols-header
+layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
@@ -52,7 +52,7 @@ function showPersonDetails(person: Person): void {
 ```
 
 ---
-layout: two-cols-header
+layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
@@ -108,7 +108,7 @@ function showPersonDetails(
 ```
 
 ---
-layout: two-cols-header
+layout: two-cols-header-with-gap
 hideInToc: true
 ---
 

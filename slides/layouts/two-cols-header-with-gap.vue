@@ -2,7 +2,7 @@
   Usage:
 ```md
 ---
-layout: two-cols-header
+layout: two-cols-header-with-gap
 ---
 This spans both
 ::left::

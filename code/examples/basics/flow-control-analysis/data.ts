@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 
 import type { Person } from './types';
 
-export const people: Person[] = Array.from({ length: 10 }, () => {
+function getPerson(): Person {
   const hasAddress = faker.datatype.boolean();
 
   const person: Person = {
@@ -20,4 +20,6 @@ export const people: Person[] = Array.from({ length: 10 }, () => {
   };
 
   return person;
-});
+}
+
+export const people: Person[] = Array.from({ length: 10 }, getPerson);
