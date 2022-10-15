@@ -1,0 +1,12 @@
+{
+  "name": "typechecking-in-js-files",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "lint:ts": "npx -p typescript tsc jsconfig.json"
+  }
+}
