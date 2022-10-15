@@ -2,7 +2,7 @@
 layout: section
 ---
 
-## Differentiating Types
+## Differentiating types
 
 ---
 layout: two-cols-header-with-gap
@@ -165,7 +165,7 @@ function showAnimalDetails(animal: Animal): void {
 
 ---
 
-## Type predicates & Type guards
+### Type predicates & Type guards
 
 Todo
 

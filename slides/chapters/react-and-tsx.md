@@ -6,56 +6,6 @@ layout: section
 
 ---
 
-Data
-
-```ts
-import { Person, PersonList } from './types';
-import { faker } from '@faker-js/faker';
-
-export const people: Person[] = Array.from({ length: 5 }, () => ({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  isPrimeMinister: false,
-}));
-
-export const peopleList: PersonList = people.map((person) => ({
-  ...person,
-  id: faker.datatype.uuid(),
-  numberOfCats: faker.datatype.number({ min: 0, max: 50, precision: 1 }),
-}));
-```
-
----
-
-Script
-
-```ts
-function sorted(list: PersonList, sortBy: PersonListFields): PersonList {
-  const sortedList = [...list].sort((entryA, entryB) => {
-    const fieldA = entryA[sortBy];
-    const fieldB = entryB[sortBy];
-
-    if (fieldA > fieldB) return 1;
-    if (fieldA < fieldB) return -1;
-    return 0;
-  });
-  return sortedList;
-}
-
-function sayIt(list: PersonList): void {
-  const listAsString: string[] = list.map((entry) => Object.values(entry).join(' | '));
-  console.log(listAsString);
-}
-
-const peopleListSortedByNumberOfCats: PersonList = sorted(peopleList, 'numberOfCats');
-const peopleListSortedByFirstName: PersonList = sorted(peopleList, 'firstName');
-
-sayIt(peopleListSortedByNumberOfCats);
-sayIt(peopleListSortedByFirstName);
-```
-
----
-
 ### Deprecate props
 
 TypeScript's `never` type can be used to hard deprecate component props. This is most useful for library or styleguide maintainers.

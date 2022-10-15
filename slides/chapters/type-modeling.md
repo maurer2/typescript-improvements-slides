@@ -93,7 +93,8 @@ export type CustomerWithPaymentData2 = Omit<CustomerFields, 'house' | 'street' |
 
 ---
 
-Pick and Omit can also be used to narrow down the type of a field, by removing the field first and then add it again with a narrower type. This is not strictly necessary, since fields override previous fields with the same name (just like in JavaScript), but it helps distinguishing types at a glance.
+Pick and Omit can also be used to narrow down the type of a field, by removing the field first and then add it again with a different, e.g. narrower type.
+<!-- This is not strictly necessary, since fields override previous fields with the same name (just like in JavaScript), but it helps distinguishing types at a glance. -->
 
 Example
 
@@ -140,4 +141,54 @@ export type PersonList = ReadonlyArray<Pick<Person, 'firstName' | 'lastName'> & 
 }>
 
 export type PersonListFields = keyof PersonList[number]; // firstName | lastName | id | numberOfCats
+```
+
+---
+
+Data
+
+```ts
+import { Person, PersonList } from './types';
+import { faker } from '@faker-js/faker';
+
+export const people: Person[] = Array.from({ length: 5 }, () => ({
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  isPrimeMinister: false,
+}));
+
+export const peopleList: PersonList = people.map((person) => ({
+  ...person,
+  id: faker.datatype.uuid(),
+  numberOfCats: faker.datatype.number({ min: 0, max: 50, precision: 1 }),
+}));
+```
+
+---
+
+Script
+
+```ts
+function sorted(list: PersonList, sortBy: PersonListFields): PersonList {
+  const sortedList = [...list].sort((entryA, entryB) => {
+    const fieldA = entryA[sortBy];
+    const fieldB = entryB[sortBy];
+
+    if (fieldA > fieldB) return 1;
+    if (fieldA < fieldB) return -1;
+    return 0;
+  });
+  return sortedList;
+}
+
+function sayIt(list: PersonList): void {
+  const listAsString: string[] = list.map((entry) => Object.values(entry).join(' | '));
+  console.log(listAsString);
+}
+
+const peopleListSortedByNumberOfCats: PersonList = sorted(peopleList, 'numberOfCats');
+const peopleListSortedByFirstName: PersonList = sorted(peopleList, 'firstName');
+
+sayIt(peopleListSortedByNumberOfCats);
+sayIt(peopleListSortedByFirstName);
 ```
