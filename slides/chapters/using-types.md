@@ -48,7 +48,6 @@ function showPersonDetails(person: Person): void {
     console.log(`City: ${city}`);
   }
 }
-
 ```
 
 ---
@@ -63,12 +62,12 @@ TypeScript can narrow down types similar to values via control flow analysis and
 ::left::
 
 ```ts
-export type Person = {
+type Person = {
   firstName: string;
   lastName: string;
 };
 
-export type PersonWithAddress = Person & {
+type PersonWithAddress = Person & {
   address: {
     house: string;
     street: string;
@@ -77,8 +76,7 @@ export type PersonWithAddress = Person & {
   };
 };
 
-export type People = Person | PersonWithAddress;
-
+type People = Person | PersonWithAddress;
 ```
 
 ::right::
@@ -95,8 +93,8 @@ function showPersonDetails(
   if ('address' in person) {
     // PersonWithAddress
     const type = person;
-    const { house, street, postcode, city } = person
-    .address;
+    const { house, street, postcode, city } =
+      person.address;
 
     console.log(`House: ${house}`);
     console.log(`Street: ${street}`);
@@ -104,7 +102,6 @@ function showPersonDetails(
     console.log(`City: ${city}`);
   }
 }
-
 ```
 
 ---
@@ -119,26 +116,25 @@ Discriminate unions are a way to narrow down union types by using a single field
 ::left::
 
 ```ts
-export type AnimalSound = 'Meow' | 'Woof';
+type AnimalSound = 'Meow' | 'Woof';
 
-export type Cat = {
+type Cat = {
   type: 'Cat';
   name: string;
   sound: AnimalSound;
   isCurrentChiefMouser: boolean;
 };
 
-export type Dog = {
+type Dog = {
   type: 'Dog';
   name: string;
   sound: AnimalSound;
   canBeMistakenForAPony: boolean;
 };
 
-export type Animal = Cat | Dog;
+type Animal = Cat | Dog;
 
-export type AnimalList = [Animal, Animal]; // Tuple
-
+type AnimalList = [Animal, Animal]; // Tuple
 ```
 
 ::right::
@@ -170,13 +166,13 @@ function showAnimalDetails(animal: Animal): void {
 Todo
 
 ```ts
-export function isCustomerWithDefaultedPayments(customer: Customer): customer is CustomerWithDefaultedPayments {
+function isCustomerWithDefaultedPayments(customer: Customer): customer is CustomerWithDefaultedPayments {
   const { hasDefaultedPayments } = customer;
 
   return hasDefaultedPayments;
 }
 
-export function isCustomerWithMissedPayments(customer: Customer): customer is CustomerWithMissedPayments {
+function isCustomerWithMissedPayments(customer: Customer): customer is CustomerWithMissedPayments {
   const { hasDefaultedPayments, hasMissedPayments } = customer;
 
   if (hasDefaultedPayments) {
@@ -186,10 +182,9 @@ export function isCustomerWithMissedPayments(customer: Customer): customer is Cu
   return hasMissedPayments;
 }
 
-export function isCustomerRegular(customer: Customer): customer is CustomerRegular {
+function isCustomerRegular(customer: Customer): customer is CustomerRegular {
   const { hasDefaultedPayments, hasMissedPayments } = customer;
 
   return !hasDefaultedPayments && !hasMissedPayments;
 }
-
 ```

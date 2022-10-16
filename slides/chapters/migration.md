@@ -72,7 +72,7 @@ layout: two-cols-header-with-gap
     "strictNullChecks": false,
     "noImplicityAny": false
   },
-   "lib": [
+  "lib": [
     "dom",
     "dom.iterable"
   ],

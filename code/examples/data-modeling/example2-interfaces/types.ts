@@ -11,7 +11,6 @@ export interface CustomerFields {
   otherField: never;
 }
 
-// all fields
 export interface Customer
   extends Pick<
     CustomerFields,

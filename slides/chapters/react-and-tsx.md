@@ -14,7 +14,7 @@ Trying to use the deprecated prop, will result in a type error. Alternatively a 
 Props
 
 ```ts
-export type CustomButtonProps = Partial<Pick<HTMLButtonElement, 'autofocus' | 'ariaDisabled'>> &
+type CustomButtonProps = Partial<Pick<HTMLButtonElement, 'autofocus' | 'ariaDisabled'>> &
 {
   onClick: (event?: MouseEvent<HTMLButtonElement>) => void,
   oldProp?: never, // is deprecated
@@ -36,7 +36,7 @@ function CustomButton({ children, onClick, newProp }: PropsWithChildren<CustomBu
   );
 }
 
-export default function App() {
+default function App() {
   function handleClick(): void {}
 
   return (
@@ -77,7 +77,6 @@ function ButtonLink({ onClick, type, disabled, href, children }: PropsWithChildr
     </TagType>
   );
 }
-export default ButtonLink;
 ```
 
 ---
@@ -103,7 +102,7 @@ type ButtonLinkLinkProps = {
   href: string;
 }
 
-export type ButtonLinkProps = ButtonLinkCommonProps & (ButtonLinkButtonProps | ButtonLinkLinkProps);
+type ButtonLinkProps = ButtonLinkCommonProps & (ButtonLinkButtonProps | ButtonLinkLinkProps);
 ```
 
 ---
@@ -144,21 +143,18 @@ Component with children
 ```ts
 import { PropsWithChildren } from 'react';
 
-export type ChildProps = PropsWithChildren<{
+type ChildProps = PropsWithChildren<{
   // same as PropsWithChildren<>
   // children?: ReactNode | undefined;
   otherProp: string;
 }>;
-
-
 ```
 
 Component without children
 
 ```ts
-export type ChildlessProps = {
+type ChildlessProps = {
   children?: never;
   otherProp: string;
 };
-
 ```
