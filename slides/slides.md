@@ -32,9 +32,8 @@ favicon: favicon.ico
 ---
 hideInToc: true
 layout: image-right
-image: https://placekitten.com/1000/1000
+image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
-
 
 ## Table of Contents
 

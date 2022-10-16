@@ -165,7 +165,7 @@ interface Customer2 extends Omit<CustomerFields,
 
 ---
 
-Pick and Omit can also be used when narrowing down the type of certain fields, by removing the fields first and then adding them again with a different, e.g. narrower type. This is useful when working with JSON files.
+Pick and Omit can also be used when narrowing the type of certain fields, by removing the fields first and then adding them again with a different, e.g. narrower type. This comes in handy when working with JSON files.
 
 ```ts
 import currency from 'currency.js';
@@ -192,16 +192,14 @@ type Loan = Omit<LoanLooselyTyped,
 };
 ```
 
----
-
-Todo: slide mismatching types in intersection types vs interface
+<!-- Todo: slide mismatching types in intersection types vs interface -->
 
 ---
 layout: two-cols-header-with-gap
 ---
 
-Union types in TypeScript can be used to allow a set of different types for a field. While often used as string unions, union types are not restricted to primitives.
-Union types are also used with objects, to define objects with common fields.
+Union types in TypeScript can be used to allow a set of different values for a type. While often used as string unions, union types are not restricted to primitives.
+They are also used with objects, that have common fields.
 
 ::left::
 
@@ -211,7 +209,7 @@ type CurrencyNames = 'Pound' | 'Euro' | 'Dollar'
 
 type CurrencySymbols = '£' | '€' | '$';
 
-export type Currencies = {
+type Currencies = {
   GBP: {
     name: CurrencyNames;
     symbol: CurrencySymbols;
@@ -243,77 +241,96 @@ const currencies: Currencies = {
 layout: two-cols-header-with-gap
 ---
 
-Mapped types
+Mapped types can be used to iterate over fields of one or more types to create a new type. It helps with keeping the type declarations DRY.
 
----
-
-### Restrict values for types
-
-Restricting possible values for types prevents accessing undefined or null values without having to resort to manual checks like `Object.hasOwn` or `[].includes`, which helps with readability. Furthermore it makes one's IDE to only show applicable values.
-
-Types
+::left::
 
 ```ts
-export type Person = {
-  firstName: string,
-  lastName: string,
-  isPrimeMinister: boolean,
-}
+type CurrencyAbbreviations = 'GBP' | 'EUR' | 'USD'
+  | 'CAD' | 'AUD';
 
-export type PersonList = ReadonlyArray<Pick<Person, 'firstName' | 'lastName'> & {
-  id: string,
-  numberOfCats: number,
-}>
+type CurrencyNames = 'Pound' | 'Euro' | 'Dollar'
+  | 'Canadian Dollar' | 'Australian Dollar';
 
-export type PersonListFields = keyof PersonList[number]; // firstName | lastName | id | numberOfCats
+type CurrencySymbols = '£' | '€' | '$';
+
+type Currencies = {
+  [K in CurrencyAbbreviations]?: {
+    name: CurrencyNames;
+    symbol: CurrencySymbols;
+  };
+};
+
+// Alternative using Record and Partial
+type CurrenciesAlternative = Partial<Record<
+  CurrencyAbbreviations, {
+    name: CurrencyNames;
+    symbol: CurrencySymbols;
+  }
+>>;
+```
+
+::right::
+
+```ts
+const currencies: Currencies = {
+  GBP: {
+    name: 'Pound',
+    symbol: '£',
+  },
+  EUR: {
+    name: 'Euro',
+    symbol: '€',
+  },
+};
 ```
 
 ---
-
-Data
-
-```ts
-import { Person, PersonList } from './types';
-import { faker } from '@faker-js/faker';
-
-export const people: Person[] = Array.from({ length: 5 }, () => ({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  isPrimeMinister: false,
-}));
-
-export const peopleList: PersonList = people.map((person) => ({
-  ...person,
-  id: faker.datatype.uuid(),
-  numberOfCats: faker.datatype.number({ min: 0, max: 50, precision: 1 }),
-}));
-```
-
+layout: two-cols-header-with-gap
 ---
 
-Script
+Since mapped types provide the current type within the map function, a type lookup can be performed, where the current type acts as the key, similar to looking up values in an object.
+
+::left::
 
 ```ts
-function sorted(list: PersonList, sortBy: PersonListFields): PersonList {
-  const sortedList = [...list].sort((entryA, entryB) => {
-    const fieldA = entryA[sortBy];
-    const fieldB = entryB[sortBy];
+type CurrencyAbbreviations = 'GBP' | 'EUR' | 'USD'
+  | 'CAD' | 'AUD';
 
-    if (fieldA > fieldB) return 1;
-    if (fieldA < fieldB) return -1;
-    return 0;
-  });
-  return sortedList;
-}
+const currencyNames = {
+  GBP: ['Pound', 'Pound Sterling'],
+  EUR: ['Euro'],
+  USD: ['Dollar', 'US Dollar'],
+  CAD: ['Canadian Dollar'],
+  AUD: ['Australian Dollar', 'Dollarydoos'],
+} as const;
 
-function sayIt(list: PersonList): void {
-  const listAsString: string[] = list.map((entry) => Object.values(entry).join(' | '));
-  console.log(listAsString);
-}
+type CurrencyNames = {
+  [K in CurrencyAbbreviations]: typeof
+    currencyNames[K][number];
+};
+```
 
-const peopleListSortedByNumberOfCats: PersonList = sorted(peopleList, 'numberOfCats');
-const peopleListSortedByFirstName: PersonList = sorted(peopleList, 'firstName');
+::right::
 
-sayIt(peopleListSortedByNumberOfCats);
-sayIt(peopleListSortedByFirstName);
+```ts
+const currencySymbols = {
+  GBP: '£',
+  EUR: '€',
+  USD: '$',
+  CAD: '$',
+  AUD: '$',
+} as const;
+
+type CurrencySymbols = {
+  [K in CurrencyAbbreviations]: typeof
+    currencySymbols[K];
+};
+
+type Currencies = {
+  [K in CurrencyAbbreviations]?: [
+    name: CurrencyNames[K],
+    symbol: CurrencySymbols[K],
+  ];
+};
 ```

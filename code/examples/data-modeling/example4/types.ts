@@ -1,13 +1,14 @@
 // adapted from https://github.com/maurer2/loansome
 
-export const currencyAbbreviations = {
-  GBP: 'GBP',
-  EUR: 'EUR',
-  USD: 'USD',
-  CAD: 'CAD',
-  AUD: 'AUD',
-} as const;
-type CurrencyAbbreviations = keyof typeof currencyAbbreviations; // Keys
+// export const currencyAbbreviations = {
+//   GBP: 'GBP',
+//   EUR: 'EUR',
+//   USD: 'USD',
+//   CAD: 'CAD',
+//   AUD: 'AUD',
+// } as const;
+// type CurrencyAbbreviations = keyof typeof currencyAbbreviations; // Keys
+type CurrencyAbbreviations = 'GBP' | 'EUR' | 'USD' | 'CAD' | 'AUD';
 
 export const currencyNames = {
   GBP: ['Pound', 'Pound Sterling'],
@@ -35,6 +36,6 @@ type CurrencySymbols = {
 export type Currencies = {
   [K in CurrencyAbbreviations]?: [
     name: CurrencyNames[K],
-    symbol: CurrencySymbols[K]
+    symbol: CurrencySymbols[K],
   ];
 };
