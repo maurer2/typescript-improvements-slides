@@ -2,7 +2,7 @@
 layout: section
 ---
 
-## Modeling data with types
+## Modeling types
 
 ---
 layout: two-cols-header-with-gap

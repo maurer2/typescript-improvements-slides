@@ -44,11 +44,11 @@ src: ./chapters/structural-typing-vs-nominal-typing.md
 ---
 
 ---
-src: ./chapters/modeling-data-with-types.md
+src: ./chapters/modeling-types.md
 ---
 
 ---
-src: ./chapters/differentiating-types.md
+src: ./chapters/using-types.md
 ---
 
 ---

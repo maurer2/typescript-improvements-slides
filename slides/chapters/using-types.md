@@ -2,7 +2,7 @@
 layout: section
 ---
 
-## Differentiating types
+## Using types
 
 ---
 layout: two-cols-header-with-gap
