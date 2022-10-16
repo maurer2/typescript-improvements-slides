@@ -1,7 +1,7 @@
 import type { Currencies } from './types';
 
 const currencies: Currencies = {
-  // EUR: ['Euro', '€'],
+  EUR: ['Euro', '€'],
   GBP: ['Pound', '£'],
   USD: ['Dollar', '$'],
   CAD: ['Canadian Dollar', '$'],

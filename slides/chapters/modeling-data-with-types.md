@@ -296,41 +296,38 @@ Since mapped types provide the current type within the map function, a type look
 ```ts
 type CurrencyAbbreviations = 'GBP' | 'EUR' | 'USD'
   | 'CAD' | 'AUD';
-
-const currencyNames = {
-  GBP: ['Pound', 'Pound Sterling'],
-  EUR: ['Euro'],
-  USD: ['Dollar', 'US Dollar'],
-  CAD: ['Canadian Dollar'],
-  AUD: ['Australian Dollar', 'Dollarydoos'],
-} as const;
-
 type CurrencyNames = {
-  [K in CurrencyAbbreviations]: typeof
-    currencyNames[K][number];
+  GBP: 'Pound' | 'Pound Sterling';
+  EUR: 'Euro';
+  USD: 'Dollar' | 'US Dollar';
+  CAD: 'Canadian Dollar';
+  AUD: 'Australian Dollar' | 'Dollarydoos';
+};
+type CurrencySymbols = {
+  GBP: '£';
+  EUR: '€';
+  USD: '$';
+  CAD: '$';
+  AUD: '$';
+};
+type Currencies = {
+  [K in CurrencyAbbreviations]?: [
+    name: CurrencyNames[K],
+    symbol: CurrencySymbols[K],
+  ];
 };
 ```
 
 ::right::
 
 ```ts
-const currencySymbols = {
-  GBP: '£',
-  EUR: '€',
-  USD: '$',
-  CAD: '$',
-  AUD: '$',
-} as const;
-
-type CurrencySymbols = {
-  [K in CurrencyAbbreviations]: typeof
-    currencySymbols[K];
-};
-
-type Currencies = {
-  [K in CurrencyAbbreviations]?: [
-    name: CurrencyNames[K],
-    symbol: CurrencySymbols[K],
-  ];
+const currencies: Currencies = {
+  EUR: ['Euro', '€'],
+  GBP: ['Pound', '£'],
+  USD: ['Dollar', '$'],
+  CAD: ['Canadian Dollar', '$'],
+  AUD: ['Dollarydoos', '$'],
+  // CAD: ['Euro', '$'], // Error
+  // GBP: ['Pound Sterling', '$'], // Error
 };
 ```

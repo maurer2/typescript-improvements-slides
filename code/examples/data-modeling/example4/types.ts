@@ -10,27 +10,43 @@
 // type CurrencyAbbreviations = keyof typeof currencyAbbreviations; // Keys
 type CurrencyAbbreviations = 'GBP' | 'EUR' | 'USD' | 'CAD' | 'AUD';
 
-export const currencyNames = {
-  GBP: ['Pound', 'Pound Sterling'],
-  EUR: ['Euro'],
-  USD: ['Dollar', 'US Dollar'],
-  CAD: ['Canadian Dollar'],
-  AUD: ['Australian Dollar', 'Dollarydoos'],
-} as const;
+// export const currencyNames = {
+//   GBP: ['Pound', 'Pound Sterling'],
+//   EUR: ['Euro'],
+//   USD: ['Dollar', 'US Dollar'],
+//   CAD: ['Canadian Dollar'],
+//   AUD: ['Australian Dollar', 'Dollarydoos'],
+// } as const;
+// type CurrencyNames = {
+//   // [K in CurrencyAbbreviations]: typeof currencyNames[K][0]; // first value
+//   [K in CurrencyAbbreviations]: typeof currencyNames[K][number]; // multiple values
+// };
+
 type CurrencyNames = {
-  // [K in CurrencyAbbreviations]: typeof currencyNames[K][0]; // first value
-  [K in CurrencyAbbreviations]: typeof currencyNames[K][number]; // multiple values
+  GBP: 'Pound' | 'Pound Sterling';
+  EUR: 'Euro';
+  USD: 'Dollar' | 'US Dollar';
+  CAD: 'Canadian Dollar';
+  AUD: 'Australian Dollar' | 'Dollarydoos';
 };
 
-export const currencySymbols = {
-  GBP: '£',
-  EUR: '€',
-  USD: '$',
-  CAD: '$',
-  AUD: '$',
-} as const;
+// export const currencySymbols = {
+//   GBP: '£',
+//   EUR: '€',
+//   USD: '$',
+//   CAD: '$',
+//   AUD: '$',
+// } as const;
+// type CurrencySymbols = {
+//   [K in CurrencyAbbreviations]: typeof currencySymbols[K];
+// };
+
 type CurrencySymbols = {
-  [K in CurrencyAbbreviations]: typeof currencySymbols[K];
+  GBP: '£';
+  EUR: '€';
+  USD: '$';
+  CAD: '$';
+  AUD: '$';
 };
 
 export type Currencies = {
