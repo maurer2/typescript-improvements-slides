@@ -45,7 +45,7 @@ src: ./chapters/structural-typing-vs-nominal-typing.md
 ---
 
 ---
-src: ./chapters/type-modeling.md
+src: ./chapters/modeling-data-with-types.md
 ---
 
 ---

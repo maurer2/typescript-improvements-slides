@@ -4,7 +4,6 @@ export type MacBook = {
   numberOfFeet: number;
   hasFans: boolean;
   canBeInARoom: boolean;
-  // additionalProperty: boolean;
 };
 
 export type Animal = {
@@ -13,6 +12,7 @@ export type Animal = {
   numberOfFeet: number;
   hasFans: boolean;
   canBeInARoom: boolean;
+  additionalProperty: boolean;
 };
 
 export const macBookPro: MacBook = {
@@ -21,7 +21,6 @@ export const macBookPro: MacBook = {
   numberOfFeet: 4,
   hasFans: true,
   canBeInARoom: true,
-  // additionalProperty: false,
 };
 
 export const elephant: Animal = {
@@ -30,6 +29,7 @@ export const elephant: Animal = {
   numberOfFeet: 4,
   hasFans: true,
   canBeInARoom: true,
+  additionalProperty: true,
 };
 
 export const listOfMacBooks: MacBook[] = [
