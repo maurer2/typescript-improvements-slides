@@ -5,6 +5,9 @@ layout: section
 ## React and TSX
 
 ---
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
+---
 
 ### Deprecate props
 
@@ -107,7 +110,7 @@ type ButtonLinkProps = ButtonLinkCommonProps & (ButtonLinkButtonProps | ButtonLi
 
 ---
 layout: image-right
-image: https://placekitten.com/1000/1000
+image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
 ### Prohibit child components
@@ -134,8 +137,8 @@ function App() {
 ```
 
 ---
-layout: image-left
-image: https://placekitten.com/1000/1000
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
 Component with children
