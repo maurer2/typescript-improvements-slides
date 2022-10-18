@@ -176,42 +176,57 @@ type Loan = Omit<LoanLooselyTyped,
 layout: two-cols-header-with-gap
 ---
 
-**Union types** in TypeScript can be used to allow a set of different values for a type. While often used as string unions, union types are not restricted to primitives.
+**Union types** can be used to allow a set of different values for a type. While often used as string unions, union types are not restricted to primitives.
 They are also used with objects, that have common fields.
 
 ::left::
 
 ```ts
-type CurrencyNames = 'Pound' | 'Euro' | 'Dollar'
-  | 'Canadian Dollar' | 'Australian Dollar';
+type AnimalSound = 'Meow' | 'Woof' | 'Moo' | 'Oink';
 
-type CurrencySymbols = '£' | '€' | '$';
+type Cat = {
+  name: string;
+  sound: AnimalSound;
+  isCurrentChiefMouser: boolean;
+};
 
-type Currencies = {
-  GBP: {
-    name: CurrencyNames;
-    symbol: CurrencySymbols;
-  };
-  EUR: {
-    name: CurrencyNames;
-    symbol: CurrencySymbols;
-  };
-}
+type Dog = {
+  name: string;
+  sound: AnimalSound;
+  canBeMistakenForAPony: boolean;
+};
+
+type Cow = {
+  name: string;
+  sound: AnimalSound;
+};
+
+type Animal = Cat | Dog | Cow;
+
+type AnimalList = Animal[];
 ```
 
 ::right::
 
 ```ts
-const currencies: Currencies = {
-  GBP: {
-    name: 'Pound',
-    symbol: '£',
-  },
-  EUR: {
-    name: 'Euro',
-    symbol: '€',
-  },
+const cat: Cat = {
+  name: 'Mittens',
+  sound: 'Meow',
+  isCurrentChiefMouser: false,
 };
+
+const dog: Dog = {
+  name: 'Ben',
+  sound: 'Woof',
+  canBeMistakenForAPony: true,
+};
+
+const cow: Cow = {
+  name: 'Gertie',
+  sound: 'Meow', // no error
+};
+
+const animals: AnimalList = [cat, dog, cow];
 ```
 
 ---
@@ -238,7 +253,7 @@ type Currencies = {
   };
 };
 
-// Alternative using Record and Partial
+// Alternative approach using Record and Partial
 type CurrenciesAlternative = Partial<Record<
   CurrencyAbbreviations, {
     name: CurrencyNames;
