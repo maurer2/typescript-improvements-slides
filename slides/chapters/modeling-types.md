@@ -51,12 +51,11 @@ type CustomerList = Customer[];
 ```
 
 ---
-layout: two-cols-header-with-gap
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
-With TypeScript it is possible to split up types into logic units and composite new types from other types via Intersection types or via inheritance.
-
-::left::
+When using types it is possible to split them up into logical units and composite new types from other types via **Intersection types**.
 
 ```ts
 type CustomerDefaultFields = {
@@ -74,16 +73,19 @@ type CustomerPaymentStatus = {
   defaultedPayments: number;
   missedPayments: number;
 };
-type Customer =
-  & CustomerDefaultFields
+type Customer = CustomerDefaultFields
   & CustomerAddress;
 type CustomerWithPaymentData =
   & CustomerDefaultFields
-  & CustomerAddress
   & CustomerPaymentStatus;
 ```
 
-::right::
+---
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
+---
+
+The same result can be achieved via `extend` when using interfaces.
 
 ```ts
 interface CustomerDefaultFields {
@@ -111,12 +113,12 @@ interface CustomerWithPaymentData extends
 ```
 
 ---
-layout: two-cols-header-with-gap
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
-Types can also be created by including and excluding certain fields from a complex base type via [utility types](https://www.typescriptlang.org/docs/handbook/utility-types.html). Pick is used to choose specific fields that are included into a new type. Omit specifies the fields, that are to be excluded from the new type.
-
-::left::
+Types can also be created by including or excluding certain fields from a complex base type via **Pick** or **Omit**.
+<!-- Pick is used to select fields that are included in the new type. Omit specifies the fields that are to be excluded from the new type. -->
 
 ```ts
 type CustomerFields = {
@@ -131,41 +133,17 @@ type CustomerFields = {
   missedPayments: number;
 };
 type Customer = Pick<CustomerFields,
-  'id' | 'firstName' | 'lastName' | 'house' |
-  'street' | 'city' | 'postcode' |
+  'id' | 'firstName' | 'lastName' |
+  'house' | 'street' | 'city' | 'postcode'
+>;
+type Customer2 = Omit<CustomerFields,
   'defaultedPayments' | 'missedPayments'
 >;
-type Customer2 = Omit<CustomerFields, 'otherField'>;
-```
-
-::right::
-
-```ts
-interface CustomerFields {
-  id: string;
-  firstName: string;
-  lastName: string;
-  house: string;
-  street: string;
-  city: string;
-  postcode: string;
-  defaultedPayments: number;
-  missedPayments: number;
-  otherField: never;
-}
-interface Customer extends Pick<CustomerFields,
-  'id' | 'firstName' | 'lastName' | 'house' |
-  'street' | 'city' | 'postcode' |
-  'defaultedPayments' | 'missedPayments'
-> {}
-interface Customer2 extends Omit<CustomerFields,
-  'otherField'
-> {}
 ```
 
 ---
 
-Pick and Omit can also be used when narrowing the type of certain fields, by removing the fields first and then adding them again with a different, e.g. narrower type. This comes in handy when working with JSON files.
+Pick and Omit can also be used when changing the type of certain fields, by removing the fields first and then adding them again with a different, e.g. narrower type. This comes in handy when working with JSON files.
 
 ```ts
 import currency from 'currency.js';
@@ -198,7 +176,7 @@ type Loan = Omit<LoanLooselyTyped,
 layout: two-cols-header-with-gap
 ---
 
-Union types in TypeScript can be used to allow a set of different values for a type. While often used as string unions, union types are not restricted to primitives.
+**Union types** in TypeScript can be used to allow a set of different values for a type. While often used as string unions, union types are not restricted to primitives.
 They are also used with objects, that have common fields.
 
 ::left::
@@ -234,14 +212,13 @@ const currencies: Currencies = {
     symbol: '€',
   },
 };
-
 ```
 
 ---
 layout: two-cols-header-with-gap
 ---
 
-Mapped types can be used to iterate over fields of one or more types to create a new type. It helps with keeping the type declarations DRY.
+Mapped types can be used to iterate over fields of one or more types to create a new type. This is useful with keeping the type declarations DRY.
 
 ::left::
 
