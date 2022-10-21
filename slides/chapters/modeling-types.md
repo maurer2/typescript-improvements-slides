@@ -177,7 +177,7 @@ layout: two-cols-header-with-gap
 ---
 
 **Union types** can be used to allow a set of different values for a type. While often used as string unions, union types are not restricted to primitives.
-They are also used with objects, that have common fields.
+They are also used with objects that have common fields.
 
 ::left::
 
@@ -227,6 +227,57 @@ const cow: Cow = {
 };
 
 const animals: AnimalList = [cat, dog, cow];
+```
+
+---
+layout: two-cols-header-with-gap
+---
+
+When union types share a common field, that field can be used to automatically differentiate between members of the union type. They are called
+**Discriminated unions**. The shared field is called **discriminant property**.
+
+::left::
+
+```ts
+type AnimalSound = 'Meow' | 'Woof' | 'Moo' | 'Oink';
+
+type Cat = {
+  type: 'Cat'; // discriminant property
+  name: string;
+  sound: AnimalSound;
+  isCurrentChiefMouser: boolean;
+};
+
+type Dog = {
+  type: 'Dog';
+  name: string;
+  sound: AnimalSound;
+  canBeMistakenForAPony: boolean;
+};
+
+type Animal = Cat | Dog;
+```
+
+::right::
+
+```ts
+const cat: Animal = { // TS narrows it down to Cat
+  type: 'Cat',
+  name: 'Mittens',
+  sound: 'Meow',
+  isCurrentChiefMouser: false,
+  // canBeMistakenForAPony: true,
+  // Error ('canBeMistakenForAPony' does not exist
+  // in type 'Cat')
+};
+
+const dog: Animal = {
+  type: 'Dog',
+  name: 'Ben',
+  sound: 'Woof',
+  canBeMistakenForAPony: true,
+};
+
 ```
 
 ---
