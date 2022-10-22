@@ -182,7 +182,8 @@ They are also used with objects that have common fields.
 ::left::
 
 ```ts
-type AnimalSound = 'Meow' | 'Woof' | 'Moo' | 'Oink';
+type AnimalSound = 'Meow' | 'Woof' | 'Moo' |
+  'Oink';
 
 type Cat = {
   name: string;
@@ -202,7 +203,6 @@ type Cow = {
 };
 
 type Animal = Cat | Dog | Cow;
-
 type AnimalList = Animal[];
 ```
 
@@ -233,13 +233,16 @@ const animals: AnimalList = [cat, dog, cow];
 layout: two-cols-header-with-gap
 ---
 
-When union types share a common field, that field can be used to automatically differentiate between members of the union type. They are called
+### Discriminated unions
+
+When union types share a common field, that field can be used to automatically differentiate members of the union type. They are called
 **Discriminated unions**. The shared field is called **discriminant property**.
 
 ::left::
 
 ```ts
-type AnimalSound = 'Meow' | 'Woof' | 'Moo' | 'Oink';
+type AnimalSound = 'Meow' | 'Woof' | 'Moo' |
+  'Oink';
 
 type Cat = {
   type: 'Cat'; // discriminant property
@@ -266,7 +269,7 @@ const cat: Animal = { // TS narrows it down to Cat
   name: 'Mittens',
   sound: 'Meow',
   isCurrentChiefMouser: false,
-  // canBeMistakenForAPony: true,
+  // canBeMistakenForAPony: false,
   // Error ('canBeMistakenForAPony' does not exist
   // in type 'Cat')
 };
@@ -277,7 +280,35 @@ const dog: Animal = {
   sound: 'Woof',
   canBeMistakenForAPony: true,
 };
+```
 
+---
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
+---
+
+### Logical union type combinations
+
+Union types can also be modeled in such a way, that unique logical combinations are created. TypeScript can use those to automatically differentiate members of the union type.
+
+```ts
+type DatePickerBase = {
+  day: number;
+  month: number;
+  year: number;
+};
+type DatePickerRegular = {
+  maxNumberOfDays?: number;
+  showTimePicker: boolean; // unique
+};
+type DatePickerDateOfBirthMode = {
+  minAge?: number;
+  maxAge?: number;
+  showIAmOldEnoughBox: boolean; // unique
+};
+type DatePicker = DatePickerBase
+  & (DatePickerRegular
+    | DatePickerDateOfBirthMode);
 ```
 
 ---
