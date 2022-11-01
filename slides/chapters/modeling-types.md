@@ -298,12 +298,12 @@ type DatePickerBase = {
   year: number;
 };
 type DatePickerRegular = {
-  maxNumberOfDays?: number;
+  maxNumberOfDays?: number; // optional
   showTimePicker: boolean; // unique
 };
 type DatePickerDateOfBirthMode = {
-  minAge?: number;
-  maxAge?: number;
+  minAge?: number; // optional
+  maxAge?: number; // optional
   showIAmOldEnoughBox: boolean; // unique
 };
 type DatePicker = DatePickerBase
@@ -315,7 +315,116 @@ type DatePicker = DatePickerBase
 layout: two-cols-header-with-gap
 ---
 
-Mapped types can be used to iterate over fields of one or more types to create a new type. This is useful with keeping the type declarations DRY.
+**Mapped types** can be used to iterate over fields of one or more types to create a new type. This is useful with keeping the type declarations DRY.
+
+::left::
+
+```ts
+type CustomerTypeBackend = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  defaulted_payments: number;
+  missed_payments: number;
+  // additional_field_1: number[];
+}
+
+type GlobalKeyMap = {
+  id: 'id',
+  first_name: 'firstName',
+  last_name: 'lastName',
+  house: 'house',
+  street: 'street',
+  city: 'city',
+  post_code: 'postCode',
+  defaulted_payments: 'defaultedPayments',
+  missed_payments: 'missedPayments',
+  additionalField2: 'additional_field_2';
+}
+
+```
+
+::right::
+
+```ts
+type CustomerTypeFrontendWithoutMismatchingData = {
+  [K in keyof CustomerTypeBackend as
+    GlobalKeyMap[K]]: CustomerTypeBackend[K]
+}
+```
+
+Output:
+
+```ts
+type CustomerTypeFrontendWithoutMismatchingData = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  defaultedPayments: number;
+  missedPayments: number;
+}
+
+```
+
+---
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+```ts
+type CustomerTypeBackend = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  defaulted_payments: number;
+  missed_payments: number;
+  additional_field_1: number[];
+}
+```
+
+</div>
+<div>
+
+```ts
+type GlobalKeyMap = {
+  id: 'id',
+  first_name: 'firstName',
+  last_name: 'lastName',
+  ...
+  defaulted_payments: 'defaultedPayments',
+  missed_payments: 'missedPayments',
+  additionalField2: 'additional_field_2';
+}
+```
+
+</div>
+</div>
+
+```ts
+type CustomerTypeFrontend = {
+  [K in keyof Pick<CustomerTypeBackend, Extract<keyof CustomerTypeBackend, keyof GlobalKeyMap>>
+    as GlobalKeyMap[K]]: CustomerTypeBackend[K];
+};
+```
+
+Output
+
+```ts
+type CustomerTypeFrontend = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  defaultedPayments: number;
+  missedPayments: number;
+}
+
+```
+
+---
+layout: two-cols-header-with-gap
+---
+
+Mapped types can also iterate over fields of multiple types to create new types.
 
 ::left::
 
