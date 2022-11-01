@@ -1,16 +1,16 @@
 import { people } from './data';
 import type { Person, PersonWithInitials } from './types';
 
-function getSortedPeople(peopleUnsorted: ReadonlyArray<Person>): Person[] | PersonWithInitials[] {
+function getSortedPeople(peopleUnsorted: ReadonlyArray<Person | PersonWithInitials>): Person[] | PersonWithInitials[] {
   const peopleSorted: Person[] | PersonWithInitials[] = [...peopleUnsorted]
-    // .map((person: Person) => {
-    //   const names: string[] = person.name.split(/\s+/);
-    //   const initials: string = names.map((name) => name.charAt(0).toLocaleUpperCase()).join('');
-    //   return {
-    //     ...person,
-    //     initials,
-    //   };
-    // })
+    .map((person: Person) => {
+      const names: string[] = person.name.split(/\s+/);
+      const initials: string = names.map((name) => name.charAt(0).toLocaleUpperCase()).join('');
+      return {
+        ...person,
+        initials,
+      };
+    })
     .sort((personA: Person, personZ: Person) => {
       if (personA.name < personZ.name) {
         return -1;
@@ -24,7 +24,7 @@ function getSortedPeople(peopleUnsorted: ReadonlyArray<Person>): Person[] | Pers
   return peopleSorted;
 }
 
-export default function test() {
+export default function test(): void {
   const peopleSorted = getSortedPeople(people);
   const peopleUnsorted = people;
 

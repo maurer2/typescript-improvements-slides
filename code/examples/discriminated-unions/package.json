@@ -8,6 +8,7 @@
     ]
   },
   "scripts": {
-    "simple-example": "ts-node './simple-example/simple-example.ts'"
+    "simple-example": "ts-node './simple-example/simple-example.ts'",
+    "json-handling": "ts-node './json-handling/json-handling.ts'"
   }
 }

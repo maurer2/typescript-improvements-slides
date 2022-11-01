@@ -1,34 +1,31 @@
-import type { Loading, Failed, Success, Cat } from './types';
-import { APIRequestStatus } from './types';
+import { faker } from '@faker-js/faker';
+
+import type { Loading, Failed, Success, Cat, APIRequestStatus } from './types';
 
 async function fakeAPIResponse<T>(): Promise<APIRequestStatus<T>> {
-  // https://github.com/lodash/lodash/blob/67389a8c78975d97505fa15aa79bec6397749807/lodash.js#L3875-L3886
-  const randomIndex = Math.floor(Math.random() * 3);
-
-  if (randomIndex === 0) {
-    return {
+  return faker.helpers.arrayElement([
+    // Loading
+    {
       state: 'loading',
-    } as Loading;
-  }
-
-  if (randomIndex === 1) {
-    return {
+    } as Loading,
+    // Failed
+    {
       state: 'failed',
       statusCode: 500,
-      errorMessage: 'Server error',
-    } as Failed;
-  }
-
-  return {
-    state: 'success',
-    statusCode: 200,
-    data: {
-      type: 'Cat',
-      name: 'Larry',
-      sound: 'Meow',
-      isCurrentChiefMouserToTheCabinetOffice: true,
-    },
-  } as Success<T>;
+      errorMessage: faker.helpers.arrayElement(['Server error error message', undefined]),
+    } as Failed,
+    // Success
+    {
+      state: 'success',
+      statusCode: 200,
+      data: {
+        type: 'Cat',
+        name: 'Larry',
+        sound: 'Meow',
+        isCurrentChiefMouserToTheCabinetOffice: true,
+      },
+    } as Success<T>
+  ])
 }
 
 async function sendAPIRequest<T>(): Promise<void> {
@@ -42,12 +39,12 @@ async function sendAPIRequest<T>(): Promise<void> {
     }
     case 'failed': {
       const { state, statusCode, errorMessage } = currentAPIRequestStatus;
-      console.log(`State: ${state} ${statusCode} ${errorMessage}`);
+      console.log(`State: ${state} ${statusCode} ${errorMessage ? errorMessage : '- no error message'}`);
       return;
     }
     case 'success': {
       const { state, statusCode, data } = currentAPIRequestStatus;
-      console.log(`State: ${state} ${statusCode} ${data}`);
+      console.log(`State: ${state} ${statusCode} ${JSON.stringify(data, null, 4)}`);
       return;
     }
     default: {

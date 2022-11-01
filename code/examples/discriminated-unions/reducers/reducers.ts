@@ -5,7 +5,9 @@ import { ActionNames } from './action-types';
 // Redux without Redux Toolkit
 // eslint-disable-next-line @typescript-eslint/default-param-last
 const reducers = (state: State = initialState, action: Actions): State => {
-  switch (action.type) {
+  const { type } = action;
+
+  switch (type) {
     case ActionNames.UPDATE_COUNTER: {
       const { payload } = action; // Counter
 
