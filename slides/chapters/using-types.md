@@ -9,9 +9,10 @@ layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
-### Differentiating values
+### Differentiating values in types
 
-TypeScript can infer values via control flow analysis and allow or disallow certain operations at specific points within the code.
+TypeScript can infer values via control flow analysis and may allow or disallow certain operations on members of a type.
+For example optional values can only be accessed after checking if they are defined.
 
 ::left::
 
@@ -55,9 +56,9 @@ layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
-### Differentiating custom types
+### Differentiating multiple types
 
-TypeScript can narrow down types similar to values via control flow analysis and.
+TypeScript can also narrow down multiple types via control flow analysis. Checking types directly in the code doesn't work, as types are removed during compilation (type erasure).
 
 ::left::
 
@@ -89,7 +90,6 @@ function showPersonDetails(
   console.log(`First name: ${firstName}`);
   console.log(`Last name: ${lastName}`);
 
-  // in-operator narrows down union types
   if ('address' in person) {
     // PersonWithAddress
     const type = person;
@@ -109,55 +109,120 @@ layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
-### Discriminated unions
+### Discriminated unions in the real world
 
-Discriminate unions are a way to narrow down union types by using a single field called `discriminant property`.
+Since TypeScript is able to narrow down a union type via a discriminant property, discriminant unions are widely used for type checking in conditionals to ensure type safety and for dealing with API-requests.
 
 ::left::
 
 ```ts
-type AnimalSound = 'Meow' | 'Woof';
+type ActionNamesTypes = 'UPDATE_COUNTER' |
+  'UPDATE_DATETIME';
 
-type Cat = {
-  type: 'Cat';
-  name: string;
-  sound: AnimalSound;
-  isCurrentChiefMouser: boolean;
+type State = {
+  counter: Counter;
+  dateTime: DateTime;
 };
 
-type Dog = {
-  type: 'Dog';
-  name: string;
-  sound: AnimalSound;
-  canBeMistakenForAPony: boolean;
+type CounterAction = {
+  type: Extract<ActionNamesTypes,'UPDATE_COUNTER'>
+  payload: Counter;
 };
 
-type Animal = Cat | Dog;
+type DateTimeAction = {
+  type: Extract<ActionNamesTypes,'UPDATE_DATETIME'>
+  payload: DateTime;
+};
 
-type AnimalList = [Animal, Animal]; // Tuple
+type Actions = CounterAction | DateTimeAction;
 ```
 
 ::right::
 
 ```ts
-function showAnimalDetails(animal: Animal): void {
-  const { type, name, sound } = animal;
-
-  console.log(name);
-  console.log(sound);
-
-  if (type === 'Cat') {
-    console.log(animal.isCurrentChiefMouser);
-
-    return;
+const reducers = (state: State = initialState,
+  action: Actions): State => {
+  switch (action.type) {
+    case ActionNames.UPDATE_COUNTER: {
+      return {
+        ...state,
+        counter: action.payload, // Counter
+      };
+    }
+    case ActionNames.UPDATE_DATETIME: {
+      return {
+        ...state,
+        dateTime: action.payload, // DateTime
+      };
+    }
+    default:
+      return {
+        ...state,
+      };
   }
-
-  console.log(animal.canBeMistakenForAPony);
-}
-
+};
 ```
 
-<!-- Loading/Error/Success pattern -->
+---
+layout: two-cols-header-with-gap
+hideInToc: true
+---
+
+### Discriminated unions in the real world (part 2)
+
+Discriminant unions also work with Generics to make Code more flexible.
+
+::left::
+
+```ts
+type Loading = {
+  state: 'loading';
+};
+type Failed = {
+  state: 'failed';
+  statusCode: number;
+  errorMessage?: string;
+};
+type Success<T> = {
+  state: 'success';
+  statusCode: number;
+  data: T;
+};
+
+type APIRequestStatus<T> = Loading | Failed |
+  Success<T>;
+
+type Cat = {
+  type: 'Cat';
+  name: string;
+};
+```
+
+::right::
+
+```ts
+async function sendAPIRequest<T>(): Promise<void> {
+  const requestStatus = await getResponse<T>();
+  switch (requestStatus.state) {
+    case 'loading': {
+      const { state } = requestStatus;
+      return;
+    }
+    case 'failed': {
+      const { state, statusCode, errorMessage }
+      = requestStatus;
+      return;
+    }
+    case 'success': {
+      const { state, statusCode, data }
+      = requestStatus;
+      return;
+    }
+    default: {}
+  }
+}
+sendAPIRequest<Cat>();
+```
 
 ---
 

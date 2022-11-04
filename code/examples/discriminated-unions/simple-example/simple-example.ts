@@ -1,6 +1,6 @@
-import type { Animal, AnimalList } from './types';
+import type { Animal, AnimalList, Cat, Dog } from './types';
 
-function showAnimalDetails(animal: Animal) {
+function showAnimalDetails(animal: Animal): void {
   // can't access isCurrentChiefMouser here, since it doesn't exist on all animal types
   // console.log(animal.isCurrentChiefMouser);
 
@@ -32,7 +32,7 @@ const dog: Animal = {
 
 const animals: AnimalList = [cat, dog];
 
-animals.forEach((animal) => {
+animals.forEach((animal: Animal): void => {
   console.log(JSON.stringify(animal, null, 4));
   showAnimalDetails(animal);
 });

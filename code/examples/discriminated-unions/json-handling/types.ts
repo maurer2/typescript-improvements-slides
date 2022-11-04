@@ -18,7 +18,7 @@ export type Cat = {
   type: 'Cat';
   name: string;
   sound: 'Meow';
-  isCurrentChiefMouserToTheCabinetOffice: boolean;
+  isCurrentChiefMouser: boolean;
 };
 
 export type APIRequestStatus<T> = Loading | Failed | Success<T>;

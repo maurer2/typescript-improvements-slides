@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 
 import type { Loading, Failed, Success, Cat, APIRequestStatus } from './types';
 
-async function fakeAPIResponse<T>(): Promise<APIRequestStatus<T>> {
+async function getResponse<T>(): Promise<APIRequestStatus<T>> {
   return faker.helpers.arrayElement([
     // Loading
     {
@@ -22,33 +22,33 @@ async function fakeAPIResponse<T>(): Promise<APIRequestStatus<T>> {
         type: 'Cat',
         name: 'Larry',
         sound: 'Meow',
-        isCurrentChiefMouserToTheCabinetOffice: true,
-      },
+        isCurrentChiefMouser: true,
+      } as T,
     } as Success<T>
   ])
 }
 
 async function sendAPIRequest<T>(): Promise<void> {
-  const currentAPIRequestStatus = await fakeAPIResponse<T>();
+  const requestStatus = await getResponse<T>();
 
-  switch (currentAPIRequestStatus.state) {
+  switch (requestStatus.state) {
     case 'loading': {
-      const { state } = currentAPIRequestStatus;
+      const { state } = requestStatus;
       console.log(`State: ${state}`);
       return;
     }
     case 'failed': {
-      const { state, statusCode, errorMessage } = currentAPIRequestStatus;
+      const { state, statusCode, errorMessage } = requestStatus;
       console.log(`State: ${state} ${statusCode} ${errorMessage ? errorMessage : '- no error message'}`);
       return;
     }
     case 'success': {
-      const { state, statusCode, data } = currentAPIRequestStatus;
+      const { state, statusCode, data } = requestStatus;
       console.log(`State: ${state} ${statusCode} ${JSON.stringify(data, null, 4)}`);
       return;
     }
     default: {
-      console.log('default', currentAPIRequestStatus); // currentAPIRequestStatus === never type
+      console.log('default', requestStatus); // currentAPIRequestStatus === never type
     }
   }
 }

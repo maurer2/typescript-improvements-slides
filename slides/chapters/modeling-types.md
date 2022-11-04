@@ -235,7 +235,7 @@ layout: two-cols-header-with-gap
 
 ### Discriminated unions
 
-When union types share a common field, that field can be used to automatically differentiate members of the union type. They are called
+When union types share a common field (usually a string), that field can be used to automatically differentiate members of the union type. They are called
 **Discriminated unions**. The shared field is called **discriminant property**.
 
 ::left::
@@ -252,7 +252,7 @@ type Cat = {
 };
 
 type Dog = {
-  type: 'Dog';
+  type: 'Dog'; // discriminant property
   name: string;
   sound: AnimalSound;
   canBeMistakenForAPony: boolean;
@@ -264,7 +264,8 @@ type Animal = Cat | Dog;
 ::right::
 
 ```ts
-const cat: Animal = { // TS narrows it down to Cat
+// TS narrows Animal down to Cat
+const cat: Animal = {
   type: 'Cat',
   name: 'Mittens',
   sound: 'Meow',
@@ -274,6 +275,7 @@ const cat: Animal = { // TS narrows it down to Cat
   // in type 'Cat')
 };
 
+// TS narrows Animal down to Dog
 const dog: Animal = {
   type: 'Dog',
   name: 'Ben',
