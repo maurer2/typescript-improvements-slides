@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react';
+import React, { ReactElement } from 'react';
 import { CustomButtonProps } from './library';
 
-function CustomButton({ children, onClick, newProp }: PropsWithChildren<CustomButtonProps>) {
+function CustomButton({ children, onClick, newProp }: CustomButtonProps): ReactElement {
   return (
     <button type="button" onClick={onClick} data-testid={newProp}>
       {children}
@@ -10,7 +10,9 @@ function CustomButton({ children, onClick, newProp }: PropsWithChildren<CustomBu
 }
 
 export default function App() {
-  function handleClick(): void {}
+  function handleClick(): void {
+    console.log('Click');
+  }
 
   return (
     <CustomButton

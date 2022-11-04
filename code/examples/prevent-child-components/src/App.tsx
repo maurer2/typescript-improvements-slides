@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import './App.scss';
 
 import Child from './Child';
 import Childless from './Childless';
 
-function App() {
+function App(): ReactElement {
   return (
     <div className="wrapper">
       <h1>Restrict child element</h1>

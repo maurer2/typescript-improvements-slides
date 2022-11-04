@@ -14,37 +14,46 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 TypeScript's `never` type can be used to hard deprecate component props. This is most useful for library or styleguide maintainers.
 Trying to use the deprecated prop, will result in a type error. Alternatively a soft deprecation can be achieved by using the JSDoc deprecated tag, e.g. `@deprecated Please use x instead`.
 
-Props
-
 ```ts
-type CustomButtonProps = Partial<Pick<HTMLButtonElement, 'autofocus' | 'ariaDisabled'>> &
-{
-  onClick: (event?: MouseEvent<HTMLButtonElement>) => void,
-  oldProp?: never, // is deprecated
-  newProp: string,
-};
+type CustomButtonProps = PropsWithChildren<
+  Partial<Pick<HTMLButtonElement,
+    'autofocus'| 'ariaDisabled'>
+  > & {
+    onClick: (event: MouseEvent<
+      HTMLButtonElement
+    >) => void,
+    oldProp?: never, // is deprecated
+    newProp: string,
+  }
+>;
 ```
 
 ---
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
+---
 
 ```ts
-import React, { PropsWithChildren } from 'react';
-import { CustomButtonProps } from './library';
-
-function CustomButton({ children, onClick, newProp }: PropsWithChildren<CustomButtonProps>) {
+function CustomButton({children, onClick,
+  newProp }: CustomButtonProps):
+  ReactElement {
   return (
-    <button type="button" onClick={onClick} data-testid={newProp}>
+    <button type="button" onClick={onClick}
+      data-testid={newProp}
+    >
       {children}
     </button>
   );
 }
 
-default function App() {
-  function handleClick(): void {}
+function App() {
+  function handleClick(): void {
+    console.log('Click');
+  }
 
   return (
     <CustomButton
-      onClick={() => handleClick()}
+      onClick={handleClick}
       newProp="test"
       // oldProp="test" // error
     >
@@ -52,6 +61,7 @@ default function App() {
     </CustomButton>
   );
 }
+
 ```
 
 ---
@@ -120,10 +130,7 @@ TypeScript's `never` type can also be used to prevent child components. This is 
 App
 
 ```ts
-import Child from './Child';
-import Childless from './Childless';
-
-function App() {
+function App(): ReactElement {
   return (
     <div className="wrapper">
       <h1>Restrict child elements</h1>
@@ -147,8 +154,6 @@ Component with children
 import { PropsWithChildren } from 'react';
 
 type ChildProps = PropsWithChildren<{
-  // same as PropsWithChildren<>
-  // children?: ReactNode | undefined;
   otherProp: string;
 }>;
 ```
