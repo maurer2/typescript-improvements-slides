@@ -18,14 +18,14 @@ interfaces are mutable, while types are not. Unlike interfaces, types can also b
 ```ts
 type CustomerID = string;
 
-type Customer = {
+type Customer1 = {
   id: CustomerID;
   firstName: string;
   lastName: string;
 };
 
-interface Customer {
-  id: string;
+interface Customer2 {
+  id: CustomerID;
   firstName: string;
   lastName: string;
 }
@@ -36,20 +36,27 @@ layout: image-right
 image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
-In TypeScript keys/fields of types can accessed via Array notation in other types or when creating variables.
+Keys/members of types and interfaces can be accessed via bracket notation in other types and interfaces or when creating variables.
+Type information of referenced types are preserved.
 
 ```ts
 type CustomerID = string;
 
-type Customer = {
+type Customer1 = {
   id: CustomerID;
   firstName: string;
   lastName: string;
 };
 
 const customerLastName:
-  Customer['lastName'] = 'Peter';
+  Customer1['lastName'] = 'Peter';
 
-const customerLastName:
-  Customer.lastName = 'Peter'; // error
+interface Customer2 {
+  id: CustomerID;
+  firstName: string;
+  lastName: string;
+}
+
+const customerLastName2:
+  Customer2['lastName'] = 'Peter';
 ```

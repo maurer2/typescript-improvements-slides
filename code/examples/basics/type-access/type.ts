@@ -8,3 +8,11 @@ type Customer = {
 
 const customerLastName: Customer['lastName'] = 'Peter';
 // const customerLastName: Customer.lastName = 'Peter';
+
+interface Customer2 {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+
+const customerLastName2: Customer['lastName'] = 'Peter';
