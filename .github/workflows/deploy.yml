@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: slidev build --base /typescript-improvements-slides/
       - name: Deploy pages
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: crazy-max/ghaction-github-pages@v3
         with:
           build_dir: slides/dist
           jekyll: false
