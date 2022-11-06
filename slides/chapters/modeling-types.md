@@ -65,7 +65,7 @@ const customerLastName2:
 layout: two-cols-header-with-gap
 ---
 
-TypesScript provides a very powerful type system to model types that can be used to model parameters, return values, json files etc.
+### Creating types from other types
 
 ::left::
 
@@ -89,7 +89,7 @@ Example payload from an API-endpoint
 
 ::right::
 
-Corresponding type
+Corresponding monolithic type
 
 ```ts
 type Customer = {
@@ -112,7 +112,9 @@ layout: image-right
 image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
-When using types it is possible to split them up into logical units and composite new types from other types via **Intersection types**.
+### Intersection types
+
+Intersection types can be used to compose types from subtypes or other, unrelated types.
 
 ```ts
 type CustomerDefaultFields = {
@@ -174,7 +176,9 @@ layout: image-right
 image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
-Types can also be created by including or excluding certain fields from a complex base type via **Pick** or **Omit**.
+### Pick & Omit
+
+Types can also be created by including or excluding certain keys/members from a complex base type via Pick or Omit.
 <!-- Pick is used to select fields that are included in the new type. Omit specifies the fields that are to be excluded from the new type. -->
 
 ```ts
@@ -189,7 +193,7 @@ type CustomerFields = {
   defaultedPayments: number;
   missedPayments: number;
 };
-type Customer = Pick<CustomerFields,
+type Customer1 = Pick<CustomerFields,
   'id' | 'firstName' | 'lastName' |
   'house' | 'street' | 'city' | 'postcode'
 >;
@@ -200,7 +204,8 @@ type Customer2 = Omit<CustomerFields,
 
 ---
 
-Pick and Omit can also be used when changing the type of certain fields, by removing the fields first and then adding them again with a different, e.g. narrower type. This comes in handy when working with JSON files.
+Pick and Omit can also be used when changing the type of certain fields, by removing the fields first and then adding them again with a different, e.g. narrower type.
+This comes in handy when dealing with incoming data that needs to be adapted to the types of an application etc.
 
 ```ts
 import currency from 'currency.js';
@@ -215,7 +220,6 @@ type LoanLooselyTyped = {
   ltv: number;
   loan_value: string;
 };
-
 type Loan = Omit<LoanLooselyTyped,
   'available_amount' | 'annualised_return' | 'term_remaining' | 'ltv' | 'loan_value'
 > & {
@@ -233,8 +237,10 @@ type Loan = Omit<LoanLooselyTyped,
 layout: two-cols-header-with-gap
 ---
 
-**Union types** can be used to allow a set of different values for a type. While often used as string unions, union types are not restricted to primitives.
-They are also used with objects that have common fields.
+### Union types
+
+Union types can be used to permit a set of different values for a key/member. While often used as string unions, union types are not restricted to primitives.
+Union types can also contain custom types.
 
 ::left::
 
@@ -247,13 +253,11 @@ type Cat = {
   sound: AnimalSound;
   isCurrentChiefMouser: boolean;
 };
-
 type Dog = {
   name: string;
   sound: AnimalSound;
   canBeMistakenForAPony: boolean;
 };
-
 type Cow = {
   name: string;
   sound: AnimalSound;
