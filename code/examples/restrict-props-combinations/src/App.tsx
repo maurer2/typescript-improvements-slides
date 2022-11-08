@@ -11,7 +11,7 @@ function App() {
     <div className="wrapper">
       <h1>Restrict props combinations with TS</h1>
       <ButtonLink
-        type={isButton ? 'button' : 'a'}
+        as={isButton ? 'button' : 'a'}
         onClick={toggleIsButton}
         // disabled={false}
         // disabled={true}
@@ -25,7 +25,7 @@ function App() {
 
       {isButton ? (
         <ButtonLink2
-          type="button"
+          as="button"
           onClick={toggleIsButton}
           // disabled={false}
           // disabled={true}
@@ -36,7 +36,7 @@ function App() {
         </ButtonLink2>
       ) : (
         <ButtonLink2
-          type="a"
+          as="a"
           onClick={toggleIsButton}
           // disabled={false}
           // disabled={true}

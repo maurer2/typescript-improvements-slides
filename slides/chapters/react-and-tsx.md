@@ -11,8 +11,8 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 
 ### Deprecate props
 
-TypeScript's `never` type can be used to hard deprecate component props. This is most useful for library or styleguide maintainers.
-Trying to use the deprecated prop, will result in a type error. Alternatively a soft deprecation can be achieved by using the JSDoc deprecated tag, e.g. `@deprecated Please use x instead`.
+TypeScript's `never` type can be used to hard deprecate component props. Trying to use the deprecated prop, will result in a type error.
+Alternatively a soft deprecation can be achieved by using the JSDoc deprecated tag, e.g. `@deprecated Please use newProp instead`.
 
 ```ts
 type CustomButtonProps = PropsWithChildren<
@@ -61,61 +61,71 @@ function App() {
     </CustomButton>
   );
 }
-
 ```
 
+---
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
 ### Disallow prop combinations
 
 TypeScript's `never` type can also be used to prohibit certain combination of props.
-The syntax can get a bit complex for certain type of props, e.g. `boolean` as those type of props can either be set to false or not passed at all.
-
-Component
 
 ```ts
-function ButtonLink({ onClick, type, disabled, href, children }: PropsWithChildren<ButtonLinkProps>) {
-  const TagType = type; // either a or button
-  if (type === 'button') {
+function ButtonLink({
+  onClick, as, disabled, href
+}: PropsWithChildren<ButtonLinkProps>): {
+  const Component = as;
+
+  if (Component === 'button') {
     console.log(href); // undefined
     console.log(disabled);
   }
-  if (type === 'a') {
+  if (Component === 'a') {
     console.log(href); // string
     console.log(disabled);
   }
+
   return (
-    <TagType className={style.ButtonLink} onClick={onClick}>
-      {children}
-    </TagType>
+    <Component className={style.ButtonLink}
+      onClick={onClick}>
+      Click
+    </Component>
   );
 }
 ```
 
 ---
+layout: image-right
+image: https://source.unsplash.com/collection/94734566/1920x1080
+---
 
-We use the type field to distinguish between various types and allow TypeScript to narrow down the type.
-
-Props
+The as-field is used as discriminant property to distinguish both types.
 
 ```ts
 type ButtonLinkCommonProps = {
-  onClick: (() => void);
-}
+  onClick: () => void;
+};
 
 type ButtonLinkButtonProps = {
-  type: 'button';
+  as: 'button';
   disabled?: boolean;
-  href?: never; // button should never have a href attribute
-}
+  href?: never; // type button should
+  // never have a href attribute
+};
 
 type ButtonLinkLinkProps = {
-  type: 'a';
-  disabled?: false; // link should never have a disabled attribute
+  as: 'a';
+  disabled?: false; // type link should
+  // never have a disabled attribute
   href: string;
-}
+};
 
-type ButtonLinkProps = ButtonLinkCommonProps & (ButtonLinkButtonProps | ButtonLinkLinkProps);
+type ButtonLinkProps = ButtonLinkCommonProps
+  & (ButtonLinkButtonProps |
+    ButtonLinkLinkProps);
+
 ```
 
 ---
@@ -125,44 +135,26 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 
 ### Prohibit child components
 
-TypeScript's `never` type can also be used to prevent child components. This is useful for library authors to prevent composition and use a component as is.
-
-App
+The `never` type can also be used to prevent the creation of child components.
 
 ```ts
-function App(): ReactElement {
-  return (
-    <div className="wrapper">
-      <h1>Restrict child elements</h1>
-      <Child>
-        <h2>Can have child content</h2>
-      </Child>
-      <Childless />
-    </div>
-  );
-}
-```
-
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
----
-
-Component with children
-
-```ts
-import { PropsWithChildren } from 'react';
-
 type ChildProps = PropsWithChildren<{
   otherProp: string;
 }>;
-```
 
-Component without children
-
-```ts
 type ChildlessProps = {
   children?: never;
   otherProp: string;
 };
+
+function App(): ReactElement {
+  return (
+    <>
+      <Child otherProp="test1">
+        <h2>Can have child content</h2>
+      </Child>
+      <Childless otherProp="test2" />
+    </>
+  );
+}
 ```

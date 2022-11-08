@@ -1,16 +1,15 @@
-// shared props
 type ButtonLink2CommonProps = {
   onClick: () => void;
 };
 
 type ButtonLink2ButtonProps = {
-  type: 'button';
+  as: 'button';
   disabled?: boolean;
   href?: never; // type button should never have a href attribute
 };
 
 type ButtonLink2LinkProps = {
-  type: 'a';
+  as: 'a';
   disabled?: false; // type link should never have a disabled attribute
   href: string;
 };

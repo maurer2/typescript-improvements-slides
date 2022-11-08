@@ -1,8 +1,7 @@
-import { ReactNode } from 'react';
+import { ElementType } from 'react';
 
-type ButtonLinkCommonProps = {
-  children?: ReactNode | ReactNode[];
-  type: 'button' | 'a';
+type ButtonLinkCommonProps<T> = {
+  as: T,
   onClick: () => void;
 };
 
@@ -31,4 +30,4 @@ type ButtonLinkLinkProps =
       disabled?: boolean;
     };
 
-export type ButtonLinkProps = ButtonLinkCommonProps & ButtonLinkButtonProps & ButtonLinkLinkProps;
+export type ButtonLinkProps<T extends ElementType> = ButtonLinkCommonProps<T> & ButtonLinkButtonProps & ButtonLinkLinkProps;
