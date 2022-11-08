@@ -14,10 +14,14 @@ export type Currencies = {
     name: CurrencyNames;
     symbol: CurrencySymbols;
   };
+  USD: {
+    name: 'Euro', // no error
+    symbol: '$',
+  },
 }
 
 export type CurrenciesMapped1 = {
-  [K in CurrencyAbbreviations]?: {
+  readonly [K in CurrencyAbbreviations]?: {
     name: CurrencyNames;
     symbol: CurrencySymbols;
   };

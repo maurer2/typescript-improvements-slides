@@ -35,6 +35,8 @@ layout: image-right
 image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
+### Indexed Access Types
+
 Keys/members of types and interfaces can be accessed via bracket notation in other types and interfaces or when creating variables.
 Type information of referenced types are preserved.
 
@@ -46,16 +48,14 @@ type Customer1 = {
   firstName: string;
   lastName: string;
 };
-
 const customerLastName:
-  Customer1['lastName'] = 'Peter';
+  Customer1['lastName'] = 'Larry';
 
 interface Customer2 {
   id: CustomerID;
   firstName: string;
   lastName: string;
 }
-
 const customerLastName2:
   Customer2['lastName'] = 'Peter';
 ```
@@ -178,7 +178,7 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 
 ### Pick & Omit
 
-Types can also be created by including or excluding certain keys/members from a complex base type via Pick or Omit.
+Types can also be created by including or excluding certain keys/members from a complex base type via the Pick and Omit utility types.
 <!-- Pick is used to select fields that are included in the new type. Omit specifies the fields that are to be excluded from the new type. -->
 
 ```ts
@@ -239,8 +239,7 @@ layout: two-cols-header-with-gap
 
 ### Union types
 
-Union types can be used to permit a set of different values for a key/member. While often used as string unions, union types are not restricted to primitives.
-Union types can also contain custom types.
+Union types can be used to describe a set of different types, that are assignable to a key/member. Union types can consist of a range of other types like `string`, `boolean`, other custom types and also `undefined`.
 
 ::left::
 
@@ -294,10 +293,9 @@ const animals: AnimalList = [cat, dog, cow];
 layout: two-cols-header-with-gap
 ---
 
-### Discriminated unions
+### Discriminated unions and discriminant property
 
-When union types share a common field (usually a string), that field can be used to automatically differentiate members of the union type. They are called
-**Discriminated unions**. The shared field is called **discriminant property**.
+When union types share a common field with literal string values, that field can be used to automatically differentiate types without explicit type assertion. These union types are called discriminated unions. The shared field is called discriminant property.
 
 ::left::
 
@@ -378,116 +376,10 @@ type DatePicker = DatePickerBase
 layout: two-cols-header-with-gap
 ---
 
-**Mapped types** can be used to iterate over fields of one or more types to create a new type. This is useful with keeping the type declarations DRY.
+### Mapped types
 
-::left::
-
-```ts
-type CustomerTypeBackend = {
-  id: string;
-  first_name: string;
-  last_name: string;
-  defaulted_payments: number;
-  missed_payments: number;
-  // additional_field_1: number[];
-}
-
-type GlobalKeyMap = {
-  id: 'id',
-  first_name: 'firstName',
-  last_name: 'lastName',
-  house: 'house',
-  street: 'street',
-  city: 'city',
-  post_code: 'postCode',
-  defaulted_payments: 'defaultedPayments',
-  missed_payments: 'missedPayments',
-  additionalField2: 'additional_field_2';
-}
-
-```
-
-::right::
-
-```ts
-type CustomerTypeFrontendWithoutMismatchingData = {
-  [K in keyof CustomerTypeBackend as
-    GlobalKeyMap[K]]: CustomerTypeBackend[K]
-}
-```
-
-Output:
-
-```ts
-type CustomerTypeFrontendWithoutMismatchingData = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  defaultedPayments: number;
-  missedPayments: number;
-}
-
-```
-
----
-
-<div class="grid grid-cols-2 gap-4">
-<div>
-
-```ts
-type CustomerTypeBackend = {
-  id: string;
-  first_name: string;
-  last_name: string;
-  defaulted_payments: number;
-  missed_payments: number;
-  additional_field_1: number[];
-}
-```
-
-</div>
-<div>
-
-```ts
-type GlobalKeyMap = {
-  id: 'id',
-  first_name: 'firstName',
-  last_name: 'lastName',
-  ...
-  defaulted_payments: 'defaultedPayments',
-  missed_payments: 'missedPayments',
-  additionalField2: 'additional_field_2';
-}
-```
-
-</div>
-</div>
-
-```ts
-type CustomerTypeFrontend = {
-  [K in keyof Pick<CustomerTypeBackend, Extract<keyof CustomerTypeBackend, keyof GlobalKeyMap>>
-    as GlobalKeyMap[K]]: CustomerTypeBackend[K];
-};
-```
-
-Output
-
-```ts
-type CustomerTypeFrontend = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  defaultedPayments: number;
-  missedPayments: number;
-}
-
-```
-
----
-layout: two-cols-header-with-gap
----
-
-Mapped types can also iterate over fields of multiple types to create new types.
+Mapped types can be used to iterate over keys/members of multiple types to create new types/members in another type. This helps with DRY-ness.
+Additionally, mapped types also allow the adding of `readonly`- and `?` modifiers.
 
 ::left::
 
@@ -501,19 +393,11 @@ type CurrencyNames = 'Pound' | 'Euro' | 'Dollar'
 type CurrencySymbols = '£' | '€' | '$';
 
 type Currencies = {
-  [K in CurrencyAbbreviations]?: {
+  readonly [K in CurrencyAbbreviations]?: {
     name: CurrencyNames;
     symbol: CurrencySymbols;
   };
 };
-
-// Alternative approach using Record and Partial
-type CurrenciesAlternative = Partial<Record<
-  CurrencyAbbreviations, {
-    name: CurrencyNames;
-    symbol: CurrencySymbols;
-  }
->>;
 ```
 
 ::right::
@@ -528,6 +412,10 @@ const currencies: Currencies = {
     name: 'Euro',
     symbol: '€',
   },
+  USD: {
+    name: 'Euro', // no error
+    symbol: '$',
+  },
 };
 ```
 
@@ -535,7 +423,7 @@ const currencies: Currencies = {
 layout: two-cols-header-with-gap
 ---
 
-Since mapped types provide the current type within the map function, a type lookup can be performed, where the current type acts as the key, similar to looking up values in an object.
+Mapped types provide the ability to access the key of the current iteration. This can be used to lookup values by key, similar to looking up values in an object.
 
 ::left::
 
@@ -557,7 +445,7 @@ type CurrencySymbols = {
   AUD: '$';
 };
 type Currencies = {
-  [K in CurrencyAbbreviations]?: [
+  readonly [K in CurrencyAbbreviations]?: [
     name: CurrencyNames[K],
     symbol: CurrencySymbols[K],
   ];
@@ -573,7 +461,49 @@ const currencies: Currencies = {
   USD: ['Dollar', '$'],
   CAD: ['Canadian Dollar', '$'],
   AUD: ['Dollarydoos', '$'],
-  // CAD: ['Euro', '$'], // Error
-  // GBP: ['Pound Sterling', '$'], // Error
+  // CAD: ['Euro', '$'], // error
+  // GBP: ['Pound Sterling', '$'], // error
+};
+```
+
+---
+layout: two-cols-header-with-gap
+---
+
+### Conditional types
+
+Conditional types can can be used to conditionally output values by analyzing the input. They are often used in combination with mapped types and generics.
+
+::left::
+
+```ts
+type Customer = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  house: string;
+  street: string;
+  city: string;
+  postCode: string;
+  defaultedPayments: number;
+  missedPayments: number;
+};
+
+type WithUppercaseValues<T> = {
+  readonly [K in keyof T]?: T[K] extends string
+    ? Uppercase<T[K]>
+    : T[K];
+};
+```
+
+::right::
+
+```ts
+const uppercaseCustomer: WithUppercaseValues<
+  Customer
+> = {
+  // id: 'abcd', // error
+  id: 'ABCD',
+  firstName: 'LARRY',
 };
 ```

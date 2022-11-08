@@ -37,7 +37,7 @@ type CurrencySymbols = {
 };
 
 export type Currencies = {
-  [K in CurrencyAbbreviations['keys']]: [
+  readonly [K in CurrencyAbbreviations['keys']]?: [
     name: CurrencyNames[K],
     symbol: CurrencySymbols[K]
   ];
