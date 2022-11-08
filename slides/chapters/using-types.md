@@ -9,15 +9,14 @@ layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
-### Differentiating values in types
+### Single types and optional keys
 
-TypeScript can infer values via control flow analysis and may allow or disallow certain operations on members of a type.
-For example optional values can only be accessed after checking if they are defined.
+TypeScript can infer values via control flow analysis and may allow or disallow access on members of a type.
 
 ::left::
 
 ```ts
-export type Person = {
+type Person = {
   firstName: string;
   lastName: string;
   address?: {
@@ -56,9 +55,67 @@ layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
-### Differentiating multiple types
+### Differentiating union types - manual
 
-TypeScript can also narrow down multiple types via control flow analysis. Checking types directly in the code doesn't work, as types are removed during compilation (type erasure).
+Narrowing down union types is slightly more complex since manually checking the type isn't possible as types are removed during compilation (type erasure).
+
+::left::
+
+```ts
+type AnimalSound = 'Meow' | 'Woof' | 'Moo'|
+  'Oink';
+
+type Cat = {
+  name: string;
+  sound: AnimalSound;
+  isCurrentChiefMouser: boolean;
+};
+type Dog = {
+  name: string;
+  sound: AnimalSound;
+  canBeMistakenForAPony: boolean;
+};
+type Cow = {
+  name: string;
+  sound: AnimalSound;
+};
+
+type Animal = Cat | Dog | Cow;
+```
+
+::right::
+
+```ts
+function showAnimalDetails(animal: Animal): void {
+  console.log(`Name: ${animal.name}`);
+  console.log(`Sound: ${animal.sound}`);
+
+  if (Object.hasOwn(animal,
+    'isCurrentChiefMouser')) {
+    const { isCurrentChiefMouser } = animal as Cat
+    console.log(isCurrentChiefMouser);
+    return;
+  }
+
+  if (Object.hasOwn(animal,
+    'canBeMistakenForAPony')) {
+    const { canBeMistakenForAPony } = animal as Dog
+    console.log(canBeMistakenForAPony);
+    return;
+  }
+
+  // Cow stuff
+}
+```
+
+---
+layout: two-cols-header-with-gap
+hideInToc: true
+---
+
+### Differentiating union types - via type guards
+
+TypeScript can narrow down multiple types in an union type via built-in type guards. Most common type guards are: `in`, `typeof` and `instanceof`.
 
 ::left::
 
@@ -83,8 +140,7 @@ type People = Person | PersonWithAddress;
 ::right::
 
 ```ts
-function showPersonDetails(
-  person: Person | PersonWithAddress): void {
+function showPersonDetails(person: People): void {
   const { firstName, lastName } = person;
 
   console.log(`First name: ${firstName}`);
@@ -92,7 +148,6 @@ function showPersonDetails(
 
   if ('address' in person) {
     // PersonWithAddress
-    const type = person;
     const { house, street, postcode, city } =
       person.address;
 
@@ -109,9 +164,9 @@ layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
-### Discriminated unions in the real world
+### Differentiating union types - via discriminant union types
 
-Since TypeScript is able to narrow down a union type via a discriminant property, discriminant unions are widely used for type checking in conditionals to ensure type safety and for dealing with API-requests.
+Since TypeScript is able to narrow down a discriminant union type via a discriminant property, discriminant unions are widely used to ensure type security.
 
 ::left::
 
@@ -168,9 +223,9 @@ layout: two-cols-header-with-gap
 hideInToc: true
 ---
 
-### Discriminated unions in the real world (part 2)
+### Differentiating union types - via discriminant union types with generics
 
-Discriminant unions also work with Generics to make Code more flexible.
+Discriminant unions also work with generics to make code more reusable.
 
 ::left::
 
@@ -206,50 +261,21 @@ async function sendAPIRequest<T>(): Promise<void> {
   switch (requestStatus.state) {
     case 'loading': {
       const { state } = requestStatus;
+      console.log(state);
       return;
     }
     case 'failed': {
-      const { state, statusCode, errorMessage }
-      = requestStatus;
+      const { errorMessage } = requestStatus;
+      console.log(`${errorMessage
+        ? errorMessage : '- no error message'}`);
       return;
     }
     case 'success': {
-      const { state, statusCode, data }
-      = requestStatus;
+      const { data } = requestStatus;
+      console.log(data);
       return;
     }
     default: {}
   }
-}
-sendAPIRequest<Cat>();
-```
-
----
-
-### Type predicates & Type guards
-
-Todo
-
-```ts
-function isCustomerWithDefaultedPayments(customer: Customer): customer is CustomerWithDefaultedPayments {
-  const { hasDefaultedPayments } = customer;
-
-  return hasDefaultedPayments;
-}
-
-function isCustomerWithMissedPayments(customer: Customer): customer is CustomerWithMissedPayments {
-  const { hasDefaultedPayments, hasMissedPayments } = customer;
-
-  if (hasDefaultedPayments) {
-    return false;
-  }
-
-  return hasMissedPayments;
-}
-
-function isCustomerRegular(customer: Customer): customer is CustomerRegular {
-  const { hasDefaultedPayments, hasMissedPayments } = customer;
-
-  return !hasDefaultedPayments && !hasMissedPayments;
 }
 ```

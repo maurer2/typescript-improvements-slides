@@ -6,16 +6,16 @@ function showAnimalDetails(animal: Cat | Dog | Cow): void {
 
   // Cat
   if (Object.hasOwn(animal, 'isCurrentChiefMouser')) {
-    const currentAnimal = animal as Cat;
-    console.log(`Is current Chief Mouser: ${currentAnimal.isCurrentChiefMouser}`);
+    const { isCurrentChiefMouser } = animal as Cat;
+    console.log(`Is current Chief Mouser: ${isCurrentChiefMouser}`);
 
     return;
   }
 
   // Dog
   if (Object.hasOwn(animal, 'canBeMistakenForAPony')) {
-    const currentAnimal = animal as Dog;
-    console.log(`Can be mistaken for a pony: ${currentAnimal.canBeMistakenForAPony}`);
+    const { canBeMistakenForAPony } = animal as Dog;
+    console.log(`Can be mistaken for a pony: ${canBeMistakenForAPony}`);
 
     return;
   }

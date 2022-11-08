@@ -1,5 +1,8 @@
 type Timestamp = number;
-type DateFormat = Date | Timestamp | string;
+
+type DateString = string;
+
+type DateFormat = Date | Timestamp | DateString;
 
 export type Person = {
   firstName: string;

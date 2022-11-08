@@ -1,7 +1,7 @@
 import { people } from './data';
-import type { Person, PersonWithAddress } from './types';
+import type { People } from './types';
 
-function showPersonDetails(person: Person | PersonWithAddress): void {
+function showPersonDetails(person: People): void {
   const { firstName, lastName, isPrimeMinister } = person; //  Person | PersonWithAddress
 
   console.log(`\nFirst name: ${firstName}`);
