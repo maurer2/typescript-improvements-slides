@@ -12,7 +12,7 @@ highlighter: shiki
 lineNumbers: true
 # some information about the slides, markdown enabled
 info: |
-  ## TypeScript in React projects
+  ## TypeScript in frontend projects
 # persist drawings in exports and build
 drawings:
   persist: false
@@ -27,7 +27,7 @@ exportFilename: slides.pdf
 favicon: favicon.ico
 
 ---
-# TypeScript in React projects
+# TypeScript in frontend projects
 
 ---
 hideInToc: true
@@ -53,8 +53,4 @@ src: ./chapters/using-types.md
 
 ---
 src: ./chapters/react-and-tsx.md
----
-
----
-src: ./chapters/migration.md
 ---
