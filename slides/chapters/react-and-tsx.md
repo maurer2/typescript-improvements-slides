@@ -11,7 +11,7 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 
 ### Deprecate props
 
-TypeScript's `never` type can be used to hard deprecate component props. Trying to use the deprecated prop, will result in a type error.
+TypeScript's `never` type can be used to deprecate component props. Trying to use the deprecated prop, will result in a type error.
 Alternatively a soft deprecation can be achieved by using the JSDoc deprecated tag, e.g. `@deprecated Please use newProp instead`.
 
 ```ts
@@ -70,7 +70,7 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 
 ### Disallow prop combinations
 
-TypeScript's `never` type can also be used to prohibit certain combination of props.
+TypeScript's `never` type can also be used to prohibit certain combinations of props.
 
 ```ts
 function ButtonLink({

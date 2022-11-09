@@ -11,7 +11,7 @@ hideInToc: true
 
 ### Single types and optional keys
 
-TypeScript can infer values via control flow analysis and may allow or disallow access on members of a type.
+TypeScript can infer values via control flow analysis and may allow or disallow access for members of a type.
 
 ::left::
 
@@ -166,7 +166,7 @@ hideInToc: true
 
 ### Differentiating union types - via discriminant union types
 
-Since TypeScript is able to narrow down a discriminant union type via a discriminant property, discriminant unions are widely used to ensure type security.
+Since TypeScript is able to narrow down a discriminant union via a discriminant property, discriminant unions are widely used to ensure type security.
 
 ::left::
 

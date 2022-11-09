@@ -11,8 +11,8 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 
 ### Types & interfaces
 
-In order to shape data, types and interfaces can be utilized. They can be used interchangeably in a lot of cases, but differ in syntax and mutability.
-interfaces are mutable, while types are not. Unlike interfaces, types can also be used for primitives like number or string.
+Types and interfaces can be utilized to create shapes for data. Both can be used interchangeably in a lot of cases, but they differ in syntax and mutability.
+Interfaces are mutable, while types are not. Unlike interfaces, types can also be used for primitives like number or string.
 
 ```ts
 type CustomerID = string;
@@ -179,7 +179,6 @@ image: https://source.unsplash.com/collection/94734566/1920x1080
 ### Pick & Omit
 
 Types can also be created by including or excluding certain keys/members from a complex base type via the Pick and Omit utility types.
-<!-- Pick is used to select fields that are included in the new type. Omit specifies the fields that are to be excluded from the new type. -->
 
 ```ts
 type CustomerFields = {
@@ -204,8 +203,8 @@ type Customer2 = Omit<CustomerFields,
 
 ---
 
-Pick and Omit can also be used when changing the type of certain fields, by removing the fields first and then adding them again with a different, e.g. narrower type.
-This comes in handy when dealing with incoming data that needs to be adapted to the types of an application etc.
+Pick and Omit can also be used to change the type of certain keys, by removing the keys first and then adding them again with a different, e.g. narrower type.
+This comes in handy when dealing with incoming data that needs to be adapted to the type system of an application.
 
 ```ts
 import currency from 'currency.js';
@@ -230,8 +229,6 @@ type Loan = Omit<LoanLooselyTyped,
   loan_value: currency;
 };
 ```
-
-<!-- Todo: slide mismatching types in intersection types vs interface -->
 
 ---
 layout: two-cols-header-with-gap
