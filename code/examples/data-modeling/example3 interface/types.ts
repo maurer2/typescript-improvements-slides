@@ -21,26 +21,3 @@ export interface Loan
   ltv: BigInt;
   loan_value: currency;
 }
-
-
-// Test
-interface Mau {
-  value: string;
-}
-// interface MauMau extends Mau {
-//   value: number; // Error
-// }
-
-type MauT = {
-  value: string;
-}
-type MauTMauT = MauT & {
-  value: number; // No Error
-}
-type MauTMau = Mau & {
-  value: number; // No Error
-}
-
-// const mauTMau: MauTMauT = {
-//   value: 5, // Error
-// }
