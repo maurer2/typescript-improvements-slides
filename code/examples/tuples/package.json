@@ -1,0 +1,13 @@
+{
+  "name": "tuples",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "scripts": {}
+}
