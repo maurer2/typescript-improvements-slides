@@ -10,4 +10,5 @@ export type Person = {
   };
 };
 
-export type PersonList = [Person, ...Person[]];
+// variadic tuple
+export type PersonList = readonly [Person, ...Person[]];
