@@ -6,7 +6,7 @@ layout: section
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ### Deprecate props
@@ -30,7 +30,7 @@ type CustomButtonProps = PropsWithChildren<
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ```ts
@@ -65,7 +65,7 @@ function App() {
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ### Disallow prop combinations
@@ -98,7 +98,7 @@ function ButtonLink({
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 The as-field is used as discriminant property to distinguish both types.
@@ -130,7 +130,7 @@ type ButtonLinkProps = ButtonLinkCommonProps
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ### Prohibit child components

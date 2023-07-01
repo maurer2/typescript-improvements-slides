@@ -3,7 +3,7 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://source.unsplash.com/collection/94734566/1920x1080
+background: ./images/background.jpeg
 # apply any windi css classes to the current slide
 class: 'text-center'
 # https://sli.dev/custom/highlighters.html
@@ -32,7 +32,7 @@ favicon: favicon.ico
 ---
 hideInToc: true
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ## Table of Contents
@@ -53,4 +53,8 @@ src: ./chapters/using-types.md
 
 ---
 src: ./chapters/react-and-tsx.md
+---
+
+---
+src: ./chapters/sources.md
 ---

@@ -6,7 +6,7 @@ layout: section
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ### Types & interfaces
@@ -32,7 +32,7 @@ interface Customer2 {
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ### Indexed Access Types
@@ -109,7 +109,7 @@ type CustomerList = Customer[];
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ### Intersection types
@@ -141,7 +141,7 @@ type CustomerWithPaymentData =
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 The same result can be achieved via `extend` when using interfaces.
@@ -173,7 +173,7 @@ interface CustomerWithPaymentData extends
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ### Pick & Omit
@@ -342,7 +342,7 @@ const dog: Animal = {
 
 ---
 layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+image: ./images/background.jpeg
 ---
 
 ### Logical union type combinations
