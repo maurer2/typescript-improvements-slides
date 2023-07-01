@@ -1,6 +1,6 @@
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ## Sources

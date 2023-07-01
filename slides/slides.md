@@ -32,7 +32,7 @@ favicon: favicon.ico
 ---
 hideInToc: true
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ## Table of Contents

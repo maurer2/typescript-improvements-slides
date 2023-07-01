@@ -107,7 +107,7 @@ Hover on the bottom-left corner to see the navigation's controls panel, [learn m
 
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 # Code

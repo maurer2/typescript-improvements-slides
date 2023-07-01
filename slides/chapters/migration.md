@@ -1,6 +1,6 @@
 ---
 layout: section
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ## Migrating to TypeScript

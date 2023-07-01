@@ -6,7 +6,7 @@ layout: section
 
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ### Deprecate props
@@ -30,7 +30,7 @@ type CustomButtonProps = PropsWithChildren<
 
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ```ts
@@ -65,7 +65,7 @@ function App() {
 
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ### Disallow prop combinations
@@ -98,7 +98,7 @@ function ButtonLink({
 
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 The as-field is used as discriminant property to distinguish both types.
@@ -130,7 +130,7 @@ type ButtonLinkProps = ButtonLinkCommonProps
 
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ### Prohibit child components

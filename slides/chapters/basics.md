@@ -1,13 +1,13 @@
 ---
 layout: section
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ## Basics
 
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 ### Types & interfaces
@@ -33,7 +33,7 @@ interface Customer2 {
 
 ---
 layout: image-right
-image: ./images/background.jpeg
+image: ./background.jpeg
 ---
 
 Keys/members of types and interfaces can be accessed via bracket notation in other types and interfaces or when creating variables.
