@@ -1,5 +1,5 @@
-import { people } from './data';
-import type { Person, PersonWithInitials } from './types';
+import { people } from './data.ts';
+import type { Person, PersonWithInitials } from './types.ts';
 
 function getSortedPeople(peopleUnsorted: Person[]): Person[] | PersonWithInitials[] {
   const peopleSorted: Person[] | PersonWithInitials[] = peopleUnsorted

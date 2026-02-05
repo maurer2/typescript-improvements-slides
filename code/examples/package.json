@@ -20,7 +20,9 @@
     "discriminated-unions:json-handling": "node './discriminated-unions/json-handling/json-handling.ts'",
     "# NUMBER_RANGE:": "",
     "number-range:start": "node './number-range/app.ts'",
-    "number-range:test": "jest './number-range/app.spec.ts' --config=jest.config.ts"
+    "number-range:test": "jest './number-range/app.spec.ts' --config=jest.config.ts",
+    "# PREVENT_ACCIDENTAL_MUTATION": "",
+    "prevent-accidental-mutation:start": "node './prevent-accidental-mutation/index.ts'"
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",
