@@ -1,5 +1,5 @@
-import { PersonList, PersonListFields } from './types';
-import { peopleList } from './data';
+import type { PersonList, PersonListFields } from './types.js';
+import { peopleList } from './data.ts';
 
 function sorted(list: PersonList, sortBy: PersonListFields): PersonList {
   const sortedList = [...list].sort((entryA, entryB) => {

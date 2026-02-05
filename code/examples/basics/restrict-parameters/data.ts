@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import type { Person, PersonList } from './types';
+import type { Person, PersonList } from './types.ts';
 
 export const people: Person[] = Array.from({ length: 5 }, () => ({
   firstName: faker.name.firstName(),

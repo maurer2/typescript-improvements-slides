@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import type { Person } from './types';
+import type { Person } from './types.ts';
 
 function getPerson(): Person {
   const hasAddress = faker.datatype.boolean();

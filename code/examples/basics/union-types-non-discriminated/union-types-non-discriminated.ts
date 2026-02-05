@@ -1,4 +1,4 @@
-import type { Cat, Dog, Cow, Animal, AnimalList } from './types';
+import type { Cat, Dog, Cow, Animal, AnimalList } from './types.ts';
 
 function showAnimalDetails(animal: Cat | Dog | Cow): void {
   console.log(`\nName: ${animal.name}`);

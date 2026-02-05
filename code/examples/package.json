@@ -5,6 +5,12 @@
   "main": "index.js",
   "private": true,
   "type": "module",
+  "scripts": {
+    "\n# BASICS:": "",
+    "basics:restrict-parameters": "node './basics/restrict-parameters/restrict-parameters.ts'",
+    "basics:flow-control-analysis": "node '././basics/flow-control-analysis/flow-control-analysis.ts'",
+    "basics:union-types-non-discriminated": "node './basics/union-types-non-discriminated/union-types-non-discriminated.ts'"
+  },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",
     "@testing-library/jest-dom": "^5.16.5",
