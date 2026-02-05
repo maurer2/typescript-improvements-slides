@@ -1,5 +1,5 @@
-import type { Counter, DateTime, CounterAction, DateTimeAction } from './types';
-import { ActionNames } from './action-types';
+import type { Counter, DateTime, CounterAction, DateTimeAction } from './types.ts';
+import { ActionNames } from './action-types.ts';
 
 export function updateCounter(counter: Counter): CounterAction {
   const action: CounterAction = {

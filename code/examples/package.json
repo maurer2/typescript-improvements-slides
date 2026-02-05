@@ -14,7 +14,10 @@
     "data-modeling:example1": "node './data-modeling/example1/index.ts'",
     "data-modeling:example2": "node './data-modeling/example2/index.ts'",
     "data-modeling:example3": "node './data-modeling/example3/index.ts'",
-    "data-modeling:example4": "node './data-modeling/example4/index.ts'"
+    "data-modeling:example4": "node './data-modeling/example4/index.ts'",
+    "# DISCRIMINATED_UNIONS:": "",
+    "discriminated-unions:simple-example": "node './discriminated-unions/simple-example/simple-example.ts'",
+    "discriminated-unions:json-handling": "node './discriminated-unions/json-handling/json-handling.ts'"
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",

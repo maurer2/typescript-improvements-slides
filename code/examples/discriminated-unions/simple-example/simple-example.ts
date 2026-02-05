@@ -1,4 +1,4 @@
-import type { Animal, AnimalList, Cat, Dog } from './types';
+import type { Animal, AnimalList, Cat, Dog } from './types.ts';
 
 function showAnimalDetails(animal: Animal): void {
   // can't access isCurrentChiefMouser here, since it doesn't exist on all animal types

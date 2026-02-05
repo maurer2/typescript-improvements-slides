@@ -1,4 +1,4 @@
-import type { ActionNamesTypes } from './action-types';
+import type { ActionNamesTypes } from './action-types.ts';
 
 export type Counter = {
   name: string;
