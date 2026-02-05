@@ -1,5 +1,5 @@
-import { isValidSortCodePart, isValidSortCode } from './types';
-import type { SortCodePart, SortCode } from './types';
+import { isValidSortCodePart, isValidSortCode } from './types.ts';
+import type { SortCodePart, SortCode } from './types.ts';
 
 function getRandomSortCodePart(): SortCodePart {
   const randomNumber: number = Math.floor(Math.random() * 1000) + 1;

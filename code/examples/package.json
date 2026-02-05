@@ -17,7 +17,10 @@
     "data-modeling:example4": "node './data-modeling/example4/index.ts'",
     "# DISCRIMINATED_UNIONS:": "",
     "discriminated-unions:simple-example": "node './discriminated-unions/simple-example/simple-example.ts'",
-    "discriminated-unions:json-handling": "node './discriminated-unions/json-handling/json-handling.ts'"
+    "discriminated-unions:json-handling": "node './discriminated-unions/json-handling/json-handling.ts'",
+    "# NUMBER_RANGE:": "",
+    "number-range:start": "node './number-range/app.ts'",
+    "number-range:test": "jest './number-range/app.spec.ts' --config=jest.config.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",
@@ -42,6 +45,7 @@
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.55.0"
+    "sass": "^1.55.0",
+    "ts-jest": "^29.4.6"
   }
 }
