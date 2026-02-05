@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import type { Customer } from './types';
+import type { Customer } from './types.ts';
 
 export function getRandomCustomers(numberOfCustomers: number = 100): Customer[] {
   const customers: Customer[] = Array.from({ length: numberOfCustomers }).map(() => {

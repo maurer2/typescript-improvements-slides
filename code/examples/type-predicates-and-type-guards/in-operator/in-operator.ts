@@ -1,5 +1,5 @@
-import { people } from './data';
-import type { People } from './types';
+import { people } from './data.ts';
+import type { People } from './types.ts';
 
 function showPersonDetails(person: People): void {
   const { firstName, lastName, isPrimeMinister } = person; //  Person | PersonWithAddress

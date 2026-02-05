@@ -24,7 +24,12 @@
     "# PREVENT_ACCIDENTAL_MUTATION": "",
     "prevent-accidental-mutation:start": "node './prevent-accidental-mutation/index.ts'",
     "# TESTING": "",
-    "testing:test": "vitest './testing/' -w"
+    "testing:test": "vitest './testing/' -w",
+    "# TYPE_PREDICATES_AND_TYPE_GUARDS": "",
+    "type-predicates-and-type-guards:instanceof-and-typeof-operators": "node './type-predicates-and-type-guards/instanceof-and-typeof-operators/instanceof-and-typeof-operators.ts'",
+    "type-predicates-and-type-guards:in-operator": "node './type-predicates-and-type-guards/in-operator/in-operator.ts'",
+    "type-predicates-and-type-guards:custom-type-guards:start": "node './type-predicates-and-type-guards/custom-type-guards/type-predicates-and-type-guards.ts'",
+    "type-predicates-and-type-guards:custom-type-guards:test": "jest './type-predicates-and-type-guards/custom-type-guards/type-predicates-and-type-guards.spec.ts' --config=jest.config.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",

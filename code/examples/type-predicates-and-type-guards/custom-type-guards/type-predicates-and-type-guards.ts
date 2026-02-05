@@ -1,6 +1,6 @@
-import type { Customer, CustomerWithDefaultedPayments, CustomerWithMissedPayments, CustomerRegular } from './types';
-import { isCustomerWithDefaultedPayments, isCustomerWithMissedPayments, isCustomerRegular } from './types';
-import { customerRegular, customerWithDefaultedPayments, customerWithMissedPayments } from './data';
+import type { Customer, CustomerWithDefaultedPayments, CustomerWithMissedPayments, CustomerRegular } from './types.ts';
+import { isCustomerWithDefaultedPayments, isCustomerWithMissedPayments, isCustomerRegular } from './types.ts';
+import { customerRegular, customerWithDefaultedPayments, customerWithMissedPayments } from './data.ts';
 
 function showCustomerWithDefaultedPayments(customer: CustomerWithDefaultedPayments): void {
   console.log('CustomerWithDefaultedPayments: ', customer);

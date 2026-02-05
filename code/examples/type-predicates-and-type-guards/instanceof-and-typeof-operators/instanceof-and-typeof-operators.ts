@@ -1,6 +1,6 @@
-import { people } from './data';
+import { people } from './data.ts';
 
-import type { Person } from './types';
+import type { Person } from './types.ts';
 
 function showPersonDetails(person: Person): void {
   const { firstName, lastName, dateOfBirth } = person;

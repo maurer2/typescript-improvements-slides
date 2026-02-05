@@ -1,6 +1,6 @@
-import { getRandomCustomers } from './data';
-import { isCustomerWithDefaultedPayments, isCustomerWithMissedPayments, isCustomerRegular } from './types';
-import { Customer } from './types';
+import { getRandomCustomers } from './data.ts';
+import { isCustomerWithDefaultedPayments, isCustomerWithMissedPayments, isCustomerRegular } from './types.ts';
+import type { Customer } from './types.ts';
 
 describe('check type guards for correct categorization', () => {
   let customers: ReadonlyArray<Customer>;
