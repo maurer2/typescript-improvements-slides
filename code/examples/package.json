@@ -22,7 +22,9 @@
     "number-range:start": "node './number-range/app.ts'",
     "number-range:test": "jest './number-range/app.spec.ts' --config=jest.config.ts",
     "# PREVENT_ACCIDENTAL_MUTATION": "",
-    "prevent-accidental-mutation:start": "node './prevent-accidental-mutation/index.ts'"
+    "prevent-accidental-mutation:start": "node './prevent-accidental-mutation/index.ts'",
+    "# TESTING": "",
+    "testing:test": "vitest './testing/' -w"
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",
@@ -48,6 +50,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.55.0",
-    "ts-jest": "^29.4.6"
+    "ts-jest": "^29.4.6",
+    "vitest": "^4.0.18"
   }
 }
