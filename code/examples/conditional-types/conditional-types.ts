@@ -1,4 +1,4 @@
-import { Customer, WithUppercaseValues } from './types';
+import type { Customer, WithUppercaseValues } from './types.ts';
 
 const uppercaseCustomer: WithUppercaseValues<Customer> = {
   // id: 'abcd', // error
