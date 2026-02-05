@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import type { Customer, CustomerWithPaymentData } from './types';
+import type { Customer, CustomerWithPaymentData } from './types.ts';
 
 const customer: Customer = {
   id: faker.datatype.uuid(),

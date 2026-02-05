@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import type { LoanLooselyTyped } from './types';
+import type { LoanLooselyTyped } from './types.ts';
 
 export const loanLooselyTyped: LoanLooselyTyped = JSON.parse(
   JSON.stringify({

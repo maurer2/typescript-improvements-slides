@@ -1,4 +1,4 @@
-import type { Currencies } from './types';
+import type { Currencies } from './types.ts';
 
 const currencies: Currencies = {
   EUR: ['Euro', '€'],

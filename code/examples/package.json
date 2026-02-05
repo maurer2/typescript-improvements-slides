@@ -6,10 +6,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "\n# BASICS:": "",
+    "# BASICS:": "",
     "basics:restrict-parameters": "node './basics/restrict-parameters/restrict-parameters.ts'",
     "basics:flow-control-analysis": "node '././basics/flow-control-analysis/flow-control-analysis.ts'",
-    "basics:union-types-non-discriminated": "node './basics/union-types-non-discriminated/union-types-non-discriminated.ts'"
+    "basics:union-types-non-discriminated": "node './basics/union-types-non-discriminated/union-types-non-discriminated.ts'",
+    "# DATA_MODELING:": "",
+    "data-modeling:example1": "node './data-modeling/example1/index.ts'",
+    "data-modeling:example2": "node './data-modeling/example2/index.ts'",
+    "data-modeling:example3": "node './data-modeling/example3/index.ts'",
+    "data-modeling:example4": "node './data-modeling/example4/index.ts'"
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",

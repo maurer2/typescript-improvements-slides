@@ -1,7 +1,7 @@
 import currency from 'currency.js';
 
-import { loanJSON } from './data';
-import type { Loan } from './types';
+import { loanJSON } from './data.ts';
+import type { Loan } from './types.ts';
 
 const loan: Loan = {
   id: loanJSON.id,

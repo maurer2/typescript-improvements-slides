@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import currency from 'currency.js';
 
-import type { LoanStringlyTyped, Loan } from './types';
+import type { LoanStringlyTyped, Loan } from './types.ts';
 
 export const loanJSON: LoanStringlyTyped = {
   id: faker.datatype.uuid(),
