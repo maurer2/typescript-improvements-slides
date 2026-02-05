@@ -29,7 +29,9 @@
     "type-predicates-and-type-guards:instanceof-and-typeof-operators": "node './type-predicates-and-type-guards/instanceof-and-typeof-operators/instanceof-and-typeof-operators.ts'",
     "type-predicates-and-type-guards:in-operator": "node './type-predicates-and-type-guards/in-operator/in-operator.ts'",
     "type-predicates-and-type-guards:custom-type-guards:start": "node './type-predicates-and-type-guards/custom-type-guards/type-predicates-and-type-guards.ts'",
-    "type-predicates-and-type-guards:custom-type-guards:test": "jest './type-predicates-and-type-guards/custom-type-guards/type-predicates-and-type-guards.spec.ts' --config=jest.config.ts"
+    "type-predicates-and-type-guards:custom-type-guards:test": "jest './type-predicates-and-type-guards/custom-type-guards/type-predicates-and-type-guards.spec.ts' --config=jest.config.ts",
+    "# TYPECHECKING_IN_JS_FILES": "",
+    "typechecking-in-js-files:lint": "tsc -p ./typechecking-in-js-files/jsconfig.json"
   },
   "dependencies": {
     "@faker-js/faker": "^7.5.0",
