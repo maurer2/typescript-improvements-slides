@@ -7,13 +7,13 @@ console.log(peopleEmpty);
 
 const peopleAtLeastOne: PersonList = [
   {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     isPrimeMinister: false,
   } as Person,
   {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     isPrimeMinister: false,
   } as Person,
 ];
@@ -23,18 +23,18 @@ const people1 = [] as const; // or readonly []l
 
 const people2 = [
   {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     isPrimeMinister: false,
   } as Person,
   {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     isPrimeMinister: false,
   } as Person,
   {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     isPrimeMinister: false,
   } as Person,
 ] as const;
@@ -45,8 +45,8 @@ console.log(people22);
 
 // const people4: PersonList = Array.from({ length: 1 }, () => {
 //   return {
-//     firstName: faker.name.firstName(),
-//     lastName: faker.name.lastName(),
+//     firstName: faker.person.firstName(),
+//     lastName: faker.person.lastName(),
 //     isPrimeMinister: true,
 //   } as const;
 // });

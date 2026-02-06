@@ -10,8 +10,8 @@ export const people: Person[] = Array.from({ length: 10 }, () => {
   ]);
 
   const person: Person = {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     dateOfBirth,
   };
 

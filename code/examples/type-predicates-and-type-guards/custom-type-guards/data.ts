@@ -4,13 +4,13 @@ import type { Customer } from './types.ts';
 
 export function getRandomCustomers(numberOfCustomers: number = 100): Customer[] {
   const customers: Customer[] = Array.from({ length: numberOfCustomers }).map(() => {
-    const defaultedPayments = faker.datatype.number({ min: 0, max: 5, precision: 1 });
-    const missedPayments = faker.datatype.number({ min: 0, max: 10, precision: 1 });
+    const defaultedPayments = faker.number.int({ min: 0, max: 5 });
+    const missedPayments = faker.number.int({ min: 0, max: 10 });
 
     return {
-      id: faker.datatype.uuid(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
+      id: faker.string.uuid(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
       defaultedPayments,
       missedPayments,
       hasDefaultedPayments: Boolean(defaultedPayments),
@@ -22,9 +22,9 @@ export function getRandomCustomers(numberOfCustomers: number = 100): Customer[] 
 }
 
 export const customerRegular: Customer = {
-  id: `Regular-${faker.datatype.uuid()}`,
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
+  id: `Regular-${faker.string.uuid()}`,
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
   defaultedPayments: 0,
   missedPayments: 0,
   hasDefaultedPayments: false,
@@ -32,9 +32,9 @@ export const customerRegular: Customer = {
 };
 
 export const customerWithDefaultedPayments: Customer = {
-  id: `Defaulted-${faker.datatype.uuid()}`,
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
+  id: `Defaulted-${faker.string.uuid()}`,
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
   defaultedPayments: 10,
   missedPayments: 10,
   hasDefaultedPayments: true,
@@ -42,9 +42,9 @@ export const customerWithDefaultedPayments: Customer = {
 };
 
 export const customerWithMissedPayments: Customer = {
-  id: `Missed-${faker.datatype.uuid()}`,
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
+  id: `Missed-${faker.string.uuid()}`,
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
   defaultedPayments: 0,
   missedPayments: 10,
   hasDefaultedPayments: false,

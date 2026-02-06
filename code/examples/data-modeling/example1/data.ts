@@ -3,19 +3,19 @@ import { faker } from '@faker-js/faker';
 import type { Customer, CustomerWithPaymentData } from './types.ts';
 
 const customer: Customer = {
-  id: faker.datatype.uuid(),
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  house: faker.address.buildingNumber(),
-  street: faker.address.street(),
-  postcode: faker.address.buildingNumber(),
-  city: faker.address.city(),
+  id: faker.string.uuid(),
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  house: faker.location.buildingNumber(),
+  street: faker.location.street(),
+  postcode: faker.location.buildingNumber(),
+  city: faker.location.city(),
 };
 
 const customerWithPaymentData: CustomerWithPaymentData = {
   ...customer,
-  defaultedPayments: faker.datatype.number({ min: 0, max: 5, precision: 1 }),
-  missedPayments: faker.datatype.number({ min: 0, max: 10, precision: 1 }),
+  defaultedPayments: faker.number.int({ min: 0, max: 5 }),
+  missedPayments: faker.number.int({ min: 0, max: 10 }),
 };
 
 export const customers: [Customer, CustomerWithPaymentData] = [customer, customerWithPaymentData];
