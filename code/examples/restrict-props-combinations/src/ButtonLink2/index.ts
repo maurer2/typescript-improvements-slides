@@ -1,1 +1,1 @@
-export { default } from './ButtonLink2';
+export { default } from './ButtonLink2.ts';
