@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react';
-import './App.scss';
 
-import Child from './Child';
-import Childless from './Childless';
+import Child from './Child/Child.tsx';
+import Childless from './Childless/Childless.tsx';
 
 function App(): ReactElement {
   return (
@@ -11,7 +10,8 @@ function App(): ReactElement {
       <Child otherProp="test">
         <h2>Can have child content</h2>
       </Child>
-      <Childless otherProp="test" />
+      {/* @ts-expect-error child element(s) prohibited */}
+      <Childless otherProp="test">Test</Childless>
     </div>
   );
 }
