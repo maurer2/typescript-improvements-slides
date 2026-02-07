@@ -9,7 +9,6 @@
     "slides:build": "pnpm --filter slides build",
     "slides:export": "pnpm --filter slides export",
     "lint": "pnpm --recursive lint",
-    "test": "pnpm --recursive test",
     "install-all": "pnpm install --recursive"
   },
   "devDependencies": {
