@@ -1,20 +1,20 @@
 import { faker } from '@faker-js/faker';
 
-import type { Person } from './types';
+import type { Person } from './types.ts';
 
 function getPerson(): Person {
   const hasAddress = faker.datatype.boolean();
 
   const person: Person = {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
     isPrimeMinister: false,
     ...(hasAddress && {
       address: {
-        house: faker.address.buildingNumber(),
-        street: faker.address.street(),
-        postcode: faker.address.buildingNumber(),
-        city: faker.address.city(),
+        house: faker.location.buildingNumber(),
+        street: faker.location.street(),
+        postcode: faker.location.buildingNumber(),
+        city: faker.location.city(),
       },
     }),
   };

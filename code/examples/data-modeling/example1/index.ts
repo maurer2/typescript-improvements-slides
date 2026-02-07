@@ -1,4 +1,4 @@
-import { customers } from './data';
+import { customers } from './data.ts';
 
 const [customer, customerWithPaymentData] = customers;
 

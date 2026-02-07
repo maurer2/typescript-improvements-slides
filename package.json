@@ -1,0 +1,18 @@
+{
+  "name": "typescript-improvements-slides",
+  "version": "1.0.0",
+  "description": "TypeScript improvements slides and examples",
+  "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "scripts": {
+    "slides:dev": "pnpm --filter slides dev",
+    "slides:build": "pnpm --filter slides build",
+    "slides:export": "pnpm --filter slides export",
+    "lint": "pnpm --recursive lint",
+    "install-all": "pnpm install --recursive"
+  },
+  "devDependencies": {
+    "@types/node": "^24.8.3",
+    "typescript": "^5.9.3"
+  }
+}

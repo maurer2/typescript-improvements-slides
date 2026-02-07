@@ -7,7 +7,7 @@ import type {
   TypeChildUnion2,
   TypeChildNull,
   TypeChildNull2,
-} from './types';
+} from './types.ts';
 
 export const typeChild: TypeChild = {
   value: 'test', // ok
@@ -20,6 +20,7 @@ export const typeChild2: TypeChild2 = {
   // value: null, // error
 };
 
+// @ts-expect-error empty object test
 export const typeChildNumber: TypeChildNumber = {
   // value: 'test' // error
   // value: 1, // error
@@ -42,6 +43,7 @@ export const typeChildUnion2: TypeChildUnion2 = {
   // value: null, // ok
 };
 
+// @ts-expect-error empty object test
 export const typeChildNull: TypeChildNull = {
   // value: 'test' // error
   // value: 1, // error

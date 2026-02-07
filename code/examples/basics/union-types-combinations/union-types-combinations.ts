@@ -1,4 +1,4 @@
-import type { DatePicker } from './types';
+import type { DatePicker } from './types.ts';
 
 const regularDatePicker: DatePicker = {
   day: 1,

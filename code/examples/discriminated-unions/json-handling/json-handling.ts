@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import type { Loading, Failed, Success, Cat, APIRequestStatus } from './types';
+import type { Loading, Failed, Success, Cat, APIRequestStatus } from './types.ts';
 
 async function getResponse<T>(): Promise<APIRequestStatus<T>> {
   return faker.helpers.arrayElement([
@@ -24,8 +24,8 @@ async function getResponse<T>(): Promise<APIRequestStatus<T>> {
         sound: 'Meow',
         isCurrentChiefMouser: true,
       } as T,
-    } as Success<T>
-  ])
+    } as Success<T>,
+  ]);
 }
 
 async function sendAPIRequest<T>(): Promise<void> {

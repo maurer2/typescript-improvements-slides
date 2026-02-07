@@ -1,6 +1,6 @@
 import { describe, it, expectTypeOf } from 'vitest';
 
-import { sumOverload, sumGeneric } from './sum';
+import { sumOverload, sumGeneric } from './sum.ts';
 
 describe('sumOverload', () => {
   it('returns bigint number for bigint parameters', () => {

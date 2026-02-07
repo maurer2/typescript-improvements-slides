@@ -1,4 +1,4 @@
-import { getRandomSortCode } from './app';
+import { getRandomSortCode } from './app.ts';
 
 describe('getRandomSortCode', () => {
   it('should return a valid sort code', () => {

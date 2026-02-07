@@ -1,1 +1,1 @@
-export { default } from './Childless';
+export { default } from './Childless.ts';

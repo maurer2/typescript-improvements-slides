@@ -1,16 +1,16 @@
 import { faker } from '@faker-js/faker';
 import currency from 'currency.js';
 
-import type { LoanStringlyTyped, Loan } from './types';
+import type { LoanStringlyTyped, Loan } from './types.ts';
 
 export const loanJSON: LoanStringlyTyped = {
-  id: faker.datatype.uuid(),
+  id: faker.string.uuid(),
   title: faker.lorem.words(5),
   tranche: faker.lorem.word(),
   available_amount: faker.finance.amount(),
   annualised_return: faker.finance.amount(),
-  term_remaining: faker.date.future(12).toISOString(),
-  ltv: faker.datatype.number({ max: 100, precision: 0.01 }),
+  term_remaining: faker.date.future({ years: 12 }).toISOString(),
+  ltv: faker.number.float({ max: 100, fractionDigits: 2 }),
   loan_value: faker.finance.amount(),
 };
 

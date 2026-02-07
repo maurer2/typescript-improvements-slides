@@ -1,8 +1,11 @@
 export function sumOverload(a: number, b: number): number;
 export function sumOverload(a: string, b: string): string;
 export function sumOverload(a: bigint, b: bigint): bigint;
-// eslint-disable-next-line max-len
-export function sumOverload(a: number | string | bigint, b: number | string | bigint): number | string | bigint {
+
+export function sumOverload(
+  a: number | string | bigint,
+  b: number | string | bigint,
+): number | string | bigint {
   if (typeof a === 'bigint' && typeof b === 'bigint') {
     return BigInt(a + b);
   }

@@ -1,9 +1,8 @@
-import type { Actions, State } from './types';
-import { initialState } from './store';
-import { ActionNames } from './action-types';
+import type { Actions, State } from './types.ts';
+import { initialState } from './store.ts';
+import { ActionNames } from './action-types.ts';
 
 // Redux without Redux Toolkit
-// eslint-disable-next-line @typescript-eslint/default-param-last
 const reducers = (state: State = initialState, action: Actions): State => {
   const { type } = action;
 
