@@ -1,11 +1,15 @@
-import React, { useReducer, ReducerWithoutAction } from 'react';
-import './App.scss';
+import React, { useReducer } from 'react';
 
-import ButtonLink from './ButtonLink';
-import ButtonLink2 from './ButtonLink2';
+import ButtonLink from './ButtonLink/ButtonLink.tsx';
+import ButtonLink2 from './ButtonLink2/ButtonLink2.tsx';
 
 function App() {
-  const [isButton, toggleIsButton] = useReducer<ReducerWithoutAction<boolean>>((isButton) => !isButton, true);
+  // doesn't work in React19 anymore: https://react.dev/blog/2024/04/25/react-19-upgrade-guide?utm_source=chatgpt.com#better-usereducer-typings
+  // const [isButton, toggleIsButton] = useReducer<ReducerWithoutAction<boolean>>(
+  //   (isButton) => !isButton,
+  //   true,
+  // );
+  const [isButton, toggleIsButton] = useReducer((isButton) => !isButton, true);
 
   return (
     <div className="wrapper">

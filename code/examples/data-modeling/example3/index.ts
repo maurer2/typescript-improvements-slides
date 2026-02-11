@@ -16,12 +16,16 @@ const loan: Loan = {
 
 console.log(loanLooselyTyped);
 console.log(
-  JSON.parse( // syntax highlighting on command line
+  JSON.parse(
+    // syntax highlighting on command line
     JSON.stringify(
       loan,
       (_, value) => {
-        let valueTransformed: string;
-        typeof value === 'bigint' ? (valueTransformed = value.toString()) : (valueTransformed = value);
+        let valueTransformed;
+
+        typeof value === 'bigint'
+          ? (valueTransformed = value.toString())
+          : (valueTransformed = value);
 
         return valueTransformed;
       },

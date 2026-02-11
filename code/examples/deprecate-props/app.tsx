@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { CustomButtonProps } from './library';
+import React, { type ReactElement } from 'react';
+import type { CustomButtonProps } from './library.ts';
 
 function CustomButton({ children, onClick, newProp }: CustomButtonProps): ReactElement {
   return (

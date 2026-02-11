@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { type ReactElement } from 'react';
 
 import Child from './Child/Child.tsx';
 import Childless from './Childless/Childless.tsx';

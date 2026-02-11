@@ -1,7 +1,7 @@
-import { ElementType } from 'react';
+import type { ElementType } from 'react';
 
 type ButtonLinkCommonProps<T> = {
-  as: T,
+  as: T;
   onClick: () => void;
 };
 

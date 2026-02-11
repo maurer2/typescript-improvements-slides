@@ -1,4 +1,4 @@
-import { MouseEvent, PropsWithChildren } from 'react';
+import type { MouseEvent, PropsWithChildren } from 'react';
 
 export type CustomButtonProps = PropsWithChildren<
   Partial<Pick<HTMLButtonElement, 'autofocus' | 'ariaDisabled'>> & {

@@ -7,14 +7,14 @@ type ReducerActionTypes = typeof reducerActionTypes[number];
 type ReducerActionsNested = {
   readonly [K in ReducerActionTypes]: {
     type: K;
-    payload: K extends 'reset' ? void : number;
+    payload: K extends 'reset' ? undefined : number;
   };
 };
 
 type ReducerActionsFlat = {
   readonly [K in ReducerActionTypes]: {
     type: K;
-    payload: K extends 'reset' ? void : number;
+    payload: K extends 'reset' ? undefined : number;
   };
 }[ReducerActionTypes]; // magic
 

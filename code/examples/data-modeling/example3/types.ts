@@ -1,5 +1,5 @@
 // adapted from https://github.com/maurer2/loansome
-import currency from 'currency.js';
+import type currency from 'currency.js';
 
 export type LoanLooselyTyped = {
   id: string;
@@ -19,6 +19,6 @@ export type Loan = Omit<
   available_amount: currency;
   annualised_return: currency;
   term_remaining: Date;
-  ltv: BigInt;
+  ltv: bigInt;
   loan_value: currency;
 };

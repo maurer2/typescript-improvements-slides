@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import { PersonList, Person } from './types.ts';
+import type { PersonList, Person } from './types.ts';
 
 const peopleEmpty: PersonList = []; // Error - Type '[]' is not assignable to type 'PersonList'. Source has 0 element(s) but target requires 1
 console.log(peopleEmpty);

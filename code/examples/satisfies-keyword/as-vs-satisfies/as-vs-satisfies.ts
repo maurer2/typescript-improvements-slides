@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import { People, Person } from './types.ts';
+import type { People, Person } from './types.ts';
 
 const people1 = [
   {

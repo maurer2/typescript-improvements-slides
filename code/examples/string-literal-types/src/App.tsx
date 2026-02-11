@@ -1,4 +1,4 @@
-import React, { useState, useId, type FormEvent, type MouseEvent } from 'react';
+import React, { useState, useId, type SubmitEvent } from 'react';
 
 import calculateQuotient from './util/calculate-percentage/calculate-percentage.ts';
 
@@ -18,7 +18,8 @@ function App() {
 
   const handleChange =
     (slider: string) =>
-    (event: FormEvent<HTMLInputElement>): void => {
+    // FormEvent is deprecated as of 19.2: https://github.com/remix-run/react-router/issues/14795
+    (event: SubmitEvent<HTMLInputElement>): void => {
       const { valueAsNumber } = event.currentTarget;
 
       if (slider === slider1) {
@@ -28,7 +29,8 @@ function App() {
       setOperand2(valueAsNumber);
     };
 
-  function handleSubmit(event: MouseEvent<HTMLFormElement>): void {
+  // FormEvent is deprecated as of 19.2: https://github.com/remix-run/react-router/issues/14795
+  function handleSubmit(event: SubmitEvent<HTMLFormElement>): void {
     event.preventDefault();
 
     if (operand1 === 0) {
